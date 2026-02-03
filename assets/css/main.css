@@ -11,3 +11,87 @@
 @import url('details.css');
 @import url('cta.css');
 @import url('footer.css');
+
+/* --- BOTÃO FLUTUANTE WHATSAPP --- */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366; /* Verde oficial do WhatsApp */
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Garante que fique acima de tudo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito Hover (Ao passar o mouse) */
+.whatsapp-float:hover {
+    background-color: #1EBE57; /* Um pouco mais escuro */
+    transform: translateY(-5px); /* Sobe levemente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: #FFF;
+}
+
+/* Tooltip (Texto "Fale Conosco" que aparece ao lado) */
+.whatsapp-float .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 0;
+    font-size: 14px;
+    
+    /* Posicionamento */
+    position: absolute;
+    right: 70px; /* Fica à esquerda do botão */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Pequena setinha do tooltip */
+.whatsapp-float .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -10px; /* Aponta para o botão */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #333;
+}
+
+/* Mostra o texto ao passar o mouse */
+.whatsapp-float:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Ajuste para Celulares (Mobile) */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 28px;
+    }
+    
+    /* No celular o tooltip é escondido para não atrapalhar */
+    .whatsapp-float .tooltip-text {
+        display: none;
+    }
+}
