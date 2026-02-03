@@ -1,0 +1,182 @@
+/* css/post.css */
+
+/* Layout Grid: Conteúdo (2/3) + Sidebar (1/3) */
+.post-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    align-items: start; /* Impede que a sidebar estique até o fim do post */
+}
+
+/* ===========================
+   ESTILOS DO ARTIGO
+   =========================== */
+
+/* Header do Post (Título e Data) */
+.post-header {
+    margin-bottom: 2rem;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: var(--dark-bg);
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Imagem Principal */
+.post-hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 4px;
+}
+
+.post-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Corpo do Texto (Tipografia IBM Clean) */
+.post-body-text {
+    font-size: 1.125rem; /* 18px para leitura confortável */
+    line-height: 1.8;
+    color: #333;
+}
+
+.post-body-text p {
+    margin-bottom: 1.5rem;
+}
+
+.post-body-text h2 {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--dark-bg);
+}
+
+.post-body-text h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.post-body-text ul, 
+.post-body-text ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.post-body-text li {
+    margin-bottom: 0.5rem;
+}
+
+.post-footer-nav {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-back {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-back:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   ESTILOS DA SIDEBAR
+   =========================== */
+
+.post-sidebar {
+    position: sticky;
+    top: 6rem; /* Fica presa ao rolar a página (considerando o header) */
+}
+
+.sidebar-widget {
+    background: #f9f9f9;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.sidebar-widget h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-bg);
+}
+
+.sidebar-widget p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Botão WhatsApp da Sidebar */
+.btn-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px;
+    background-color: #25D366; /* Verde Zap */
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.btn-sidebar:hover {
+    background-color: #1ebc57;
+}
+
+.sidebar-socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--dark-bg);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.sidebar-socials a:hover {
+    color: var(--primary-color);
+}
+
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
+@media (max-width: 900px) {
+    .post-grid {
+        grid-template-columns: 1fr; /* Empilha tudo */
+        gap: 3rem;
+    }
+
+    .post-sidebar {
+        position: static; /* Remove o sticky no mobile */
+        order: 2; /* Joga a sidebar para o final */
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+}

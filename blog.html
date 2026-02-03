@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - EDGETI Soluções em TI</title>
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/blog.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta name="adopt-website-id" content="341ba5d4-b045-4bab-9246-e22ac7ddb548" />
+    <script src="//tag.goadopt.io/injector.js?website_code=341ba5d4-b045-4bab-9246-e22ac7ddb548" 
+            class="adopt-injector"
+            data-cookie-domain="edgeti.com.br">
+    </script>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">
+                <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+            </a>
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="solucoes.html">Soluções</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="cta.html">Fale Conosco</a></li>
+                    <li><a href="centralPrivacidade.html">Privacidade</a></li>
+                </ul>
+            </nav>
+            <button id="btn-mobile" aria-label="Abrir Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+        <div id="menu-mobile" class="menu-mobile-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="solucoes.html">Soluções</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="cta.html">Fale Conosco</a></li>
+                    <li><a href="central-privacidade.html">Privacidade</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-header bg-light">
+            <div class="container">
+                <h1>Blog da EDGETI</h1>
+                <p>Notícias, tecnologia e segurança da informação.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div id="posts-container" class="posts-grid">
+                    <p class="loading-text">Carregando artigos...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo">EDGETI</h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance e segurança.</p>
+                </div>
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="solucoes.html">Soluções</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="cta.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><span class="icon-footer icon-map"></span> Palhoça, SC, Brasil</li>
+                        <li><span class="icon-footer icon-mail"></span> contato@edgeti.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EDGETI. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/menu.js"></script>
+
+   <script>
+    const postsContainer = document.getElementById('posts-container');
+    
+    // IMPORTANTE: Se você estiver rodando localmente (sem servidor proxy), 
+    // talvez precise colocar a URL completa, ex: 'http://localhost:1337/api/posts...'
+    const apiUrl = 'https://edgeti.com.br/api/posts?populate=*&sort=createdAt:desc'; 
+    // ^^^ MUDE ISSO SE SEU STRAPI NÃO ESTIVER NA PORTA 1337
+
+    function convertContentToText(contentBlocks) {
+        if (!Array.isArray(contentBlocks)) return '';
+        return contentBlocks.map(block => {
+            // Verifica se 'children' existe (Strapi v4 padrão)
+            if (block.children) {
+                return block.children.map(child => child.text).join('');
+            }
+            return '';
+        }).join(' ');
+    }
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Dados recebidos do Strapi:", data); // <--- OLHE O CONSOLE DO NAVEGADOR (F12)
+
+            postsContainer.innerHTML = '';
+
+            // Verifica se a lista de posts existe
+            const postsList = data.data; 
+
+            if (!postsList || postsList.length === 0) {
+                postsContainer.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
+                return;
+            }
+
+            postsList.forEach(item => {
+                // TRUQUE DE MESTRE: Tenta pegar os dados direto OU dentro de 'attributes'
+                // Isso faz o código funcionar tanto no Strapi v4 puro quanto no modificado.
+                const post = item.attributes || item;
+                const postId = item.id; // As vezes o ID fica fora do attributes
+
+                // Pega a imagem (tenta vários caminhos possíveis do Strapi)
+                let imgUrl = null;
+                const cover = post.cover_image?.data;
+                if (cover) {
+                    // Se for array (vários arquivos) ou objeto (um arquivo)
+                    const imgData = Array.isArray(cover) ? cover[0] : cover;
+                    // Se tiver attributes (Strapi v4) ou direto
+                    const imgAttribs = imgData.attributes || imgData;
+                    
+                    // Se a URL for relativa (ex: /uploads/...), adiciona o domínio do Strapi
+                    if (imgAttribs?.url) {
+                        imgUrl = imgAttribs.url.startsWith('http') 
+                            ? imgAttribs.url 
+                            : `https://edgeti.com.br:1337${imgAttribs.url}`; 
+                    }
+                }
+
+                const textContent = convertContentToText(post.content);
+                const excerpt = textContent.substring(0, 120) + '...';
+
+                const card = document.createElement('div');
+                card.className = 'post-card';
+
+                card.innerHTML = `
+                    <a href="post.html?slug=${post.slug}" class="post-card-image-link">
+                        ${imgUrl 
+                            ? `<img src="${imgUrl}" alt="${post.title}" loading="lazy">` 
+                            : '<div class="no-image">EDGETI</div>'
+                        }
+                    </a>
+                    <div class="post-card-content">
+                        <h3><a href="post.html?slug=${post.slug}">${post.title}</a></h3>
+                        <p>${excerpt}</p>
+                        <a href="post.html?slug=${post.slug}" class="read-more-btn">Ler Artigo <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                `;
+                postsContainer.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('ERRO CRÍTICO:', error);
+            postsContainer.innerHTML = `<p class="error-text">Erro ao carregar: ${error.message}. <br> Verifique o Console (F12) para mais detalhes.</p>`;
+        });
+</script>
+</body>
+</html>

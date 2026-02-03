@@ -1,0 +1,13 @@
+/* css/main.css */
+
+/* 1. Base e Utilitários */
+@import url('global.css');
+
+/* 2. Componentes de Layout */
+@import url('header.css');
+@import url('hero.css');
+@import url('about.css');
+@import url('services.css');
+@import url('details.css');
+@import url('cta.css');
+@import url('footer.css');

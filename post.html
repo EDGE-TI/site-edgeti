@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando post... - Blog EDGETI</title>
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/post.css"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta name="adopt-website-id" content="341ba5d4-b045-4bab-9246-e22ac7ddb548" />
+    <script src="//tag.goadopt.io/injector.js?website_code=341ba5d4-b045-4bab-9246-e22ac7ddb548" 
+            class="adopt-injector"
+            data-cookie-domain="edgeti.com.br">
+    </script>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">
+                <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+            </a>
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="solucoes.html">Soluções</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li> <li><a href="cta.html">Fale Conosco</a></li>
+                    <li><a href="centralPrivacidade.html">Privacidade</a></li>
+                </ul>
+            </nav>
+            <button id="btn-mobile" aria-label="Abrir Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+        <div id="menu-mobile" class="menu-mobile-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="solucoes.html">Soluções</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="cta.html">Fale Conosco</a></li>
+                    <li><a href="centralPrivacidade.html">Privacidade</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section post-section">
+            <div class="container post-grid">
+                
+                <article class="post-content">
+                    <div id="post-content-area">
+                        <div class="loading-state">
+                            <i class="ph ph-spinner ph-spin"></i>
+                            <p>Carregando conteúdo...</p>
+                        </div>
+                    </div>
+                </article>
+
+                <aside class="post-sidebar">
+                    
+                    <div class="sidebar-widget">
+                        <h3>Fale Conosco</h3>
+                        <p>Gostou do conteúdo? Tem um projeto em mente? Chame-nos para um bate-papo.</p>
+                        <a href="https://wa.me/554891763985?text=Olá!%20Li%20um%20artigo%20no%20blog%20da%20EDGETI%20e%20gostaria%20de%20conversar." target="_blank" class="btn-sidebar btn-whatsapp">
+                            <i class="ph ph-whatsapp-logo"></i> Chamar no WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>Siga a EDGETI</h3>
+                        <div class="sidebar-socials">
+                            <a href="https://www.instagram.com/edge.ti/" target="_blank" aria-label="Instagram">
+                                <i class="ph ph-instagram-logo"></i> @edge.ti
+                            </a>
+                        </div>
+                    </div>
+
+                </aside>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo">EDGETI</h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance e segurança.</p>
+                </div>
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="solucoes.html">Soluções</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="cta.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><span class="icon-footer icon-map"></span> Palhoça, SC, Brasil</li>
+                        <li><span class="icon-footer icon-mail"></span> contato@edgeti.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EDGETI. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/menu.js"></script>
+
+    <script>
+        const postArea = document.getElementById('post-content-area');
+        
+        // Pega o SLUG da URL (ex: edgeti.com.br/post/nome-do-post -> pega 'nome-do-post')
+        // Nota: Dependendo de como seu servidor serve os arquivos, talvez precise ajustar o index do split.
+        // Se a url for /post.html?slug=nome-do-post, a lógica muda. 
+        // Vou assumir que sua URL é limpa ou que o slug é a última parte.
+        const pathParts = window.location.pathname.split('/');
+        // Filtra partes vazias (caso tenha barra no final)
+        const cleanPath = pathParts.filter(part => part !== ""); 
+        const postSlug = cleanPath[cleanPath.length - 1]; 
+
+        const apiUrl = `/api/posts?filters[slug][$eq]=${postSlug}&populate=*`;
+
+        // Função Melhorada para Converter Blocos do Strapi (Parágrafos, Títulos e Listas)
+        function convertContentToHtml(contentBlocks) {
+            if (!Array.isArray(contentBlocks)) return '';
+            let html = '';
+            
+            contentBlocks.forEach(block => {
+                const text = block.children ? block.children.map(c => c.text).join('') : '';
+
+                switch (block.type) {
+                    case 'heading':
+                        html += `<h${block.level}>${text}</h${block.level}>`;
+                        break;
+                    case 'paragraph':
+                        // Só adiciona se tiver texto (evita parágrafos vazios)
+                        if(text.trim()) html += `<p>${text}</p>`;
+                        break;
+                    case 'list':
+                        const tag = block.format === 'ordered' ? 'ol' : 'ul';
+                        const listItems = block.children.map(item => `<li>${item.children[0].text}</li>`).join('');
+                        html += `<${tag}>${listItems}</${tag}>`;
+                        break;
+                    case 'image':
+                         // Caso o Strapi mande imagem no meio do texto
+                         if(block.image) {
+                             html += `<img src="${block.image.url}" alt="${block.image.alternativeText || ''}" class="post-inline-image">`;
+                         }
+                        break;
+                    default:
+                        if(text.trim()) html += `<p>${text}</p>`;
+                }
+            });
+            return html;
+        }
+
+        fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.data || data.data.length === 0) {
+                    postArea.innerHTML = '<div class="error-msg"><h1>Post não encontrado</h1><a href="blog.html" class="btn-back">Voltar para o Blog</a></div>';
+                    return;
+                }
+
+                const post = data.data[0];
+                document.title = `${post.title} - Blog EDGETI`;
+
+                const imgUrl = post.cover_image?.url;
+                const contentHtml = convertContentToHtml(post.content);
+
+                // Renderiza o HTML final
+                postArea.innerHTML = `
+                    <header class="post-header">
+                        <h1 class="post-title">${post.title}</h1>
+                        <div class="post-meta">
+                            <span><i class="ph ph-calendar-blank"></i> ${new Date(post.createdAt).toLocaleDateString('pt-BR')}</span>
+                        </div>
+                    </header>
+                    
+                    ${imgUrl ? `<div class="post-hero-image"><img src="${imgUrl}" alt="${post.title}"></div>` : ''}
+                    
+                    <div class="post-body-text">
+                        ${contentHtml}
+                    </div>
+                    
+                    <div class="post-footer-nav">
+                        <a href="blog.html" class="btn-back">&larr; Voltar para todos os artigos</a>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                postArea.innerHTML = '<div class="error-msg"><h2>Erro ao carregar o post.</h2><p>Verifique sua conexão e tente novamente.</p></div>';
+            });
+    </script>
+</body>
+</html>

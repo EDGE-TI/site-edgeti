@@ -1,0 +1,88 @@
+/* css/hero.css */
+
+.hero {
+    min-height: 85vh; 
+    display: flex;
+    align-items: center; 
+    
+    /* --- CONFIGURAÇÃO DA IMAGEM DE FUNDO --- */
+    /* O linear-gradient cria uma camada preta 70% transparente por cima da imagem */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-bg.webp');
+    
+    background-size: cover; /* Faz a imagem cobrir todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* (Opcional) Efeito Parallax: a imagem fica parada enquanto rola */
+    background-repeat: no-repeat;
+    
+    border-bottom: 1px solid #333; /* Borda escura para combinar */
+    padding: 2rem 0;
+}
+
+.hero-content {
+    max-width: 900px; 
+}
+
+/* Título Impactante (Agora em Branco) */
+.hero-content h1 {
+    font-size: 3.5rem; 
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff; /* <--- Texto branco para contrastar com a imagem */
+    letter-spacing: -1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra sutil para leitura */
+}
+
+/* Subtítulo (Cinza Claro) */
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    color: #e0e0e0; /* <--- Cinza bem claro */
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Botões */
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Ajuste no botão Outline para ficar branco no fundo escuro */
+.btn-outline {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.btn-outline:hover {
+    background-color: #ffffff;
+    color: var(--dark-bg); /* Texto fica preto no hover */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto; 
+        padding: 6rem 0 4rem 0; /* Mais espaço no topo por causa do menu mobile */
+        background-attachment: scroll; /* Desativa parallax no celular para performance */
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem; 
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-btns {
+        flex-direction: column; 
+        width: 100%;
+    }
+    
+    .hero-btns .btn {
+        width: 100%;
+        text-align: center;
+    }
+}

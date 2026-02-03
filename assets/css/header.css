@@ -1,0 +1,131 @@
+/* ======================================================
+   ESTILOS BASE (DESKTOP FIRST)
+   ====================================================== */
+
+/* O Header em si */
+header {
+    background-color:#010202;
+    border-bottom: 1px solid #1b1b1b;
+    height: 4.5rem; /* ~72px */
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Alinhamento horizontal */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo */
+.logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+}
+
+/* --- NAV DESKTOP (Visível no PC) --- */
+.nav-desktop {
+    display: block; 
+}
+
+.nav-list {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover {
+    color: var(--primary-color);
+}
+
+/* --- ELEMENTOS MOBILE (DEVEM SUMIR NO PC) --- */
+
+/* 1. Botão Hambúrguer: SUMIDO no PC */
+#btn-mobile {
+    display: none; /* <--- OBRIGATÓRIO */
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* 2. Menu Gaveta: SUMIDO no PC */
+.menu-mobile-container {
+    display: none; /* <--- OBRIGATÓRIO */
+    position: absolute;
+    top: 4.5rem; /* Mesma altura do header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 4.5rem); /* Ocupa o resto da tela */
+    background-color: var(--dark-bg);
+    z-index: 999;
+    border-top: 1px solid #393939;
+}
+
+
+/* ======================================================
+   ESTILOS MOBILE (ATÉ 768px)
+   ====================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Esconde a Nav do Desktop */
+    .nav-desktop {
+        display: none;
+    }
+
+    /* 2. Mostra o Botão Hambúrguer */
+    #btn-mobile {
+        display: block;
+    }
+
+    /* 3. Estilo dos Links dentro do Mobile */
+    .menu-mobile-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-mobile-container a {
+        display: block;
+        padding: 1.5rem 2rem;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid #333;
+        font-size: 1.1rem;
+    }
+
+    .menu-mobile-container a:hover {
+        background-color: #262626;
+        color: var(--primary-color);
+    }
+
+    /* 4. CLASSE MÁGICA (Controlada pelo JS) */
+    /* Quando tiver a classe .active, muda de none para block */
+    .menu-mobile-container.active {
+        display: block; 
+        animation: slideIn 0.3s ease forwards;
+    }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
