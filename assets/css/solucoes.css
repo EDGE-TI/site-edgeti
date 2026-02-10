@@ -1,15 +1,16 @@
-/* css/solucoes.css */
+/* css/solucoes.css - VERSÃO DARK MODE (Fundo Escuro) */
 
 /* Hero Section (Topo da página) */
 .solution-hero {
-    background-color: #f4f4f4; /* Cinza IBM muito claro */
+    /* Se o fundo geral já é escuro, podemos deixar transparente ou um cinza bem escuro */
+    background-color: transparent; 
     padding: 6rem 0 4rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #333; /* Linha sutil escura */
 }
 
 .solution-hero h1 {
     font-size: 3rem;
-    color: var(--dark-bg);
+    color: #ffffff; /* MUDANÇA: Branco Puro */
     margin-bottom: 1rem;
     line-height: 1.1;
     letter-spacing: -0.5px;
@@ -17,7 +18,7 @@
 
 .solution-hero .hero-subtitle {
     font-size: 1.25rem;
-    color: #525252;
+    color: #e0e0e0; /* MUDANÇA: Cinza Claro (Gelo) */
     max-width: 700px;
     line-height: 1.5;
 }
@@ -37,34 +38,58 @@
 .solution-text h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: var(--dark-bg);
+    color: #ffffff; /* MUDANÇA: Branco Puro */
 }
 
 .solution-text p {
     font-size: 1.05rem;
     line-height: 1.6;
-    color: #333;
+    color: #d1d1d1; /* MUDANÇA: Cinza Claro para leitura */
     margin-bottom: 1.5rem;
+}
+
+/* Listas (li) e Ícones */
+.solution-text ul {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.solution-text li {
+    margin-bottom: 0.8rem;
+    color: #d1d1d1; /* MUDANÇA: Cinza Claro */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre ícone e texto */
+}
+
+.solution-text li i {
+    font-size: 1.2rem;
+    color: var(--primary-color); /* Mantém o azul da marca */
+    min-width: 24px; /* Alinha os ícones */
 }
 
 .solution-image img {
     width: 100%;
     height: auto;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5); /* Sombra mais forte para fundo escuro */
+    opacity: 0.9; /* Leve transparência para integrar com o fundo */
 }
 
 /* Grid de Benefícios (Cards) */
 .benefits-section {
-    background-color: var(--dark-bg); /* Fundo Escuro para contraste */
+    background-color: #121212; /* Fundo levemente diferente do principal para destaque */
     color: #fff;
     padding: 4rem 0;
+    border-top: 1px solid #333;
 }
 
 .benefits-section h2 {
     font-size: 2rem;
     margin-bottom: 3rem;
     text-align: center;
+    color: #fff;
 }
 
 .benefits-grid {
@@ -74,20 +99,21 @@
 }
 
 .benefit-card {
-    background: rgba(255, 255, 255, 0.1); /* Vidro fosco sutil */
+    background: rgba(255, 255, 255, 0.05); /* Vidro bem sutil */
     padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, background 0.3s;
 }
 
 .benefit-card:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
 }
 
 .benefit-card i {
     font-size: 2.5rem;
-    color: var(--primary-color); /* Azul */
+    color: var(--primary-color);
     margin-bottom: 1rem;
     display: block;
 }
@@ -95,11 +121,12 @@
 .benefit-card h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
 .benefit-card p {
     font-size: 0.95rem;
-    color: #e0e0e0;
+    color: #c0c0c0; /* Cinza médio/claro */
     line-height: 1.5;
 }
 
@@ -107,37 +134,9 @@
 .cta-section {
     text-align: center;
     padding: 5rem 0;
-    background: #fff;
+    background: transparent; /* Remove fundo branco */
+    border-top: 1px solid #333;
 }
 
 .cta-section h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--dark-bg);
-}
-
-.btn-primary {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: background 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #0043ce; /* Azul mais escuro IBM */
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .solution-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .solution-hero h1 {
-        font-size: 2.2rem;
-    }
-}
+    font-

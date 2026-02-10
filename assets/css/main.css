@@ -79,6 +79,34 @@
     visibility: visible;
     opacity: 1;
 }
+/* --- LINKS DE SEÇÃO COMPLETA --- */
+
+.full-section-link {
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Mantém as cores originais do seu texto */
+    display: block; /* Garante que o link ocupe toda a área */
+}
+
+/* Garante que o hover funcione visualmente */
+.hover-effect {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse na seção inteira */
+.full-section-link:hover .hover-effect {
+    transform: translateY(-5px); /* Dá uma leve subidinha na seção inteira */
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra suave para dar destaque */
+    position: relative; /* Necessário para o z-index da sombra funcionar bem */
+    z-index: 10;
+}
+
+/* Ajuste fino para Mobile (opcional, para não pular muito no celular) */
+@media (max-width: 768px) {
+    .full-section-link:hover .hover-effect {
+        transform: none;
+    }
+}
 
 /* Ajuste para Celulares (Mobile) */
 @media (max-width: 768px) {
