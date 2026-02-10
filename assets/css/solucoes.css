@@ -139,4 +139,39 @@
 }
 
 .cta-section h2 {
-    font-
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #fff; /* Branco */
+}
+
+.cta-section p {
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0053e0; /* Azul mais brilhante no hover */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .solution-hero h1 {
+        font-size: 2.2rem;
+    }
+}
