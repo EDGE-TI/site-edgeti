@@ -129,91 +129,119 @@
     <script src="js/menu.js"></script>
 
     <script>
-        const postArea = document.getElementById('post-content-area');
-        
-        // Pega o SLUG da URL (ex: edgeti.com.br/post/nome-do-post -> pega 'nome-do-post')
-        // Nota: Dependendo de como seu servidor serve os arquivos, talvez precise ajustar o index do split.
-        // Se a url for /post.html?slug=nome-do-post, a lógica muda. 
-        // Vou assumir que sua URL é limpa ou que o slug é a última parte.
-        const pathParts = window.location.pathname.split('/');
-        // Filtra partes vazias (caso tenha barra no final)
-        const cleanPath = pathParts.filter(part => part !== ""); 
-        const postSlug = cleanPath[cleanPath.length - 1]; 
+    // 1. Pega os parâmetros da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
+    const id = urlParams.get('id');
 
-        const apiUrl = `/api/posts?filters[slug][$eq]=${postSlug}&populate=*`;
+    console.log("Parâmetros URL:", { slug, id }); // DEBUG 1
 
-        // Função Melhorada para Converter Blocos do Strapi (Parágrafos, Títulos e Listas)
-        function convertContentToHtml(contentBlocks) {
-            if (!Array.isArray(contentBlocks)) return '';
-            let html = '';
-            
-            contentBlocks.forEach(block => {
-                const text = block.children ? block.children.map(c => c.text).join('') : '';
+    const contentDiv = document.getElementById('post-content'); // Certifique-se que existe essa DIV no HTML
 
-                switch (block.type) {
-                    case 'heading':
-                        html += `<h${block.level}>${text}</h${block.level}>`;
-                        break;
-                    case 'paragraph':
-                        // Só adiciona se tiver texto (evita parágrafos vazios)
-                        if(text.trim()) html += `<p>${text}</p>`;
-                        break;
-                    case 'list':
-                        const tag = block.format === 'ordered' ? 'ol' : 'ul';
-                        const listItems = block.children.map(item => `<li>${item.children[0].text}</li>`).join('');
-                        html += `<${tag}>${listItems}</${tag}>`;
-                        break;
-                    case 'image':
-                         // Caso o Strapi mande imagem no meio do texto
-                         if(block.image) {
-                             html += `<img src="${block.image.url}" alt="${block.image.alternativeText || ''}" class="post-inline-image">`;
-                         }
-                        break;
-                    default:
-                        if(text.trim()) html += `<p>${text}</p>`;
-                }
-            });
-            return html;
-        }
+    // 2. Define a URL da API
+    let apiUrl = '';
+    
+    // IMPORTANTE: O proxy do Apache já redireciona /api para o Strapi 1337
+    // Então usamos o domínio principal direto.
+    if (slug) {
+        // Busca por SLUG (Filtro)
+        apiUrl = `https://edgeti.com.br/api/posts?filters[slug][$eq]=${slug}&populate=*`;
+    } else if (id) {
+        // Busca por ID Direto
+        apiUrl = `https://edgeti.com.br/api/posts/${id}?populate=*`;
+    } else {
+        console.error("Sem ID ou Slug na URL");
+        document.body.innerHTML = "<h1>Erro: Link inválido (sem ID ou Slug)</h1>";
+    }
 
+    console.log("Vai buscar em:", apiUrl); // DEBUG 2
+
+    // 3. Faz a busca
+    if (apiUrl) {
         fetch(apiUrl)
-            .then(res => res.json())
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.json();
+            })
             .then(data => {
-                if (!data.data || data.data.length === 0) {
-                    postArea.innerHTML = '<div class="error-msg"><h1>Post não encontrado</h1><a href="blog.html" class="btn-back">Voltar para o Blog</a></div>';
+                console.log("Resposta do Strapi:", data); // DEBUG 3
+
+                // --- LÓGICA DE EXTRAÇÃO DOS DADOS ---
+                let post = null;
+
+                // Cenário A: Busca por ID (retorna objeto direto em data.data)
+                if (id && data.data) {
+                    post = data.data.attributes ? data.data.attributes : data.data;
+                }
+                
+                // Cenário B: Busca por Slug (retorna ARRAY em data.data)
+                else if (slug && data.data && data.data.length > 0) {
+                    post = data.data[0].attributes ? data.data[0].attributes : data.data[0];
+                }
+
+                if (!post) {
+                    console.error("Post não encontrado dentro da resposta");
+                    document.querySelector('main').innerHTML = "<div class='container'><h1>Post não encontrado :(</h1><p>Verifique se o post foi publicado.</p></div>";
                     return;
                 }
 
-                const post = data.data[0];
-                document.title = `${post.title} - Blog EDGETI`;
+                // --- PREENCHIMENTO DA TELA ---
+                
+                // 1. Título
+                const titleEl = document.getElementById('post-title') || document.querySelector('h1');
+                if (titleEl) titleEl.innerText = post.title;
 
-                const imgUrl = post.cover_image?.url;
-                const contentHtml = convertContentToHtml(post.content);
+                // 2. Data
+                const dateEl = document.getElementById('post-date');
+                if (dateEl && post.publishedAt) {
+                    dateEl.innerText = new Date(post.publishedAt).toLocaleDateString('pt-BR');
+                }
 
-                // Renderiza o HTML final
-                postArea.innerHTML = `
-                    <header class="post-header">
-                        <h1 class="post-title">${post.title}</h1>
-                        <div class="post-meta">
-                            <span><i class="ph ph-calendar-blank"></i> ${new Date(post.createdAt).toLocaleDateString('pt-BR')}</span>
-                        </div>
-                    </header>
-                    
-                    ${imgUrl ? `<div class="post-hero-image"><img src="${imgUrl}" alt="${post.title}"></div>` : ''}
-                    
-                    <div class="post-body-text">
-                        ${contentHtml}
-                    </div>
-                    
-                    <div class="post-footer-nav">
-                        <a href="blog.html" class="btn-back">&larr; Voltar para todos os artigos</a>
-                    </div>
-                `;
+                // 3. Imagem de Capa
+                const imgEl = document.getElementById('post-image');
+                // Tenta achar a imagem em vários lugares possíveis
+                const coverData = post.cover_image?.data || post.capa?.data || post.image?.data || post.imagem?.data;
+                
+                if (imgEl && coverData) {
+                    const imgObj = Array.isArray(coverData) ? coverData[0] : coverData;
+                    const imgUrl = imgObj.attributes ? imgObj.attributes.url : imgObj.url;
+                    // Se for caminho relativo, põe o domínio
+                    imgEl.src = imgUrl.startsWith('http') ? imgUrl : `https://edgeti.com.br${imgUrl}`;
+                    imgEl.style.display = 'block';
+                }
+
+                // 4. Conteúdo (Rich Text ou Texto Simples)
+                const bodyEl = document.getElementById('post-body');
+                if (bodyEl) {
+                    // Se for Markdown, precisaria de um conversor. 
+                    // Se for Blocks (Strapi v5), precisa de um loop.
+                    // Tentando o básico:
+                    if (Array.isArray(post.content)) {
+                        // Lógica para Blocks (Strapi v5)
+                        bodyEl.innerHTML = post.content.map(block => {
+                            if (block.type === 'paragraph') {
+                                return `<p>${block.children.map(c => c.text).join('')}</p>`;
+                            }
+                            if (block.type === 'heading') {
+                                return `<h3>${block.children.map(c => c.text).join('')}</h3>`;
+                            }
+                            if (block.type === 'list') {
+                                return `<ul>${block.children.map(item => `<li>${item.children[0].text}</li>`).join('')}</ul>`;
+                            }
+                            return '';
+                        }).join('');
+                    } else {
+                        // Texto simples ou HTML
+                        bodyEl.innerHTML = post.content || post.conteudo || "<p>Sem conteúdo.</p>"; 
+                    }
+                }
+
             })
             .catch(error => {
-                console.error('Erro:', error);
-                postArea.innerHTML = '<div class="error-msg"><h2>Erro ao carregar o post.</h2><p>Verifique sua conexão e tente novamente.</p></div>';
+                console.error("Erro no Fetch:", error);
+                document.body.innerHTML = `<h1>Erro técnico: ${error.message}</h1>`;
             });
-    </script>
+    }
+</script>
 </body>
 </html>

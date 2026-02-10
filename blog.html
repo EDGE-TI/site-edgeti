@@ -153,8 +153,7 @@
             }
 
             postsList.forEach(item => {
-                // TRUQUE DE MESTRE: Tenta pegar os dados direto OU dentro de 'attributes'
-                // Isso faz o código funcionar tanto no Strapi v4 puro quanto no modificado.
+               
                 const post = item.attributes || item;
                 const postId = item.id; // As vezes o ID fica fora do attributes
 
