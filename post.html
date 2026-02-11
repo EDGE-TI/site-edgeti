@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carregando post... - Blog EDGETI</title>
     
+    <title>Blog EDGETI - Tecnologia e Inovação</title>
+    <meta name="description" content="Artigos sobre TI, segurança e performance para sua empresa.">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Blog EDGETI">
+    <meta property="og:description" content="Artigos sobre TI, segurança e performance.">
+    <meta property="og:image" content="https://edgeti.com.br/assets/images/LOGO_FUNDO_TRANSPARENTE.png"> <meta property="og:url" content="https://edgeti.com.br/blog.html">
+
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/post.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <meta name="adopt-website-id" content="341ba5d4-b045-4bab-9246-e22ac7ddb548" />
@@ -29,7 +35,8 @@
                 <ul class="nav-list">
                     <li><a href="/">Home</a></li>
                     <li><a href="index.html#servicos">Soluções</a></li>
-                    <li><a href="blog.html" class="active">Blog</a></li> <li><a href="index.html#vamos-conversar">Contato</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li> 
+                    <li><a href="index.html#vamos-conversar">Contato</a></li>
                     <li><a href="central-privacidade.html">Central de Privacidade</a></li>
                 </ul>
             </nav>
@@ -64,7 +71,6 @@
                 </article>
 
                 <aside class="post-sidebar">
-                    
                     <div class="sidebar-widget">
                         <h3>Fale Conosco</h3>
                         <p>Gostou do conteúdo? Tem um projeto em mente? Chame-nos para um bate-papo.</p>
@@ -81,7 +87,6 @@
                             </a>
                         </div>
                     </div>
-
                 </aside>
 
             </div>
@@ -91,7 +96,6 @@
      <footer id="contato" class="site-footer">
         <div class="container">
             <div class="footer-content">
-                
                 <div class="footer-column footer-about">
                     <h3 class="footer-logo">EDGETI</h3>
                     <p>Sua parceira em soluções de tecnologia, focada em performance, segurança e suporte especializado para impulsionar seus resultados.</p>
@@ -101,7 +105,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="footer-column footer-links">
                     <h3>Links Rápidos</h3>
                     <ul>
@@ -111,26 +114,15 @@
                         <li><a href="index.html#vamos-conversar">Contato</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column footer-contact">
                     <h3>Contato</h3>
                     <ul>
-                        <li>
-                            <span class="icon-footer icon-map"></span>
-                            <span>Palhoça, SC, Brasil</span>
-                        </li>
-                        <li>
-                            <span class="icon-footer icon-phone"></span>
-                            <span>(48) 9176-3985</span>
-                        </li>
-                        <li>
-                            <span class="icon-footer icon-mail"></span>
-                            <span>contato@edgeti.com.br</span>
-                        </li>
+                        <li><span class="icon-footer icon-map"></span><span>Palhoça, SC, Brasil</span></li>
+                        <li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li>
+                        <li><span class="icon-footer icon-mail"></span><span>contato@edgeti.com.br</span></li>
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2026 EDGETI. Todos os direitos reservados.</p>
                 <a href="centralPrivacidade.html">Política de Privacidade</a>
@@ -139,11 +131,8 @@
     </footer>
 
     <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento." 
-   class="whatsapp-float" 
-   target="_blank" 
-   aria-label="Falar no WhatsApp">
-    <i class="ph ph-whatsapp-logo"></i>
-    <span class="tooltip-text">Fale Conosco</span>
+       class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo"></i>
     </a>
 
     <script src="assets/js/menu.js"></script>
@@ -177,12 +166,9 @@
                 // --- TRATAMENTO DE DADOS (Strapi v5) ---
                 let post = null;
 
-                // Se buscou por ID, retorna objeto direto em data
                 if (id && json.data && !Array.isArray(json.data)) {
                     post = json.data;
-                }
-                // Se buscou por Slug, retorna array em data
-                else if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+                } else if (json.data && Array.isArray(json.data) && json.data.length > 0) {
                     post = json.data[0];
                 }
 
@@ -191,43 +177,81 @@
                     return;
                 }
 
-                // Muda o título da aba do navegador
-                document.title = `${post.title} - EDGETI Blog`;
+                // ===============================================
+                // ATUALIZAÇÃO DE SEO (META TAGS) - NOVO!
+                // ===============================================
+                
+                // 1. Título da Aba
+                document.title = `${post.title} - Blog EDGETI`;
 
-                // --- 3. MONTAR O CONTEÚDO HTML ---
+                // 2. Descrição (Usa o campo seo_description se existir, ou o começo do texto)
+                const metaDesc = document.querySelector('meta[name="description"]');
+                const ogDesc = document.querySelector('meta[property="og:description"]');
+                const descriptionText = post.seo_description || "Artigo sobre tecnologia e inovação da EdgeTI.";
+                if(metaDesc) metaDesc.setAttribute('content', descriptionText);
+                if(ogDesc) ogDesc.setAttribute('content', descriptionText);
+
+                // 3. Título Open Graph
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                if(ogTitle) ogTitle.setAttribute('content', post.title);
+
+                // 4. URL
+                const ogUrl = document.querySelector('meta[property="og:url"]');
+                if(ogUrl) ogUrl.setAttribute('content', window.location.href);
+
+                // 5. Imagem de Capa (Essencial para WhatsApp)
+                const ogImage = document.querySelector('meta[property="og:image"]');
+                let imageUrl = 'https://edgeti.com.br/assets/images/LOGO_FUNDO_TRANSPARENTE.png'; // Fallback
+                
+                const imageField = post.cover_image || post.capa || post.image || post.imagem;
+                
+                if (imageField) {
+                    let imgData = Array.isArray(imageField) ? imageField[0] : imageField;
+                    if (imgData.data) imgData = imgData.data;
+                    
+                    if (imgData && imgData.url) {
+                        const rawUrl = imgData.url;
+                        // Garante URL absoluta (https://...)
+                        imageUrl = rawUrl.startsWith('http') ? rawUrl : `https://edgeti.com.br${rawUrl}`;
+                    }
+                }
+                
+                if(ogImage) ogImage.setAttribute('content', imageUrl);
+                // ===============================================
+
+
+                // --- 3. MONTAR O CONTEÚDO HTML VISUAL ---
                 
                 // DATA
                 const dateStr = new Date(post.publishedAt).toLocaleDateString('pt-BR', {
                     day: '2-digit', month: 'long', year: 'numeric'
                 });
 
-                // IMAGEM
+                // IMAGEM VISUAL (HTML)
                 let imgHtml = '';
-                const imageField = post.cover_image || post.capa || post.image || post.imagem;
-                if (imageField) {
-                    let imgData = Array.isArray(imageField) ? imageField[0] : imageField;
-                    if (imgData.data) imgData = imgData.data; // Ajuste v5
-                    
-                    if (imgData && imgData.url) {
-                        const fullUrl = imgData.url.startsWith('http') ? imgData.url : `https://edgeti.com.br${imgData.url}`;
-                        imgHtml = `<div class="post-featured-image"><img src="${fullUrl}" alt="${post.title}"></div>`;
-                    }
+                if (imageUrl !== 'https://edgeti.com.br/assets/images/LOGO_FUNDO_TRANSPARENTE.png') {
+                     imgHtml = `<div class="post-featured-image"><img src="${imageUrl}" alt="${post.title}"></div>`;
                 }
 
-                // CONTEÚDO DO TEXTO (Processa Blocos ou Texto Simples)
+                // CONTEÚDO
                 let bodyHtml = '';
                 const content = post.content || post.conteudo;
 
                 if (!content) {
                     bodyHtml = '<p>Sem conteúdo.</p>';
                 } else if (typeof content === 'string') {
-                    // Markdown ou Texto Simples
-                    bodyHtml = content.replace(/\n/g, '<br>');
+                    bodyHtml = content.replace(/\n/g, '<br>'); // Fallback simples
                 } else if (Array.isArray(content)) {
-                    // Strapi v5 Blocks (JSON)
+                    // Strapi v5 Blocks
                     bodyHtml = content.map(block => {
                         if (block.type === 'paragraph') {
-                            const text = block.children.map(c => c.text).join('');
+                            const text = block.children.map(c => {
+                                if (c.bold) return `<strong>${c.text}</strong>`;
+                                if (c.italic) return `<em>${c.text}</em>`;
+                                if (c.underline) return `<u>${c.text}</u>`;
+                                if (c.type === 'link') return `<a href="${c.url}">${c.children[0].text}</a>`;
+                                return c.text;
+                            }).join('');
                             return text ? `<p>${text}</p>` : ''; 
                         }
                         if (block.type === 'heading') {
@@ -237,15 +261,20 @@
                         }
                         if (block.type === 'list') {
                             const tag = block.format === 'ordered' ? 'ol' : 'ul';
-                            const items = block.children.map(li => `<li>${li.children.map(c => c.text).join('')}</li>`).join('');
+                            const items = block.children.map(li => {
+                                const liText = li.children.map(c => {
+                                     if (c.bold) return `<strong>${c.text}</strong>`;
+                                     return c.text;
+                                }).join('');
+                                return `<li>${liText}</li>`;
+                            }).join('');
                             return `<${tag}>${items}</${tag}>`;
                         }
                         return '';
                     }).join('');
                 }
 
-                // --- 4. INJETAR NO HTML ---
-                // Aqui criamos a estrutura visual completa dentro da div
+                // Renderiza na tela
                 contentArea.innerHTML = `
                     <header class="post-header">
                         <span class="post-meta"><i class="ph ph-calendar-blank"></i> ${dateStr}</span>
@@ -264,7 +293,7 @@
                 contentArea.innerHTML = `<p class="error-msg">Erro ao carregar post: ${err.message}</p>`;
             });
     });
-</script>
+    </script>
 
 </body>
 </html>
