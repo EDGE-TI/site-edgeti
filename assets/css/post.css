@@ -180,3 +180,79 @@
         font-size: 2rem;
     }
 }
+/* --- ESTILOS DO POST (Gerado via JS) --- */
+
+#post-content-area {
+    background-color: transparent;
+}
+
+/* Cabeçalho do Post */
+.post-header {
+    margin-bottom: 2rem;
+}
+
+.post-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: #fff; /* Branco para fundo dark */
+    margin-top: 0.5rem;
+}
+
+/* Imagem de Capa */
+.post-featured-image {
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.post-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Corpo do Texto */
+.post-body-typography {
+    color: #e0e0e0; /* Cinza claro para leitura */
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.post-body-typography p {
+    margin-bottom: 1.5rem;
+}
+
+.post-body-typography h2, 
+.post-body-typography h3 {
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.post-body-typography ul, 
+.post-body-typography ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.post-body-typography li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 1.8rem;
+    }
+}
