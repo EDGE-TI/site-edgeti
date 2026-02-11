@@ -114,92 +114,117 @@
     <script src="/assets/js/menu.js"></script>
 
    <script>
-    const postsContainer = document.getElementById('posts-container');
-    
-    // IMPORTANTE: Se você estiver rodando localmente (sem servidor proxy), 
-    // talvez precise colocar a URL completa, ex: 'http://localhost:1337/api/posts...'
-    const apiUrl = 'https://edgeti.com.br/api/posts?populate=*&sort=createdAt:desc'; 
-    // ^^^ MUDE ISSO SE SEU STRAPI NÃO ESTIVER NA PORTA 1337
+    document.addEventListener('DOMContentLoaded', function() {
+        const postsContainer = document.getElementById('posts-container');
+        
+        // URL da API
+        const apiUrl = 'https://edgeti.com.br/api/posts?populate=*&sort=createdAt:desc'; 
 
-    function convertContentToText(contentBlocks) {
-        if (!Array.isArray(contentBlocks)) return '';
-        return contentBlocks.map(block => {
-            // Verifica se 'children' existe (Strapi v4 padrão)
-            if (block.children) {
-                return block.children.map(child => child.text).join('');
+        // Função para limpar texto (Resumo)
+        function getExcerpt(content) {
+            if (!content) return '';
+            if (typeof content === 'string') return content.substring(0, 120) + '...';
+            
+            // Se for blocos (Strapi v5)
+            if (Array.isArray(content)) {
+                let text = '';
+                // Tenta pegar o texto dos primeiros blocos até dar 120 caracteres
+                for (const block of content) {
+                    if (block.type === 'paragraph' && block.children) {
+                        text += block.children.map(c => c.text).join(' ') + ' ';
+                    }
+                    if (text.length > 120) break;
+                }
+                return text.substring(0, 120) + '...';
             }
             return '';
-        }).join(' ');
-    }
+        }
 
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Dados recebidos do Strapi:", data); // <--- OLHE O CONSOLE DO NAVEGADOR (F12)
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Dados da Lista do Blog:", data); // Olhe o F12 para ver o nome do campo da imagem
 
-            postsContainer.innerHTML = '';
+                postsContainer.innerHTML = '';
+                const postsList = data.data; 
 
-            // Verifica se a lista de posts existe
-            const postsList = data.data; 
-
-            if (!postsList || postsList.length === 0) {
-                postsContainer.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
-                return;
-            }
-
-            postsList.forEach(item => {
-               
-                const post = item.attributes || item;
-                const postId = item.id; // As vezes o ID fica fora do attributes
-
-                // Pega a imagem (tenta vários caminhos possíveis do Strapi)
-                let imgUrl = null;
-                const cover = post.cover_image?.data;
-                if (cover) {
-                    // Se for array (vários arquivos) ou objeto (um arquivo)
-                    const imgData = Array.isArray(cover) ? cover[0] : cover;
-                    // Se tiver attributes (Strapi v4) ou direto
-                    const imgAttribs = imgData.attributes || imgData;
-                    
-                    // Se a URL for relativa (ex: /uploads/...), adiciona o domínio do Strapi
-                    if (imgAttribs?.url) {
-                        imgUrl = imgAttribs.url.startsWith('http') 
-                            ? imgAttribs.url 
-                            : `https://edgeti.com.br:1337${imgAttribs.url}`; 
-                    }
+                if (!postsList || postsList.length === 0) {
+                    postsContainer.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
+                    return;
                 }
 
-                const textContent = convertContentToText(post.content);
-                const excerpt = textContent.substring(0, 120) + '...';
+                postsList.forEach(item => {
+                    // Normaliza os dados (Strapi v4 vs v5)
+                    const post = item.attributes || item;
+                    const postId = item.id;
+                    const postSlug = post.slug; // Pode ser null
 
-                const card = document.createElement('div');
-                card.className = 'post-card';
+                    // --- DETETIVE DE IMAGENS ---
+                    // Tenta achar o campo da imagem (verifique no console qual é o nome correto)
+                    const mediaField = post.cover_image || post.capa || post.image || post.imagem || post.media;
+                    
+                    let imgUrl = null;
 
-                card.innerHTML = `
-                    <a href="post.html?slug=${post.slug}" class="post-card-image-link">
-                        ${imgUrl 
-                            ? `<img src="${imgUrl}" alt="${post.title}" loading="lazy">` 
-                            : '<div class="no-image">EDGETI</div>'
+                    if (mediaField) {
+                        let imgObj = mediaField;
+
+                        // Se for array (vários arquivos), pega o primeiro
+                        if (Array.isArray(imgObj) && imgObj.length > 0) {
+                            imgObj = imgObj[0];
+                        } 
+                        // Se tiver wrapper 'data' (v4 ou v5 dependendo da config)
+                        else if (imgObj.data) {
+                            imgObj = imgObj.data;
+                            // Se dentro do data for array
+                            if (Array.isArray(imgObj) && imgObj.length > 0) {
+                                imgObj = imgObj[0];
+                            }
                         }
-                    </a>
-                    <div class="post-card-content">
-                        <h3><a href="post.html?slug=${post.slug}">${post.title}</a></h3>
-                        <p>${excerpt}</p>
-                        <a href="post.html?slug=${post.slug}" class="read-more-btn">Ler Artigo <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                `;
-                postsContainer.appendChild(card);
+
+                        // Tenta pegar a URL (se tiver attributes ou direto na raiz)
+                        const rawUrl = imgObj.attributes?.url || imgObj.url;
+
+                        if (rawUrl) {
+                            imgUrl = rawUrl.startsWith('http') ? rawUrl : `https://edgeti.com.br${rawUrl}`;
+                        }
+                    }
+
+                    // Gera o Link (Prefira Slug se tiver, senão ID)
+                    const linkDestino = postSlug 
+                        ? `post.html?slug=${postSlug}` 
+                        : `post.html?id=${postId}`;
+
+                    // Resumo
+                    const excerpt = getExcerpt(post.content || post.conteudo);
+
+                    // Cria o HTML do Card
+                    const card = document.createElement('div');
+                    card.className = 'post-card';
+
+                    card.innerHTML = `
+                        <a href="${linkDestino}" class="post-card-image-link">
+                            ${imgUrl 
+                                ? `<img src="${imgUrl}" alt="${post.title}" loading="lazy">` 
+                                : '<div class="no-image-placeholder" style="background:#222; height:200px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold;">EDGETI</div>'
+                            }
+                        </a>
+                        <div class="post-card-content">
+                            <h3><a href="${linkDestino}">${post.title}</a></h3>
+                            <p>${excerpt}</p>
+                            <a href="${linkDestino}" class="read-more-btn">Ler Artigo <i class="ph ph-arrow-right"></i></a>
+                        </div>
+                    `;
+                    postsContainer.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar lista:', error);
+                postsContainer.innerHTML = `<p class="error-text">Erro ao carregar posts. Tente recarregar a página.</p>`;
             });
-        })
-        .catch(error => {
-            console.error('ERRO CRÍTICO:', error);
-            postsContainer.innerHTML = `<p class="error-text">Erro ao carregar: ${error.message}. <br> Verifique o Console (F12) para mais detalhes.</p>`;
-        });
+    });
 </script>
 </body>
 </html>
