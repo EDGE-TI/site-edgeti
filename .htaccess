@@ -1,14 +1,17 @@
 RewriteEngine On
 
-# 1. Se o arquivo ou pasta real existir (como index.html ou imagens), abra-os normalmente
+# 1. REDIRECIONAMENTO EXTERNO: Transforma /post.html?slug=nome em /nome (Visível ao usuário)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/post\.html\?slug=([^\s&]+) [NC]
+RewriteRule ^ /%1? [R=301,L]
+
+# 2. Se o arquivo ou pasta real existir, abre normalmente
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# 2. Se você digitar /contato, ele abre /contato.html internamente
+# 3. Se for um arquivo .html (como contato), abre sem mostrar a extensão
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-# 3. REGRA DOS POSTS: Transforma /nome-do-post em /post.html?slug=nome-do-post
-# Esta regra só será executada se as de cima não encontrarem um arquivo real
+# 4. REESCRITA INTERNA: Faz o servidor ler /nome como /post.html?slug=nome (Invisível ao usuário)
 RewriteRule ^([a-zA-Z0-9_-]+)$ post.html?slug=$1 [QSA,L]
