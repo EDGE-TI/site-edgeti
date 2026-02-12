@@ -1,10 +1,14 @@
 RewriteEngine On
 
-# 1. Remove a extensão .html da URL (Redireciona de /contato.html para /contato)
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [L,R=301]
+# 1. Se o arquivo ou pasta real existir (como index.html ou imagens), abra-os normalmente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-# 2. Faz o servidor ler o arquivo .html internamente ao acessar a URL limpa
-RewriteCond %{REQUEST_FILENAME} !-d
+# 2. Se você digitar /contato, ele abre /contato.html internamente
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
+
+# 3. REGRA DOS POSTS: Transforma /nome-do-post em /post.html?slug=nome-do-post
+# Esta regra só será executada se as de cima não encontrarem um arquivo real
+RewriteRule ^([a-zA-Z0-9_-]+)$ post.html?slug=$1 [QSA,L]
