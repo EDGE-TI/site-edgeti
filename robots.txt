@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Indicar o mapa do site para o Google
+Sitemap: https://edgeti.com.br/sitemap.xml
