@@ -71,6 +71,10 @@
                 </div>
             </div>
         </section>
+
+        <div id="posts-container"></div>
+
+        <div id="pagination-controls" class="pagination-container"></div>
     </main>
 
      <footer id="contato" class="site-footer">
@@ -136,7 +140,7 @@
    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const postsContainer = document.getElementById('posts-container');
-        const paginationContainer = document.getElementById('pagination-controls'); // Certifique-se que essa div existe no HTML
+        const paginationContainer = document.getElementById('pagination-controls');
         
         let currentPage = 1;
         const pageSize = 12;

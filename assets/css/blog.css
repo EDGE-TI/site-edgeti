@@ -131,3 +131,33 @@
     color: #da1e28; /* Vermelho IBM */
     grid-column: 1 / -1;
 }
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 40px 0;
+    padding: 20px;
+    width: 100%;
+}
+
+.page-btn {
+    background-color: #007bff; /* Azul padrão Edge TI */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.page-btn:hover {
+    background-color: #0056b3;
+}
+
+.page-info {
+    font-size: 1rem;
+    color: #444;
+    font-weight: 500;
+}
