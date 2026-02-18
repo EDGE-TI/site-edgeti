@@ -136,19 +136,124 @@
    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const postsContainer = document.getElementById('posts-container');
+        const paginationContainer = document.getElementById('pagination-controls'); // Certifique-se que essa div existe no HTML
         
-        // URL da API
-        const apiUrl = 'https://edgeti.com.br/api/posts?populate=*&sort=createdAt:desc'; 
+        let currentPage = 1;
+        const pageSize = 12;
 
-        // Função para limpar texto (Resumo)
+        // Função principal para carregar os posts
+        function loadPosts(page = 1) {
+            // URL da API com paginação Strapi v5
+            const apiUrl = `https://edgeti.com.br/api/posts?populate=*&sort=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Dados da Lista do Blog:", data);
+
+                    postsContainer.innerHTML = '';
+                    const postsList = data.data;
+                    const meta = data.meta.pagination;
+
+                    if (!postsList || postsList.length === 0) {
+                        postsContainer.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
+                        return;
+                    }
+
+                    postsList.forEach(item => {
+                        const post = item.attributes || item;
+                        const postId = item.id;
+                        const postSlug = post.slug;
+
+                        // --- TRATAMENTO DE IMAGEM ---
+                        const mediaField = post.cover_image || post.capa || post.image || post.imagem || post.media;
+                        let imgUrl = null;
+
+                        if (mediaField) {
+                            let imgObj = Array.isArray(mediaField) ? mediaField[0] : mediaField;
+                            if (imgObj.data) imgObj = Array.isArray(imgObj.data) ? imgObj.data[0] : imgObj.data;
+                            
+                            const rawUrl = imgObj.attributes?.url || imgObj.url;
+                            if (rawUrl) {
+                                imgUrl = rawUrl.startsWith('http') ? rawUrl : `https://edgeti.com.br${rawUrl}`;
+                            }
+                        }
+
+                        // --- LINKS LIMPOS (SEO) ---
+                        // Agora aponta para /slug em vez de post.html?slug=
+                        const linkDestino = postSlug ? `/${postSlug}` : `/post.html?id=${postId}`;
+
+                        // --- RESUMO ---
+                        const excerpt = getExcerpt(post.content || post.conteudo);
+
+                        // --- RENDERIZAÇÃO DO CARD ---
+                        const card = document.createElement('div');
+                        card.className = 'post-card';
+                        card.innerHTML = `
+                            <a href="${linkDestino}" class="post-card-image-link">
+                                ${imgUrl 
+                                    ? `<img src="${imgUrl}" alt="${post.title}" loading="lazy">` 
+                                    : '<div class="no-image-placeholder" style="background:#222; height:200px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold;">EDGETI</div>'
+                                }
+                            </a>
+                            <div class="post-card-content">
+                                <h3><a href="${linkDestino}">${post.title}</a></h3>
+                                <p>${excerpt}</p>
+                                <a href="${linkDestino}" class="read-more-btn">Ler Artigo <i class="ph ph-arrow-right"></i></a>
+                            </div>
+                        `;
+                        postsContainer.appendChild(card);
+                    });
+
+                    // Renderiza os botões de página
+                    renderPagination(meta);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar lista:', error);
+                    postsContainer.innerHTML = `<p class="error-text">Erro ao carregar posts. Tente recarregar a página.</p>`;
+                });
+        }
+
+        // Função para criar os botões de paginação
+        function renderPagination(meta) {
+            if (!paginationContainer) return;
+            
+            const totalPages = meta.pageCount;
+            currentPage = meta.page;
+
+            let html = '';
+            if (currentPage > 1) {
+                html += `<button class="page-btn" data-page="${currentPage - 1}">« Anterior</button>`;
+            }
+
+            html += `<span class="page-info">Página ${currentPage} de ${totalPages}</span>`;
+
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" data-page="${currentPage + 1}">Próxima »</button>`;
+            }
+
+            paginationContainer.innerHTML = html;
+
+            // Adiciona evento de clique nos botões
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const nextP = parseInt(e.target.getAttribute('data-page'));
+                    loadPosts(nextP);
+                    window.scrollTo(0, 0); // Sobe para o topo ao mudar de página
+                });
+            });
+        }
+
+        // Função para gerar o resumo (Excerpt)
         function getExcerpt(content) {
             if (!content) return '';
             if (typeof content === 'string') return content.substring(0, 120) + '...';
             
-            // Se for blocos (Strapi v5)
             if (Array.isArray(content)) {
                 let text = '';
-                // Tenta pegar o texto dos primeiros blocos até dar 120 caracteres
                 for (const block of content) {
                     if (block.type === 'paragraph' && block.children) {
                         text += block.children.map(c => c.text).join(' ') + ' ';
@@ -160,90 +265,8 @@
             return '';
         }
 
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                console.log("Dados da Lista do Blog:", data); // Olhe o F12 para ver o nome do campo da imagem
-
-                postsContainer.innerHTML = '';
-                const postsList = data.data; 
-
-                if (!postsList || postsList.length === 0) {
-                    postsContainer.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
-                    return;
-                }
-
-                postsList.forEach(item => {
-                    // Normaliza os dados (Strapi v4 vs v5)
-                    const post = item.attributes || item;
-                    const postId = item.id;
-                    const postSlug = post.slug; // Pode ser null
-
-                    // --- DETETIVE DE IMAGENS ---
-                    // Tenta achar o campo da imagem (verifique no console qual é o nome correto)
-                    const mediaField = post.cover_image || post.capa || post.image || post.imagem || post.media;
-                    
-                    let imgUrl = null;
-
-                    if (mediaField) {
-                        let imgObj = mediaField;
-
-                        // Se for array (vários arquivos), pega o primeiro
-                        if (Array.isArray(imgObj) && imgObj.length > 0) {
-                            imgObj = imgObj[0];
-                        } 
-                        // Se tiver wrapper 'data' (v4 ou v5 dependendo da config)
-                        else if (imgObj.data) {
-                            imgObj = imgObj.data;
-                            // Se dentro do data for array
-                            if (Array.isArray(imgObj) && imgObj.length > 0) {
-                                imgObj = imgObj[0];
-                            }
-                        }
-
-                        // Tenta pegar a URL (se tiver attributes ou direto na raiz)
-                        const rawUrl = imgObj.attributes?.url || imgObj.url;
-
-                        if (rawUrl) {
-                            imgUrl = rawUrl.startsWith('http') ? rawUrl : `https://edgeti.com.br${rawUrl}`;
-                        }
-                    }
-
-                    // Gera o Link (Prefira Slug se tiver, senão ID)
-                    const linkDestino = postSlug 
-                        ? `post.html?slug=${postSlug}` 
-                        : `post.html?id=${postId}`;
-
-                    // Resumo
-                    const excerpt = getExcerpt(post.content || post.conteudo);
-
-                    // Cria o HTML do Card
-                    const card = document.createElement('div');
-                    card.className = 'post-card';
-
-                    card.innerHTML = `
-                        <a href="${linkDestino}" class="post-card-image-link">
-                            ${imgUrl 
-                                ? `<img src="${imgUrl}" alt="${post.title}" loading="lazy">` 
-                                : '<div class="no-image-placeholder" style="background:#222; height:200px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold;">EDGETI</div>'
-                            }
-                        </a>
-                        <div class="post-card-content">
-                            <h3><a href="${linkDestino}">${post.title}</a></h3>
-                            <p>${excerpt}</p>
-                            <a href="${linkDestino}" class="read-more-btn">Ler Artigo <i class="ph ph-arrow-right"></i></a>
-                        </div>
-                    `;
-                    postsContainer.appendChild(card);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar lista:', error);
-                postsContainer.innerHTML = `<p class="error-text">Erro ao carregar posts. Tente recarregar a página.</p>`;
-            });
+        // Inicia o carregamento na página 1
+        loadPosts(currentPage);
     });
 </script>
 </body>
