@@ -116,6 +116,73 @@
             <a href="https://wa.me/554891763985" class="btn-primary">Fale com a EDGETI</a>
         </div>
     </section>
+
+    <section class="cloud-stats-section">
+    <div class="container-cloud">
+        <div class="cloud-text">
+            <h2>Sua Empresa <span class="cloud-highlight">Sem Fronteiras</span></h2>
+            <p>Migrar para a nuvem com a <strong>Edge TI</strong> significa eliminar barreiras geográficas. Acesse seu servidor do Campeche, Aririú ou de qualquer lugar do mundo com estabilidade total.</p>
+            
+            <div class="cloud-features">
+                <div class="c-feature">
+                    <i class="icon-cloud"></i>
+                    <span><strong>99.9%</strong> de Uptime Real</span>
+                </div>
+                <div class="c-feature">
+                    <i class="icon-sync"></i>
+                    <span>Sincronização Instantânea</span>
+                </div>
+                <div class="c-feature">
+                    <i class="icon-lock"></i>
+                    <span>Criptografia de Ponta a Ponta</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cloud-chart-box">
+            <canvas id="cloudChart"></canvas>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxCloud = document.getElementById('cloudChart').getContext('2d');
+    const cloudChart = new Chart(ctxCloud, {
+        type: 'polarArea', // Gráfico de Área Polar: transmite ideia de expansão/nuvem
+        data: {
+            labels: ['Disponibilidade', 'Segurança', 'Acesso Remoto', 'Escalabilidade', 'Economia'],
+            datasets: [{
+                label: 'Benefícios Cloud',
+                data: [99, 95, 100, 90, 85], // Valores representativos de eficiência
+                backgroundColor: [
+                    'rgba(50, 115, 220, 0.7)',  // Azul Edge
+                    'rgba(0, 209, 178, 0.7)',   // Verde Sucesso
+                    'rgba(170, 107, 255, 0.7)', // Roxo (Inovação/Cloud)
+                    'rgba(255, 221, 87, 0.7)',  // Amarelo (Energia)
+                    'rgba(255, 56, 96, 0.7)'    // Rosa/Vermelho (Custo reduzido)
+                ],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    ticks: { display: false },
+                    grid: { color: '#eee' }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#4a4a4a', font: { size: 12, weight: '600' } }
+                }
+            }
+        }
+    });
+</script>
 </main>
 
      <footer id="contato" class="site-footer">

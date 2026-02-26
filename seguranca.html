@@ -116,6 +116,67 @@
             <a href="https://wa.me/554891763985" class="btn-primary">Consultoria de Segurança</a>
         </div>
     </section>
+
+    <section class="security-stats-section">
+    <div class="container-security">
+        <div class="security-chart-box">
+            <canvas id="securityChart"></canvas>
+            <div class="chart-center-text">
+                <span class="main-val">-90%</span>
+                <span class="sub-val">Risco</span>
+            </div>
+        </div>
+
+        <div class="security-text">
+            <h2>Sua empresa <span class="shield-highlight">Blindada</span> contra ameaças</h2>
+            <p>Implementamos camadas de redundância e criptografia que garantem a continuidade do seu negócio em <strong>Palhoça, São José e Florianópolis.</strong></p>
+            
+            <div class="security-cards">
+                <div class="s-card highlighted">
+                    <span class="s-percent">-90%</span>
+                    <p>Risco de Perda de Dados</p>
+                </div>
+                <div class="s-card">
+                    <span class="s-percent">100%</span>
+                    <p>Recuperação (Disaster Recovery)</p>
+                </div>
+            </div>
+            <p class="security-footer">Expertise em proteção de dados para empresas no <strong>Pagani, Aririú e Sul da Ilha.</strong></p>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxSec = document.getElementById('securityChart').getContext('2d');
+    const securityChart = new Chart(ctxSec, {
+        type: 'doughnut',
+        data: {
+            labels: ['Risco Eliminado', 'Segurança Ativa', 'Risco Residual'],
+            datasets: [{
+                data: [90, 8, 2], // 90% representa o risco que foi mitigado
+                backgroundColor: [
+                    '#00d1b2', // Verde (Risco Mitigado/Eliminado)
+                    '#1a4f8b', // Azul (Segurança em Operação)
+                    '#e74c3c'  // Vermelho (Risco mínimo inevitável)
+                ],
+                hoverOffset: 12,
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '80%', 
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: { color: '#2c3e50', font: { weight: '600' } }
+                }
+            }
+        }
+    });
+</script>
 </main>
 
     <footer id="contato" class="site-footer">

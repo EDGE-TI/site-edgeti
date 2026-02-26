@@ -124,6 +124,74 @@
                 <a href="https://wa.me/554891763985" class="btn-primary">Falar com Consultor</a>
             </div>
         </section>
+
+       <section class="it-stats-section">
+    <div class="container-it">
+        <div class="it-chart-box">
+            <canvas id="itChart"></canvas>
+        </div>
+
+        <div class="it-text">
+            <h2>Suporte que <span class="it-highlight">resolve</span></h2>
+            <p>Mais do que consertar computadores, nós otimizamos o seu dia a dia. Atendemos empresas e profissionais em toda a Grande Florianópolis com soluções de hardware e software de elite.</p>
+            
+            <div class="it-performance-box">
+                <div class="perf-item">
+                    <span class="perf-label">Velocidade de Inicialização</span>
+                    <div class="perf-bar-bg"><div class="perf-bar-fill" style="width: 95%;"></div></div>
+                    <span class="perf-value">+95%</span>
+                </div>
+                <div class="perf-item">
+                    <span class="perf-label">Estabilidade do Sistema</span>
+                    <div class="perf-bar-bg"><div class="perf-bar-fill" style="width: 88%;"></div></div>
+                    <span class="perf-value">+88%</span>
+                </div>
+            </div>
+            <p class="it-location-tag">Especialistas em <strong>Bairros da Palhoça e região.</strong></p>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxIT = document.getElementById('itChart').getContext('2d');
+    const itChart = new Chart(ctxIT, {
+        type: 'bar', // Gráfico de barras para comparação de eficiência
+        data: {
+            labels: ['Remoção de Vírus', 'Otimização de SSD', 'Limpeza Técnica', 'Update de Software', 'Suporte Remoto'],
+            datasets: [{
+                label: 'Eficiência por Serviço (%)',
+                data: [100, 95, 85, 90, 98], 
+                backgroundColor: [
+                    '#3498db', // Azul
+                    '#2ecc71', // Verde
+                    '#e67e22', // Laranja
+                    '#9b59b6', // Roxo
+                    '#1abc9c'  // Turquesa
+                ],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            indexAxis: 'y', // Transforma em barras horizontais
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { display: false }
+                },
+                y: {
+                    grid: { display: false },
+                    ticks: { font: { weight: 'bold' } }
+                }
+            }
+        }
+    });
+</script>
     </main>
 
     <footer id="contato" class="site-footer">

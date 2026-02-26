@@ -122,6 +122,64 @@
             <a href="https://wa.me/554891763985" class="btn-primary">Solicitar Vistoria Técnica</a>
         </div>
     </section>
+
+     <section class="stats-section">
+    <div class="container-stats">
+        <div class="stats-text">
+            <h2>Tecnologia que gera <span class="highlight">Resultado Real</span></h2>
+            <p>Empresas parceiras da <strong>Edge TI</strong> em toda a Grande Florianópolis — do Aririú ao Campeche — experimentam uma transformação imediata na fluidez do trabalho.</p>
+            
+            <ul class="stats-list">
+                <li>
+                    <span class="stat-number">+35%</span>
+                    <span class="stat-desc">Aumento na Produtividade Geral</span>
+                </li>
+                <li>
+                    <span class="stat-number">-75%</span>
+                    <span class="stat-desc">Redução de Ociosidade (Downtime)</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="stats-chart">
+            <canvas id="edgeChart"></canvas>
+            <div id="chart-legend"></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('edgeChart').getContext('2d');
+    const edgeChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Tempo Produtivo', 'Ociosidade (Reduzida)', 'Manutenção'],
+            datasets: [{
+                label: 'Performance Operacional',
+                data: [85, 5, 10], // Dados baseados na otimização Edge TI
+                backgroundColor: [
+                    '#00d1b2', // Verde Sucesso (Produtividade)
+                    '#ff3860', // Vermelho (Ociosidade mínima)
+                    '#3273dc'  // Azul (Manutenção Preventiva)
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#333',
+                        font: { size: 14 }
+                    }
+                }
+            }
+        }
+    });
+</script>
 </main>
 
      <footer id="contato" class="site-footer">
