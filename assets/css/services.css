@@ -32,9 +32,11 @@
 /* Efeito ao passar o mouse */
 .service-card:hover {
     transform: translateY(-5px);
-    background-color: #333; /* Fica levemente mais claro */
+    background-color: #3c3c3c; /* Fica levemente mais claro */
     border-color: #444; /* Adiciona uma borda sutil em volta */
     border-left-color: var(--hover-color);
+    border-radius: 12px;
+    border: 5px solid #ffffff;
 }
 
 .service-card h3 {
