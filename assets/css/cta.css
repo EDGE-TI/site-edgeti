@@ -72,3 +72,113 @@
 .btn-social:hover .icon-ig {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
+/* Estilização da Seção WhatsApp */
+.whatsapp-cta-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    border-bottom: 4px solid #25d366; /* Verde do WhatsApp */
+}
+
+.container-whatsapp {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap-reverse; /* No mobile o card fica embaixo do texto */
+}
+
+.whatsapp-box {
+    flex: 1;
+    min-width: 320px;
+    background: #f0fff4;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.1);
+    border: 1px solid #dcfce7;
+}
+
+.w-icon-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 20px;
+}
+
+.whatsapp-box h3 {
+    color: #1a4f8b;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.btn-whatsapp-main {
+    display: inline-block;
+    background-color: #25d366;
+    color: #fff;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-whatsapp-main:hover {
+    background-color: #128c7e;
+    transform: scale(1.05);
+}
+
+.whatsapp-reasons {
+    flex: 1.2;
+    min-width: 350px;
+}
+
+.whatsapp-reasons h2 {
+    font-size: 2.5rem;
+    color: #1a4f8b;
+    margin-bottom: 25px;
+}
+
+.highlight-green {
+    color: #25d366;
+}
+
+.reasons-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.reasons-list li {
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+    padding-left: 35px;
+    position: relative;
+    color: #333;
+}
+
+/* Dots verdes para as razões do WhatsApp */
+.reasons-list li::before {
+    content: "✓";
+    color: #25d366;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .container-whatsapp {
+        text-align: center;
+    }
+    .reasons-list li {
+        text-align: left;
+    }
+}
