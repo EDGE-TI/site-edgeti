@@ -83,93 +83,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </section>
 
-        <section class="performance-section">
-    <div class="container-performance">
         
-        <div class="perf-text">
-            <h2>Tecnologia que <span class="highlight-blue">impulsiona</span> seu lucro</h2>
-            <p>Empresas em <strong>Palhoça, São José, Biguaçu, Santo Amaro da Imperatriz e Florianópolis</strong> que adotam nossa gestão proativa transformam custos em performance real.</p>
-            
-            <ul class="perf-list">
-                <li><strong>Foco Total:</strong> Sua equipe no Pagani ou Pedra Branca para de perder tempo com lentidão.</li>
-                <li><strong>Estabilidade:</strong> Servidores monitorados que garantem a continuidade do faturamento.</li>
-                <li><strong>Agilidade:</strong> Infraestrutura moderna que suporta o crescimento do seu negócio.</li>
-            </ul>
-        </div>
-
-        <div class="perf-chart-box">
-            <canvas id="performanceChart"></canvas>
-            <p class="chart-legend">*Dados baseados na média de otimização de infraestrutura da Edge TI.</p>
-        </div>
-
-    </div>
-</section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctxPerf = document.getElementById('performanceChart').getContext('2d');
-    const performanceChart = new Chart(ctxPerf, {
-        type: 'bar',
-        data: {
-            labels: [' Ganho de Produtividade da Equipe', 'Redução de Problemas Técnicos'],
-            datasets: [{
-            
-                label: 'Com Gestão Edge TI',
-                data: [55, 85], 
-                backgroundColor: [
-                    '#2ecc71', 
-                    '#64F5E1'  
-                ],
-                borderRadius: 5
-            }]
-            
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: { font: { weight: 'bold' } }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: { callback: function(value) { return value + '%'; } }
-                }
-            }
-        }
-    });
-</script>
 
-    <section class="whatsapp-cta-section">
-    <div class="container-whatsapp">
-        
-        <div class="whatsapp-box">
-    <div class="w-icon-circle">
-        <i class="ph ph-whatsapp-logo"></i> 
-    </div>
-    <h3>Fale com um Especialista Agora</h3>
-    <p>Não deixe sua empresa parar por problemas que podemos resolver hoje. Clique no botão para iniciar seu atendimento via WhatsApp.</p>
-    <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento." class="btn-whatsapp-main" target="_blank">
-        Iniciar Atendimento Rápido
-    </a>
-</div>
-
-        <div class="whatsapp-reasons">
-            <h2>Por que contatar a <span class="highlight-green">Edge TI</span> pelo WhatsApp?</h2>
-            
-            <ul class="reasons-list">
-                <li><strong>Resposta Imediata:</strong> Atendimento ágil para empresas em Palhoça e região, sem filas de espera.</li>
-                <li><strong>Diagnóstico Rápido:</strong> Explique seu problema e receba uma orientação técnica preliminar na hora.</li>
-                <li><strong>Agendamento Facilitado:</strong> Marque visitas técnicas na Grande Florianópolis de forma simples.</li>
-                <li><strong>Suporte Remoto:</strong> Em muitos casos, iniciamos a resolução do seu problema no primeiro contato.</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
 
     <section id="servicos" class="section bg-dark text-white">
         <div class="container">
