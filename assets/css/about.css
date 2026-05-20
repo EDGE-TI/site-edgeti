@@ -16,3 +16,64 @@
 @media (max-width: 768px) {
     .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
 }
+/* ======================================================
+   FAIXA DE LUZ ANIMADA (GLOW SCANNER)
+   ====================================================== */
+
+/* Forçar a seção sobre a ser a base do posicionamento da faixa */
+#sobre {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Estrutura da Faixa */
+.animated-stripe {
+    position: absolute;
+    top: 0;
+    left: -150px; /* Começa totalmente escondida para fora da tela à esquerda */
+    width: 80px; /* Largura da faixa de luz */
+    height: 100%;
+    /* Gradiente em azul tecnológico desvanecendo nas pontas */
+    background: linear-gradient(
+        to right,
+        rgba(128, 172, 255, 0) 0%,
+        rgba(146, 217, 255, 0.15) 50%,
+        rgba(15, 98, 254, 0) 100%
+    );
+   
+    pointer-events: none; /* Garante que o cliente consiga clicar nos textos normalmente */
+    
+    /* Ativa a animação: dura 4 segundos, infinita e com movimento suave */
+    animation: scanStripe 4s infinite ease-in-out;
+}
+
+/* Efeito de brilho extra no centro da faixa */
+.animated-stripe::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px; /* Linha neon ultra fina no centro */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff;
+}
+
+/* O Movimento de ir para a direita */
+@keyframes scanStripe {
+    0% {
+        left: -150px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1; /* Acende suavemente ao entrar */
+    }
+    90% {
+        opacity: 1; /* Mantém acesa cruzando o bloco */
+    }
+    100% {
+        left: calc(100% + 150px); /* Varre até sumir completamente à direita */
+        opacity: 0;
+    }
+}

@@ -1,58 +1,144 @@
-/* css/services.css */
+/* ======================================================
+   CARDS COM BORDER GLOW AZUL + INNER DARK GLOW EFFECT
+   ====================================================== */
 
-.section-title {
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    color: var(--text-white);
-}
-
-/* Grid layout para 4 itens */
+/* Configuração do Grid para manter os 5 itens alinhados */
 .services-grid {
     display: grid;
-    /* Tenta encaixar colunas de no mínimo 250px. Em telas grandes cabem 4, em pequenas 1 ou 2 */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
 }
 
-/* O Card agora é um link <a>, então precisamos resetar alguns estilos de texto */
+@media (min-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+.section-title {
+    padding: 30px;
+}
+/* O Card base (Atua como a camada da Borda) */
 .service-card {
-    background: #262626; /* Cinza escuro IBM */
+    background: rgba(28, 28, 28, 1);
     padding: 2.5rem 2rem;
-    border-left: 4px solid var(--primary-color);
-    transition: all 0.3s ease;
-    display: flex; /* Para alinhar ícone e texto */
+    display: flex;
     flex-direction: column;
-    height: 100%; /* Garante que todos tenham a mesma altura */
-    text-decoration: none; /* Remove sublinhado do link */
-    color: var(--text-white);
-    border: 1px solid transparent; /* Prepara para o hover */
-    border-left: 4px solid var(--primary-color); /* Mantém a identidade visual */
+    height: 100%;
+    text-decoration: none;
+    color: var(--text-white, #ffffff);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: none !important; 
+    transition: transform 0.3s ease;
 }
 
-/* Efeito ao passar o mouse */
+/* --- 1. CONTORNO: Borda Glow Azul Ultra Forte (Z-INDEX: 1) --- */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Fica na base de tudo */
+    
+    background: radial-gradient(
+        350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(0, 164, 255, 1) 0%,
+        rgba(15, 98, 254, 0.8) 40%,
+        transparent 70%
+    );
+}
+
+/* --- 2. MÁSCARA: Fundo base do Card (Z-INDEX: 2) --- */
+/* Cria o recorte de 5px para deixar a luz do ::before escapar apenas nas bordas */
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: #1c1c1c; 
+    border-radius: 8px;
+    z-index: 2; /* Fica acima do azul, criando o recorte da borda */
+    transition: background-color 0.3s ease;
+}
+
+/* --- 3. RETORNO DO GLOW INTERNO: Efeito de Escurecimento (Z-INDEX: 3) --- */
+/* Fica acima da máscara cinza, mas restrito às bordas internas para não cobrir o azul */
+.service-card .spotlight-glow {
+    display: block !important;
+    position: absolute;
+    /* Recuado 5px para ficar exatamente dentro do card, sem passar por cima da borda azul */
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3; 
+    
+    /* Gradiente radial escuro sob o mouse */
+    background: radial-gradient(
+        200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(0, 0, 0, 0.85) 0%,     
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
+}
+
+/* --- INTERAÇÕES NO HOVER GENERALIZADO --- */
+
+/* Ativa a borda acesa e o escurecimento interno sincronizados */
+.service-card:hover::before,
+.service-card:hover .spotlight-glow {
+    opacity: 1;
+}
+
+/* Transição do fundo de trás da máscara para o Cinza IBM */
+.service-card:hover::after {
+    background-color: #262626;
+}
+
 .service-card:hover {
     transform: translateY(-5px);
-    background-color: #3c3c3c; /* Fica levemente mais claro */
-    border-color: #444; /* Adiciona uma borda sutil em volta */
-    border-left-color: var(--hover-color);
-    border-radius: 12px;
-    border: 5px solid #ffffff;
+    box-shadow: 0 15px 30px rgba(0, 164, 255, 0.2);
 }
 
+/* --- CONTEÚDO (Z-INDEX: 4) --- */
+.service-card .icon-box,
+.service-card h3,
+.service-card p {
+    position: relative;
+    z-index: 4; /* Garante leitura perfeita acima do efeito dark */
+}
+
+/* Tipografia */
 .service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
     margin-top: 1.5rem;
     font-weight: 600;
+    color: #ffffff;
 }
 
 .service-card p {
-    font-size: 0.95rem;
-    opacity: 0.8;
+    font-size: 0.9rem;
+    color: #c1c7cd;
     line-height: 1.6;
 }
+/* ======================================================
+   REINTEGRAÇÃO DOS ÍCONES SVG DOS CARDS
+   ====================================================== */
 
-/* --- Ícones SVG via CSS --- */
+/* Configuração base para a caixa do ícone */
 .icon-box {
     width: 48px;
     height: 48px;
@@ -60,34 +146,38 @@
     background-repeat: no-repeat;
     background-position: left center;
     transition: filter 0.3s ease;
-    /* Filtro para deixar o ícone branco puro */
+    /* Filtro para deixar o ícone branco puro por padrão */
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
-/* Quando passa o mouse no card, o ícone fica AZUL */
+/* Quando passa o mouse no card, o ícone ganha o tom Azul IBM dinamicamente */
 .service-card:hover .icon-box {
-    /* Filtro que transforma branco em azul IBM (#0f62fe) */
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(212deg) brightness(104%) contrast(99%);
 }
 
-/* Definição das Imagens dos Ícones */
+/* --- Definição das Imagens dos Ícones (Mapeamento SVG) --- */
 
-/* Laptop */
+/* Informática (Laptop) */
 .icon-laptop {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z'/%3E%3C/svg%3E");
 }
 
-/* Server */
+/* Redes e Servidores (Server) */
 .icon-server {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M480 160H32c-17.673 0-32-14.327-32-32V64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zM480 320H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zM480 480H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24z'/%3E%3C/svg%3E");
 }
 
-/* Shield (Security) */
+/* Segurança (Shield) */
 .icon-shield {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.3 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z'/%3E%3C/svg%3E");
 }
 
-/* Cloud */
+/* Cloud (Nuvem) */
 .icon-cloud {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M537.6 226.6c4.1-10.7 6.4-22.4 6.4-34.6 0-53-43-96-96-96-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32c-88.4 0-160 71.6-160 160 0 2.7.1 5.4.2 8.1C40.2 219.8 0 273.2 0 336c0 79.5 64.5 144 144 144h368c70.7 0 128-57.3 128-128 0-61.9-44-113.6-102.4-125.4z'/%3E%3C/svg%3E");
+}
+
+/* Por que a Edge TI? (Users/Equipe) */
+.icon-users {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 224zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62.1 73.4 109.4h93.7c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-384 0c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h93.7c4.5-47.3 33.1-87.3 73.4-109.4-11.6-11.5-27.5-18.6-45.1-18.6zm192 32c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm128 128c0-53-43-96-96-96h-64c-53 0-96 43-96 96v48c0 17.7 14.3 32 32 32h192c17.7 0 32-14.3 32-32v-48z'/%3E%3C/svg%3E");
 }

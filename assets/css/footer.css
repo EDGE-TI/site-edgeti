@@ -32,7 +32,7 @@
 .footer-about {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Força tudo para a esquerda */
+    align-items: center; /* Força tudo para a esquerda */
     text-align: left;
 }
 
@@ -56,7 +56,7 @@
 .footer-contact {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Empurra o bloco todo para a extrema direita */
+    align-items: center; /* Empurra o bloco todo para a extrema direita */
 }
 .footer-contact ul {
     list-style: none;
@@ -108,6 +108,7 @@
     align-items: flex-start;
     gap: 1rem;
     color: #c6c6c6;
+    
 }
 .footer-contact h3 {
    align-self: center;

@@ -1,177 +1,299 @@
 /* ======================================================
-   ESTILOS BASE (DESKTOP FIRST)
+   FORÇAR ESTILO MODERN DARK NAS SEÇÕES DE SOLUÇÕES
    ====================================================== */
 
-/* O Header em si */
-header {
-    background-color: #010202;
-    border-bottom: 1px solid #1b1b1b;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* Alvos diretos usando os IDs das suas seções - Adicionado o #detalhe-suporte */
+#detalhe-informatica, 
+#detalhe-redes, 
+#detalhe-seguranca, 
+#detalhe-cloud,
+#detalhe-suporte {
+    padding: 6rem 4rem !important;
+    background-color: #121314 !important; /* Mantém o padrão dark premium confortável */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    margin-bottom: 4rem !important;
 }
 
-/* --- NOVA TOP BAR --- */
-.top-bar {
-    background-color: #0d0e0e; /* Tom sutilmente diferente para destacar */
-    border-bottom: 1px solid #1b1b1b;
-    padding: 0.5rem 0;
-    font-size: 0.85rem;
+/* Efeito ao passar o mouse nos blocos - Adicionado o #detalhe-suporte */
+.full-section-link:hover #detalhe-informatica,
+.full-section-link:hover #detalhe-redes,
+.full-section-link:hover #detalhe-seguranca,
+.full-section-link:hover #detalhe-cloud,
+.full-section-link:hover #detalhe-suporte {
+    transform: translateY(-8px) !important;
+    background-color: #16181b !important;
+    box-shadow: 0 30px 60px rgba(15, 98, 254, 0.2) !important;
+    border-color: rgba(15, 98, 254, 0.5) !important;
 }
 
-.top-bar-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* --- CORREÇÃO DE CONTRASTE DOS TEXTOS --- */
+
+/* Força os títulos principais para Branco Puro */
+.full-section-link .detail-text h2 {
+    font-size: 2.4rem !important;
+    color: #ffffff !important; 
+    font-weight: 700 !important;
+    text-decoration: none !important;
 }
 
-.top-bar-left a {
-    color: #b3b3b3;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.3s;
+/* Força os subtítulos para um Azul Claro/Celeste bem visível */
+.full-section-link .detail-text h3 {
+    font-size: 1.3rem !important;
+    color: #00a4ff !important; 
+    margin-bottom: 1.8rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
 }
 
-.top-bar-left a:hover {
-    color: #ffffff;
+/* Força os parágrafos longos para um cinza claro nítido, mas suave para leitura */
+.full-section-link .detail-text p {
+    font-size: 1.05rem !important;
+    color: #e2e8f0 !important; 
+    line-height: 1.8 !important;
+    text-decoration: none !important;
 }
 
-/* Link de destaque do Blog na Top Bar */
-.top-bar-blog-link {
-    background: linear-gradient(135deg, var(--primary-color, #0070f3), #00a4ff);
-    color: #ffffff !important;
-    padding: 0.3rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s, filter 0.2s;
-    display: inline-block;
+/* --- Retângulos Arredondados para Destacar Palavras (Tags) --- */
+.full-section-link .feature-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.8rem !important;
 }
 
-.top-bar-blog-link:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.1);
+/* Estilização dos retângulos (Badges) */
+.full-section-link .feature-list li {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important; /* Letras brancas dentro das tags */
+    background: rgba(15, 98, 254, 0.2) !important; /* Azul translúcido de fundo */
+    border: 1px solid rgba(15, 98, 254, 0.4) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 50px !important; /* Formato pílula */
+    display: inline-flex !important;
+    align-items: center !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
 }
 
-/* --- CONTEÚDO PRINCIPAL DO HEADER --- */
-.header-main {
-    height: 4.5rem; /* ~72px (A altura original do seu header fica aqui agora) */
+/* Remove marcadores residuais */
+.full-section-link .feature-list li::before {
+    content: none !important;
 }
 
-/* Alinhamento horizontal */
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
+/* Destaque ao passar o mouse nas tags */
+.full-section-link .feature-list li:hover {
+    background: rgba(15, 98, 254, 0.4) !important;
+    border-color: #00a4ff !important;
 }
 
-/* Logo */
-.logo img {
-    height: 32px;
-    width: auto;
-    display: block;
+/* Ajustes finos nas Imagens */
+.full-section-link .detail-image img {
+    border-radius: 20px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
-
-/* --- NAV DESKTOP (Visível no PC) --- */
-.nav-desktop {
-    display: block; 
-}
-
-.nav-list {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-list a {
-    color: #f4f4f4;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.nav-list a:hover {
-    color: var(--primary-color);
-}
-
-/* --- ELEMENTOS MOBILE (SUMIDOS NO PC) --- */
-
-#btn-mobile {
-    display: none; /* OBRIGATÓRIO no PC */
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.menu-mobile-container {
-    display: none; /* OBRIGATÓRIO no PC */
-    position: absolute;
-    top: 100%; /* Faz o menu começar exatamente onde o header termina */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 100%); /* Ocupa o restante exato da tela */
-    background-color: #010202;
-    z-index: 999;
-    border-top: 1px solid #393939;
-}
-
-
 /* ======================================================
-   ESTILOS MOBILE (ATÉ 768px)
+   SISTEMA DE ANIMAÇÕES EM ESCALA GIGANTE
    ====================================================== */
-@media (max-width: 768px) {
-    
-    /* 1. Esconde a Nav do Desktop */
-    .nav-desktop {
-        display: none;
-    }
 
-    /* 2. Mostra o Botão Hambúrguer */
-    #btn-mobile {
-        display: block;
-    }
-
-    /* 3. Estilo dos Links dentro do Mobile */
-    .menu-mobile-container ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .menu-mobile-container a {
-        display: block;
-        padding: 1.5rem 2rem;
-        color: #fff;
-        text-decoration: none;
-        border-bottom: 1px solid #333;
-        font-size: 1.1rem;
-    }
-
-    .menu-mobile-container a:hover {
-        background-color: #262626;
-        color: var(--primary-color);
-    }
-
-    /* 4. CLASSE MÁGICA (Controlada pelo JS) */
-    /* Força o display block sobrepondo o comportamento padrão */
-    .menu-mobile-container.active {
-        display: block !important; 
-        animation: slideIn 0.3s ease forwards;
-    }
+/* Área de exibição expandida para comportar os gráficos gigantes */
+.detail-image {
+    width: 100%;
+    height: 500px; /* Aumentado para 500px para dar ampla área de respiro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible; /* Essencial para os brilhos e ondas expandirem */
 }
 
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* --- 1. GIGANTE: INFORMÁTICA (Monitor + Radar Expandido) --- */
+.tech-monitor {
+    width: 320px; /* Escalado de 220px para 320px */
+    height: 200px; /* Escalado de 140px para 200px */
+    border: 8px solid #3a3f4d;
+    border-radius: 18px;
+    position: relative;
+    background: #16181b;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+.tech-monitor::after {
+    content: '';
+    position: absolute;
+    bottom: -35px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 30px; background: #3a3f4d;
+    border-radius: 4px;
+}
+.radar-pulse {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    border: 4px solid #00a4ff;
+    border-radius: 50%;
+    animation: techRadar 2.5s infinite linear;
+    box-shadow: 0 0 20px rgba(0, 164, 255, 0.2);
+}
+@keyframes techRadar {
+    0% { width: 10px; height: 10px; opacity: 1; }
+    100% { width: 280px; height: 280px; opacity: 0; } /* Onda expande massivamente */
+}
+
+/* --- 2. GIGANTE: REDES (Data Center Rack) --- */
+.server-rack {
+    width: 300px; /* Escalado de 200px para 300px */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.server-blade {
+    height: 55px; /* Escalado de 40px para 55px */
+    background: #21262e;
+    border-radius: 8px;
+    border-left: 8px solid #0f62fe;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+    gap: 14px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+.led {
+    width: 14px; height: 14px; /* LEDs maiores e mais brilhantes */
+    border-radius: 50%;
+    background: #00ff66;
+    box-shadow: 0 0 16px #00ff66;
+}
+.server-blade:nth-child(2) .led { background: #00a4ff; box-shadow: 0 0 16px #00a4ff; }
+.server-blade:nth-child(3) .led { animation: ledBlink 0.5s infinite alternate; }
+
+@keyframes ledBlink {
+    0% { opacity: 0.1; filter: brightness(0.5); }
+    100% { opacity: 1; box-shadow: 0 0 20px #00ff66; }
+}
+
+/* --- 3. GIGANTE: SEGURANÇA (Escudo de Defesa + Órbitas Marginais) --- */
+.shield-core {
+    width: 150px; height: 175px; /* Tamanho robusto e imponente */
+    background: linear-gradient(135deg, #0f62fe, #00a4ff);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: 2;
+    animation: shieldFloat 3.5s infinite ease-in-out;
+    filter: drop-shadow(0 25px 45px rgba(15, 98, 254, 0.45));
+}
+.secure-orbit {
+    position: absolute;
+    width: 380px; height: 380px; /* Órbitas massivas em volta do texto */
+    border: 2.5px dashed rgba(0, 164, 255, 0.25);
+    border-radius: 50%;
+    animation: rotateOrbit 12s infinite linear;
+}
+.delay-orbit {
+    width: 460px; height: 460px;
+    border-color: rgba(15, 98, 254, 0.15);
+    animation: rotateOrbit 18s infinite linear reverse;
+}
+@keyframes shieldFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+}
+@keyframes rotateOrbit {
+    100% { transform: rotate(360deg); }
+}
+
+/* --- 4. GIGANTE: CLOUD (Nuvem de Alta Densidade) --- */
+.preview-cloud {
+    animation: cloudAmbient 4.5s infinite ease-in-out;
+}
+.cloud-base {
+    width: 300px; height: 100px; /* Escalado de 200px para 300px */
+    background: #ffffff;
+    border-radius: 60px;
+    position: relative;
+    opacity: 0.95;
+    filter: drop-shadow(0 25px 50px rgba(0, 164, 255, 0.5));
+}
+.cloud-puff {
+    background: #ffffff;
+    position: absolute;
+    border-radius: 50%;
+}
+.puff-1 { width: 140px; height: 140px; top: -70px; left: 45px; } /* Volumes bem maiores */
+.puff-2 { width: 115px; height: 115px; top: -45px; right: 45px; }
+
+@keyframes cloudAmbient {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- 5. GIGANTE: SUPORTE (Ondas Críticas de SLA / Presença) --- */
+.pulse-center {
+    width: 36px; height: 36px; /* Núcleo operacional destacado */
+    background: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 35px #00ff66;
+    z-index: 2;
+}
+.pulse-ring {
+    position: absolute;
+    border: 3px solid rgba(0, 255, 102, 0.25);
+    border-radius: 50%;
+    animation: ringGrow 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+.ring-1 { animation-delay: 0s; }
+.ring-2 { animation-delay: 1.3s; }
+.ring-3 { animation-delay: 2.6s; }
+
+@keyframes ringGrow {
+    0% { width: 36px; height: 36px; opacity: 1; }
+    100% { width: 550px; height: 550px; opacity: 0; } /* Ondas gigantescas preenchendo toda a lateral */
+}
+
+/* Efeito interativo controlado ao passar o mouse na seção */
+.full-section-link:hover .detail-image {
+    transform: scale(1.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* ======================================================
+   BLINDAGEM MOBILE PARA AS SEÇÕES DE SOLUÇÕES
+   ====================================================== */
+@media (max-width: 992px) {
+    /* 1. Alinha os grids em uma coluna só e impede que passem da tela */
+    .grid-2 {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* 2. Remove as caixas de animações gigantes no celular */
+    /* Isso mata o vazamento das ondas de 550px e foca na leitura rápida */
+    .detail-image, 
+    .pulse-ring, 
+    .radar-pulse, 
+    .secure-orbit, 
+    .delay-orbit {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        animation: none !important;
+    }
+
+    /* 3. Ajusta o espaçamento interno (padding) para não estourar a largura */
+    #detalhe-informatica, 
+    #detalhe-redes, 
+    #detalhe-seguranca, 
+    #detalhe-cloud,
+    #detalhe-suporte {
+        padding: 3rem 1.5rem !important;
+        width: auto !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }

@@ -10,7 +10,6 @@ header {
     z-index: 1000;
 }
 
-
 .header-main {
     height: 4.5rem;
 }
@@ -129,4 +128,146 @@ header {
 @keyframes slideIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+/* ======================================================
+   4. MEGA MENU - DESKTOP (Adicione ao seu CSS)
+   ====================================================== */
+@media (min-width: 769px) {
+    .has-mega-menu {
+        position: relative;
+    }
+
+    .mega-menu {
+        position: absolute;
+        /* Aumente ou diminua os 25px abaixo para ajustar exatamente a altura que você quer */
+        top: calc(100% + 25px); 
+        left: 50%;
+        transform: translateX(-50%) translateY(15px);
+        width: 600px; 
+        background-color: #010202;
+        border: 1px solid #1b1b1b;
+        border-radius: 8px;
+        padding: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        z-index: 1001;
+        pointer-events: none; 
+    }
+
+    /* Ponte invisível: evita que o menu feche ao passar o mouse pelo espaço vazio */
+    .mega-menu::after {
+        content: '';
+        position: absolute;
+        top: -30px; /* Cobre o espaço acima do menu */
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: transparent;
+    }
+
+    /* Setinha no topo do mega menu */
+    .mega-menu::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 12px;
+        height: 12px;
+        background-color: #010202;
+        border-top: 1px solid #1b1b1b;
+        border-left: 1px solid #1b1b1b;
+    }
+
+    /* Faz o menu aparecer ao passar o mouse */
+    .has-mega-menu:hover .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Grid de cards do menu */
+    .mega-menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    /* O 5º item (Suporte) ocupará as duas colunas inteiras na base */
+    .highlight-card {
+        grid-column: span 2;
+        background: linear-gradient(145deg, #0a0a0a, #111) !important;
+    }
+
+    /* Estilização individual dos links/cards dentro do menu */
+    .mega-menu-card {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        background-color: #0a0a0a;
+        border: 1px solid #1b1b1b;
+        border-radius: 6px;
+        text-decoration: none !important;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .mega-menu-card:hover {
+        border-color: var(--primary-color);
+        background-color: #161616;
+    }
+
+    .mega-menu-card h4 {
+        color: #fff;
+        margin: 0 0 0.4rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
+    .mega-menu-card:hover h4 {
+        color: var(--primary-color);
+    }
+
+    .mega-menu-card p {
+        color: #888;
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+}
+
+/* ======================================================
+   5. MEGA MENU - MOBILE (Adicione ao seu CSS)
+   ====================================================== */
+@media (max-width: 768px) {
+    /* Estilo do submenu no mobile (sempre visível abaixo de Soluções) */
+    .mobile-submenu {
+        display: flex;
+        flex-direction: column;
+        background-color: #0a0a0a; /* Fundo levemente diferente para destacar */
+        border-bottom: 1px solid #333;
+    }
+
+    .mobile-submenu a {
+        padding: 1rem 2rem 1rem 3rem !important; /* Recuo maior à esquerda (3rem) */
+        font-size: 1rem !important;
+        color: #aaa !important;
+        border-bottom: 1px solid #1b1b1b !important;
+    }
+
+    .mobile-submenu li:last-child a {
+        border-bottom: none !important;
+    }
+
+    .mobile-submenu a:hover {
+        color: var(--primary-color) !important;
+    }
+    
+    /* Remove a borda dupla do item pai */
+    .mobile-has-submenu > a {
+        border-bottom: none !important;
+    }
 }

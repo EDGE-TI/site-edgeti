@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edge TI | Soluções em TI, Redes e Segurança em Palhoça, SC</title>
-    <link rel="icon" type="image/png" href="https://edgeti.com.br/assets/images/logoEdgeTI-favicon.svg">
-
-<link rel="apple-touch-icon" href="https://edgeti.com.br/assets/images/logoEdgeTI-favicon.svg">
-
-<link rel="shortcut icon" href="https://edgeti.com.br/assets/images/logoEdgeTI-favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/parceiros.css">
+    <link rel="stylesheet" href="css/services.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -34,26 +33,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="/" class="logo">
                 <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
             </a>
+            
+            <!-- MENU DESKTOP -->
             <nav class="nav-desktop">
                 <ul class="nav-list">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/#servicos">Soluções</a></li>
+                    
+                    <!-- Item com Mega Menu -->
+                    <li class="has-mega-menu">
+                        <a href="/#servicos">Soluções ▾</a>
+                        
+                        <!-- Painel do Mega Menu -->
+                        <div class="mega-menu">
+                            <div class="mega-menu-grid">
+                                <a href="informatica" class="mega-menu-card">
+                                    <h4>Informática</h4>
+                                    <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
+                                </a>
+                                <a href="redes" class="mega-menu-card">
+                                    <h4>Redes e Servidores</h4>
+                                    <p>A base sólida para a conectividade do seu negócio.</p>
+                                </a>
+                                <a href="seguranca" class="mega-menu-card">
+                                    <h4>Segurança da Informação</h4>
+                                    <p>Protegendo seu ativo mais valioso: seus dados.</p>
+                                </a>
+                                <a href="cloud" class="mega-menu-card">
+                                    <h4>Cloud (Nuvem)</h4>
+                                    <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
+                                </a>
+                                <a href="por-que-edge" class="mega-menu-card highlight-card">
+                                    <h4>O Setor de TI do seu Negócio</h4>
+                                    <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    
                     <li><a href="blog" class="active">Blog</a></li>
                     <li><a href="/#vamos-conversar">Contato</a></li>
                     <li><a href="central-privacidade">Central de Privacidade</a></li>
                 </ul>
             </nav>
+            
             <button id="btn-mobile" aria-label="Abrir Menu">
                 <i class="ph ph-list"></i>
             </button>
         </div>
     </div>
 
+    <!-- MENU MOBILE -->
     <div id="menu-mobile" class="menu-mobile-container">
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/#servicos">Soluções</a></li>
+                <li class="mobile-has-submenu">
+                    <a href="/#servicos">Soluções</a>
+                    <!-- Submenu Mobile -->
+                    <ul class="mobile-submenu">
+                        <li><a href="informatica">- Informática</a></li>
+                        <li><a href="redes">- Redes e Servidores</a></li>
+                        <li><a href="seguranca">- Segurança da Informação</a></li>
+                        <li><a href="cloud">- Cloud (Nuvem)</a></li>
+                        <li><a href="por-que-edge">- Setor de TI Completo</a></li>
+                    </ul>
+                </li>
                 <li><a href="blog">Blog</a></li>
                 <li><a href="/#vamos-conversar">Contato</a></li>
                 <li><a href="central-privacidade">Central de Privacidade</a></li>
@@ -73,18 +117,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </section>
 
-    <section id="sobre" class="section bg-light">
-        <div class="container grid-2">
-            <div class="text-content">
-                <h2>Sobre a Edge TI</h2>
-                <p>Trabalhamos com performance eficiência e segurança. </p>
-            </div>
-            <div class="feature-box">
-                <h3>+10 Anos</h3>
-                <p>De experiência combinada em infraestrutura e segurança.</p>
-            </div>
+    <section id="sobre" class="section bg-light hover-effect" style="position: relative; overflow: hidden;">
+    <!-- Faixa Animada Tecnológica -->
+    <div class="animated-stripe"></div>
+
+    <div class="container grid-2">
+        <div class="text-content">
+            <h2>Sobre a Edge TI</h2>
+            <p>Trabalhamos com performance eficiência e segurança. </p>
         </div>
-    </section>
+        <div class="feature-box">
+            <h3>+10 Anos</h3>
+            <p>De experiência combinada em infraestrutura e segurança.</p>
+        </div>
+    </div>
+</section>
 
         
 
@@ -92,38 +139,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
     <section id="servicos" class="section bg-dark text-white">
-        <div class="container">
-            <h2 class="section-title">Nossas Soluções</h2>
+    <div class="container">
+        <h2 class="section-title">Nossas Soluções</h2>
+        
+        <div class="services-grid">
             
-            <div class="services-grid">
-                
-                <a href="#detalhe-informatica" class="service-card">
-                    <div class="icon-box icon-laptop"></div>
-                    <h3>Informática</h3>
-                    <p>Suporte técnico ágil e manutenção especializada para manter a produtividade da sua empresa sempre em primeiro plano.</p>
-                </a>
+            <a href="#detalhe-informatica" class="service-card">
+                <div class="spotlight-glow"></div>
+                <div class="icon-box icon-laptop"></div>
+                <h3>Informática</h3>
+                <p>Suporte técnico ágil e manutenção especializada para manter a produtividade da sua empresa sempre em primeiro plano.</p>
+            </a>
 
-                <a href="#detalhe-redes" class="service-card">
-                    <div class="icon-box icon-server"></div>
-                    <h3>Redes e Servidores</h3>
-                    <p>Infraestrutura robusta e segura para conectar e escalar o seu negócio.</p>
-                </a>
+            <a href="#detalhe-redes" class="service-card">
+                <div class="spotlight-glow"></div>
+                <div class="icon-box icon-server"></div>
+                <h3>Redes e Servidores</h3>
+                <p>Infraestrutura robusta e segura para conectar e escalar o seu negócio.</p>
+            </a>
 
-                <a href="#detalhe-seguranca" class="service-card">
-                    <div class="icon-box icon-shield"></div>
-                    <h3>Segurança</h3>
-                    <p>Proteção total para seus dados, garantindo a tranquilidade do seu negócio.</p>
-                </a>
+            <a href="#detalhe-seguranca" class="service-card">
+                <div class="spotlight-glow"></div>
+                <div class="icon-box icon-shield"></div>
+                <h3>Segurança</h3>
+                <p>Proteção total para seus dados, garantindo a tranquilidade do seu negócio.</p>
+            </a>
 
-                <a href="#detalhe-cloud" class="service-card">
-                    <div class="icon-box icon-cloud"></div>
-                    <h3>Cloud</h3>
-                    <p>Leve sua empresa para o futuro com a flexibilidade e escalabilidade da computação em nuvem.</p>
-                </a>
+            <a href="#detalhe-cloud" class="service-card">
+                <div class="spotlight-glow"></div>
+                <div class="icon-box icon-cloud"></div>
+                <h3>Cloud</h3>
+                <p>Leve sua empresa para o futuro com a flexibilidade e escalabilidade da computação em nuvem.</p>
+            </a>
 
-            </div>
+            <a href="#detalhe-suporte" class="service-card">
+                <div class="spotlight-glow"></div>
+                <div class="icon-box icon-users"></div>
+                <h3>Suporte Técnico para Empresas</h3>
+                <p>O setor de TI da sua empresa sem o custo de uma equipe interna. Suporte ágil, preventivo e presencial.</p>
+            </a>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <a href="informatica" class="full-section-link">
         <section id="detalhe-informatica" class="section bg-white hover-effect">
@@ -139,8 +197,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <li>Otimização de Desempenho dos Computadores</li>
                     </ul>
                 </div>
-                <div class="detail-image">
-                    <img src="assets/images/desktop-detail.webp" alt="Bancada com computador e periféricos modernos">
+                <!-- Animação Livre e Ampliada: Monitor + Radar -->
+                <div class="detail-image preview-laptop">
+                    <div class="tech-monitor">
+                        <div class="radar-pulse"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -149,8 +210,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="redes" class="full-section-link">
         <section id="detalhe-redes" class="section bg-light hover-effect">
             <div class="container grid-2">
-                <div class="detail-image">
-                    <img src="/assets/images/redes-detail.webp" alt="Servidores de rede em um data center">
+                <!-- Animação Livre e Ampliada: Server Rack + LEDs -->
+                <div class="detail-image preview-server">
+                    <div class="server-rack">
+                        <div class="server-blade"><span class="led"></span><span class="led"></span></div>
+                        <div class="server-blade"><span class="led"></span><span class="led"></span></div>
+                        <div class="server-blade"><span class="led"></span><span class="led"></span></div>
+                    </div>
                 </div>
                 <div class="detail-text">
                     <h2>Infraestrutura de Redes e Servidores</h2>
@@ -173,7 +239,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="detail-text">
                     <h2>Segurança da Informação</h2>
                     <h3>Protegendo seu ativo mais valioso: seus dados.</h3>
-                    <p>No cenário digital atual, ameaças como vírus, ransomware e vazamento de dados são constantes. Implementamos uma defesa em camadas para proteger sua rede, servidores e dispositivos, garantindo a integridade e a confidencialidade das suas informações.</p>
+                    <p>No cenário digital atual, ameaças como vírus, ransomware e vazamento de dados são constantes. Implementamos uma defense em camadas para proteger sua rede, servidores e dispositivos, garantindo a integridade e a confidencialidade das suas informações.</p>
                     <ul class="feature-list">
                         <li>Firewall e Proteção de Borda (UTM)</li>
                         <li>Soluções Antivírus e Anti-Ransomware</li>
@@ -181,8 +247,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <li>Políticas de Backup e Recuperação de Desastres</li>
                     </ul>
                 </div>
-                <div class="detail-image">
-                    <img src="assets/images/cadeado-detail.webp" alt="Conceito de cibersegurança com cadeado digital">
+                <!-- Animação Livre e Ampliada: Escudo + Órbitas -->
+                <div class="detail-image preview-security">
+                    <div class="shield-core"></div>
+                    <div class="secure-orbit"></div>
+                    <div class="secure-orbit delay-orbit"></div>
                 </div>
             </div>
         </section>
@@ -191,8 +260,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="cloud" class="full-section-link">
         <section id="detalhe-cloud" class="section bg-light hover-effect">
             <div class="container grid-2">
-                <div class="detail-image">
-                    <img src="assets/images/nuvem-detail.webp" alt="Ilustração de servidores e computação em nuvem">
+                <!-- Animação Livre e Ampliada: Nuvem Flutuante -->
+                <div class="detail-image preview-cloud">
+                    <div class="cloud-base">
+                        <div class="cloud-puff puff-1"></div>
+                        <div class="cloud-puff puff-2"></div>
+                    </div>
                 </div>
                 <div class="detail-text">
                     <h2>Soluções em Nuvem (Cloud)</h2>
@@ -208,19 +281,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </section>
     </a>
 
-    <section id="vamos-conversar" class="section cta-section">
-        <div class="container">
-            <h2>Pronto para o Próximo Nível?</h2>
-            <p>Siga nosso dia a dia e projetos no Instagram ou nos chame diretamente no WhatsApp para um orçamento sem compromisso.</p>
+    <a href="por-que-edge" class="full-section-link">
+        <section id="detalhe-suporte" class="section bg-white hover-effect">
+            <div class="container grid-2">
+                <div class="detail-text">
+                    <h2>O Setor de TI do seu Negócio</h2>
+                    <h3>Sua empresa com suporte de ponta a ponta, sem o custo de uma equipe interna.</h3>
+                    <p>Assumimos a responsabilidade por toda a informática da sua empresa para eliminar lentidões, falhas de e-mail e problemas com sistemas ou impressoras. Cuidamos da sua estrutura com foco preventivo para que sua equipe foque exclusivamente no faturamento e no crescimento do negócio.</p>
+                    <ul class="feature-list">
+                        <li>Atendimento Ágil via Acesso Direto</li>
+                        <li>Suporte Presencial na Grande Florianópolis</li>
+                        <li>Manutenção Preventiva e Otimização</li>
+                        <li>Fim dos Gastos Surpresa com TI</li>
+                        <li>Alívio de Tempo para a Gerência</li>
+                        <li>Garantia de Operação Sem Paradas</li>
+                    </ul>
+                </div>
+                <!-- Animação Livre e Ampliada: Pulsos de Presença / SLA -->
+                <div class="detail-image preview-suporte">
+                    <div class="pulse-center"></div>
+                    <div class="pulse-ring ring-1"></div>
+                    <div class="pulse-ring ring-2"></div>
+                    <div class="pulse-ring ring-3"></div>
+                </div>
+            </div>
+        </section>
+    </a>
+    <section id="vamos-conversar" class="section cta-section-modern">
+        <div class="container cta-container-box">
+            <!-- Faixa interna decorativa de fundo opcional para profundidade -->
+            <div class="cta-glow-backdrop"></div>
             
-            <div class="cta-group">
-                <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" id="btn-social-whatsapp">
-                    <span class="icon-wa"></span> Chamar no WhatsApp
-                </a>
+            <div class="cta-content-wrapper">
+                <h2>Pronto para o Próximo Nível?</h2>
+                <p>Siga o nosso dia a dia e projetos no Instagram ou chame a nossa equipe diretamente no WhatsApp para alinhar um orçamento sob medida para o seu negócio.</p>
+                
+                <div class="cta-group-modern">
+                    <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient">
+                        <span class="icon-wa"></span> Chamar no WhatsApp
+                    </a>
 
-                <a href="https://www.instagram.com/edge.ti/" target="_blank" rel="noopener noreferrer" class="btn btn-social">
-                    <span class="icon-ig"></span> Seguir no Instagram
-                </a>
+                    <a href="https://www.instagram.com/edge.ti/" target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-ig-outline">
+                        <span class="icon-ig"></span> Seguir no Instagram
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -285,5 +389,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <script src="/assets/js/menu.js"></script>
     <script src="/assets/js/smoothScroll.js"></script>
+    <script>
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+</script>
 </body>
 </html>

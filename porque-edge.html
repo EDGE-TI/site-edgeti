@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por que a Edge TI? - Suporte Técnico Especializado</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <link rel="stylesheet" href="assets/css/cta.css">
+
+    <style>
+        body {
+            background-color: #0d0e0e;
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-header-spacing {
+            padding: 5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .page-header-spacing h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .badge-category {
+            background: rgba(15, 98, 254, 0.15);
+            border: 1px solid rgba(15, 98, 254, 0.4);
+            color: #00a4ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Container Principal */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Blocos de Grid com Alternância Moderna */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            background: #121314;
+            padding: 5rem 4rem;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 4rem;
+        }
+
+        .info-grid.reverse {
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .text-block h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .text-block h3 {
+            font-size: 1.3rem;
+            color: #00a4ff;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-block p {
+            font-size: 1.05rem;
+            color: #c1c7cd;
+            line-height: 1.8;
+        }
+
+        /* Lista de Ganhos / Benefícios */
+        .ganhos-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .ganho-card {
+            background: #1a1c1e;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .ganho-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(15, 98, 254, 0.3);
+        }
+
+        .ganho-card h4 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ganho-card h4::before {
+            content: "✓";
+            color: #00ff66;
+            font-weight: 900;
+        }
+
+        .ganho-card p {
+            font-size: 0.95rem;
+            color: #a8b0b8;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Seção dos Três Motivos */
+        .motivos-section {
+            background: #1a1c1e;
+            border-radius: 28px;
+            padding: 5rem 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 6rem;
+        }
+
+        .motivos-section h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-weight: 700;
+        }
+
+        .motivos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .motivo-card {
+            background: #121314;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
+            border-top: 4px solid #0f62fe;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .motivo-card h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .motivo-card p {
+            font-size: 0.95rem;
+            color: #c1c7cd;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* --- ELEMENTOS DE ANIMAÇÃO CSS PURO (PC) --- */
+        .visual-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 350px;
+            position: relative;
+        }
+
+        .pulse-core {
+            width: 30px; height: 30px;
+            background: #00ff66; border-radius: 50%;
+            box-shadow: 0 0 30px #00ff66; z-index: 2;
+        }
+
+        .pulse-wave {
+            position: absolute;
+            border: 3px solid rgba(0, 255, 102, 0.25);
+            border-radius: 50%;
+            animation: waveExpand 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+        }
+
+        .w2 { animation-delay: 1.3s; }
+        .w3 { animation-delay: 2.6s; }
+
+        @keyframes waveExpand {
+            0% { width: 30px; height: 30px; opacity: 1; }
+            100% { width: 450px; height: 450px; opacity: 0; }
+        }
+
+        .connect-hub {
+            width: 100px; height: 100px;
+            border: 4px solid #0f62fe; border-radius: 50%;
+            background: #121314; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; color: #ffffff;
+            box-shadow: 0 0 40px rgba(15, 98, 254, 0.4);
+            animation: floatHub 4s infinite ease-in-out; z-index: 2;
+        }
+
+        .satellite-node {
+            position: absolute; width: 40px; height: 40px;
+            border: 2px dashed #00a4ff; border-radius: 50%;
+            animation: orbitNode 12s infinite linear;
+        }
+
+        @keyframes floatHub {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes orbitNode {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ======================================================
+           RESPONSIVIDADE SEGURA (Isola as larguras sem prender o mouse)
+           ====================================================== */
+        @media (max-width: 992px) {
+            .info-grid, .info-grid.reverse {
+                display: block !important; 
+                padding: 3rem 1.2rem !important;
+                width: auto !important;
+            }
+
+            /* Remove as caixas de animações largas que criavam o rastro lateral */
+            .visual-side, .pulse-wave, .satellite-node, .connect-hub, .pulse-core {
+                display: none !important;
+                animation: none !important;
+            }
+
+            .text-block {
+                width: 100% !important;
+            }
+            
+            .motivos-section {
+                padding: 3rem 1.2rem !important;
+            }
+
+            .motivos-grid, .ganhos-list {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                width: 100% !important;
+            }
+
+            .motivo-card, .ganho-card {
+                width: 100% !important;
+            }
+        }
+
+        /* Adaptação das proporções do CTA no Mobile */
+        @media (max-width: 768px) {
+            .cta-container-box {
+                padding: 3rem 1.2rem !important;
+                border-radius: 20px !important;
+                height: auto !important; 
+                width: 100% !important; 
+            }
+            
+            .cta-container-box h2 {
+                font-size: 1.8rem !important;
+            }
+
+            .btn-modern-tech {
+                width: 100% !important; 
+                padding: 1rem 1.5rem !important;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-main">
+            <div class="container header-flex">
+                <a href="/" class="logo">
+                    <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+                </a>
+                <nav class="nav-desktop">
+                    <ul class="nav-list">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#servicos">Soluções</a></li>
+                        <li><a href="blog" class="active">Blog</a></li>
+                        <li><a href="/#vamos-conversar">Contato</a></li>
+                        <li><a href="central-privacidade">Central de Privacidade</a></li>
+                    </ul>
+                </nav>
+                <button id="btn-mobile" aria-label="Abrir Menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="menu-mobile" class="menu-mobile-container">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#servicos">Soluções</a></li>
+                    <li><a href="blog">Blog</a></li>
+                    <li><a href="/#vamos-conversar">Contato</a></li>
+                    <li><a href="central-privacidade">Central de Privacidade</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-container">
+
+        <section class="info-grid" id="sobre-ti-grid">
+            <div class="text-block">
+                <h2>Como é o nosso suporte em TI?</h2>
+                <h3>Na prática, nós somos o setor de TI da sua empresa.</h3>
+                <p>Nós assumimos a responsabilidade por toda a informática do seu negócio, eliminando o custo e a complexidade de manter uma equipe interna corporativa. Resolvemos desde aquela lentidão chata no Windows e problemas com e-mails, até a complexa configuração de sistemas e impressoras. O nosso objetivo é um só: garantir que os computadores da sua equipe funcionem perfeitamente, sem dar dor de cabeça.</p>
+            </div>
+            <div class="visual-side">
+                <div class="connect-hub">EDGE TI</div>
+                <div class="satellite-node"></div>
+            </div>
+        </section>
+
+        <section class="info-grid reverse">
+            <div class="visual-side">
+                <div class="pulse-core"></div>
+                <div class="pulse-wave ring-1"></div>
+                <div class="pulse-wave w2"></div>
+                <div class="pulse-wave w3"></div>
+            </div>
+            <div class="text-block">
+                <h2>O que a sua empresa ganha com isso?</h2>
+                <p>Ter a Edge TI cuidando da sua estrutura significa ter a tranquilidade de saber que a informática está sob controle, permitindo que você foque no que realmente importa: o crescimento do seu negócio.</p>
+
+                <div class="ganhos-list">
+                    <div class="ganho-card">
+                        <h4>Sua equipe não fica parada</h4>
+                        <p>Computador travado é funcionário sem produzir e dinheiro indo embora. Nós resolvemos os problemas rápido para a sua operação não parar.</p>
+                    </div>
+                    <div class="ganho-card">
+                        <h4>Mais velocidade no dia a dia</h4>
+                        <p>Máquinas atualizadas e bem cuidadas rodam os sistemas mais rápido. Isso tira o estresse da equipe e agiliza o atendimento aos seus clientes.</p>
+                    </div>
+                    <div class="ganho-card">
+                        <h4>Fim dos gastos surpresa</h4>
+                        <p>Você para de chamar técnicos autônomos toda vez que algo estraga e elimina aqueles custos inesperados que quebram o caixa do mês.</p>
+                    </div>
+                    <div class="ganho-card">
+                        <h4>Alívio para a gerência</h4>
+                        <p>Você e seus gerentes deixam de perder tempo tentando "arrumar o computador do escritório" e focam no que realmente traz faturamento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="motivos-section">
+            <h2>Empresas da Grande Florianópolis escolhem trabalhar com a Edge TI por três motivos práticos:</h2>
+
+            <div class="motivos-grid">
+                <div class="motivo-card">
+                    <h3>Atendimento ágil e sem burocracia</h3>
+                    <p>Quando um computador apresenta falha, seu funcionário não fica preso em um sistema de atendimento demorado. Nós fazemos o acesso remoto direto na máquina para iniciar o diagnóstico o quanto antes e resolver o problema com agilidade.</p>
+                </div>
+                <div class="motivo-card">
+                    <h3>Suporte presencial na sua empresa</h3>
+                    <p>Se o problema for físico — como uma peça que falhou ou um cabo danificado —, nós não ficamos apenas no telefone. Nossa equipe se desloca até o seu negócio na região para fazer a manutenção no local.</p>
+                </div>
+                <div class="motivo-card">
+                    <h3>Foco em evitar a falha</h3>
+                    <p>O modelo tradicional de TI só aparece quando tudo já parou. Nós trabalhamos de forma preventiva, cuidando das atualizações, da otimização do sistema e da limpeza das máquinas nos bastidores para que os computadores funcionem de forma estável no dia a dia.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <section id="vamos-conversar" class="section cta-section-modern">
+        <div class="container cta-container-box">
+            <div class="cta-glow-backdrop"></div>
+            <div class="cta-content-wrapper">
+                <h2>Pronto para o Próximo Nível?</h2>
+                <p>Siga o nosso dia a dia e projetos no Instagram ou chame a nossa equipe diretamente no WhatsApp para alinhar um orçamento sob medida para o seu negócio.</p>
+
+                <div class="cta-group-modern">
+                    <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento."
+                        target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient">
+                        <span class="icon-wa"></span> Chamar no WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/edge.ti/" target="_blank" rel="noopener noreferrer"
+                        class="btn-modern-tech btn-ig-outline">
+                        <span class="icon-ig"></span> Seguir no Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo"><img src="assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance, segurança e suporte especializado para impulsionar seus resultados.</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/edge.ti/" target="_blank" aria-label="Instagram" class="social-link">
+                            <span class="icon-footer icon-insta"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/#inicio">Início</a></li>
+                        <li><a href="/#servicos">Soluções</a></li>
+                        <li><a href="/#sobre">Sobre Nós</a></li>
+                        <li><a href="/#vamos-conversar">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><span class="icon-footer icon-map"></span><span>Palhoça, SC, Brasil</span></li>
+                        <li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li>
+                        <li><span class="icon-footer icon-mail"></span><span>contato@edgeti.com.br</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Edge TI. Todos os direitos reservados.</p>
+                <a href="centralPrivacidade">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento."
+        class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+        <i class="ph ph-whatsapp-logo"></i>
+        <span class="tooltip-text">Fale Conosco</span>
+    </a>
+    
+    <script src="assets/js/menu.js"></script>
+    <script src="/assets/js/smoothScroll.js"></script>
+</body>
+</html>
