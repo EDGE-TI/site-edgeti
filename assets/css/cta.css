@@ -4,7 +4,7 @@
 
 /* Seção base limpa */
 .cta-section-modern {
-    padding: 8rem 2rem !important; /* Maior e com mais presença na rolagem */
+     /* Maior e com mais presença na rolagem */
     background: #0d0e0e !important; /* Fundo escuro absoluto para contraste */
     display: flex;
     justify-content: center;

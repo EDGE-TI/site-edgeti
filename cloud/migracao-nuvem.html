@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migração para a Nuvem (Cloud Migration) | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(187, 86, 255, 0.15); border: 1px solid rgba(187, 86, 255, 0.4); color: #bb56ff; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #bb56ff; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #bb56ff; font-size: 1.5rem; }
+
+    .visual-side { 
+        display: flex;          /* Ativa o Flexbox */
+        align-items: center;    /* Centraliza verticalmente */
+        justify-content: center;/* Centraliza horizontalmente */
+        position: relative; 
+        height: 350px; 
+        width: 100%;            /* Garante que ocupe a largura da coluna */
+    }
+
+    .cloud-anim-container {
+        position: relative;
+        width: 200px;
+        height: 280px;
+    }
+
+    /* Nuvem no topo */
+    .cloud-box {
+      width: 160px; height: 80px; background: #ffffff;
+      border-radius: 50px; position: absolute;
+      top: 0; left: 20px; opacity: 0.9; box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    }
+    .cloud-box::before, .cloud-box::after { content: ''; position: absolute; background: #ffffff; border-radius: 50%; }
+    .cloud-box::before { width: 60px; height: 60px; top: -25px; left: 20px; }
+    .cloud-box::after { width: 80px; height: 80px; top: -40px; left: 60px; }
+
+    /* Servidor na base */
+    .server-box { 
+      width: 90px; height: 100px; 
+      background: #21262e; border: 3px solid #3a3f4d; border-radius: 8px;
+      position: absolute; bottom: 0; left: 55px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    }
+    .server-blade { width: 70%; height: 10px; background: #3a3f4d; border-radius: 2px; }
+
+    /* Pacotes de Dados (O fluxo saindo do servidor para a nuvem) */
+    .data-packet {
+      position: absolute; width: 10px; height: 10px; background: #00ff66;
+      border-radius: 50%; bottom: 100px; left: 95px;
+      animation: uploadData 3s linear infinite; opacity: 0;
+    }
+    
+    @keyframes uploadData {
+      0% { bottom: 100px; opacity: 0; transform: scale(0.5); }
+      20% { opacity: 1; }
+      80% { bottom: 220px; opacity: 1; }
+      100% { bottom: 220px; opacity: 0; transform: scale(1.5); }
+    }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #bb56ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 300px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+      <div class="container header-flex">
+        <a href="/" class="logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" /></a>
+        <nav class="nav-desktop">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li class="has-mega-menu"><a href="/#servicos">Soluções ▾</a>
+              <div class="mega-menu">
+                <div class="mega-menu-grid">
+                  <a href="/informatica" class="mega-menu-card"><h4>Informática</h4></a>
+                  <a href="/redes" class="mega-menu-card"><h4>Redes</h4></a>
+                  <a href="/seguranca" class="mega-menu-card"><h4>Segurança</h4></a>
+                  <a href="/cloud" class="mega-menu-card highlight-card"><h4>Cloud</h4></a>
+                  <a href="/suporte-tecnico" class="mega-menu-card"><h4>Suporte</h4></a>
+                </div>
+              </div>
+            </li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/#vamos-conversar">Contato</a></li>
+            <li><a href="/central-privacidade">Privacidade</a></li>
+          </ul>
+        </nav>
+        <button id="btn-mobile"><i class="ph ph-list"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb"><a href="/">Início</a> <span>></span> <a href="/#servicos">Cloud</a> <span>></span> <strong style="color: #ffffff;">Migração para Nuvem</strong></div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Modernização de Infraestrutura</span>
+    <h1>Migração de Servidores para a Nuvem</h1>
+    <p>Leve sua infraestrutura para um ambiente flexível, escalável e de alta disponibilidade, eliminando a dependência de hardware físico local.</p>
+  </div>
+
+  <main class="content-container">
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Sua TI onde você estiver</h2>
+        <p>Manter servidores locais exige alto investimento em energia, refrigeração e hardware que, com o tempo, se tornam obsoletos. A migração para a nuvem transforma esse custo fixo em uma operação dinâmica e flexível.</p>
+        <p>A Edge TI planeja e executa a transição das suas aplicações e servidores para ambientes de nuvem (AWS, Azure, Google Cloud ou Cloud Privada). Nosso processo garante que nada se perca, minimizando o tempo de inatividade e validando a compatibilidade total de cada sistema após a subida.</p>
+
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Planejamento estratégico de migração (Lift-and-shift ou Replatforming)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Sincronização de dados e validação de consistência</li>
+          <li><i class="ph-fill ph-check-circle"></i> Otimização de custos (Dimensionamento correto da nuvem)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Acesso remoto seguro e monitoramento 24/7</li>
+        </ul>
+      </div>
+
+      <!-- ANIMAÇÃO: MIGRACAO CLOUD -->
+      <div class="visual-side">
+        <div class="cloud-anim-container">
+            <!-- Nuvem -->
+            <div class="cloud-box"></div>
+            <!-- Pacotes de dados subindo -->
+            <div class="data-packet"></div>
+            <div class="data-packet" style="animation-delay: 1.5s;"></div>
+            <!-- Servidor físico -->
+            <div class="server-box">
+                <div class="server-blade"></div>
+                <div class="server-blade"></div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2 style="color: #bb56ff;">Por que sua empresa precisa disso?</h2>
+            <p>Servidores físicos envelhecem e falham. A nuvem oferece elasticidade: se sua empresa cresce, o servidor cresce. Se você precisa de acesso remoto, ele está pronto e seguro. A migração é o passo final para tornar a sua TI um braço do seu crescimento, não uma limitação física.</p>
+            <p>Ao migrar com a Edge TI, você para de se preocupar com hardware físico, peças de reposição e manutenção de rack, focando inteiramente no que realmente importa: a estratégia e o faturamento do seu negócio.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-rocket-launch" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Escalabilidade</h4><p>Aumente ou diminua recursos conforme a demanda do seu negócio.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-globe-hemisphere-west" style="color: #bb56ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Mobilidade Total</h4><p>Acesse seu ambiente de trabalho de qualquer lugar do mundo.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Pronto para ir para a Nuvem?</h2>
+        <p>A migração é um processo sensível que exige planejamento. Chame a Edge TI para avaliarmos o melhor caminho para o seu ambiente.</p>
+        <div class="cta-group-modern"><a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20migração%20de%20servidores%20para%20a%20nuvem." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Chamar no WhatsApp</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato" class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column footer-about"><h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3><p>Sua parceira em soluções de tecnologia.</p></div>
+        <div class="footer-column footer-links"><h3>Links Rápidos</h3><ul><li><a href="/">Início</a></li><li><a href="/#servicos">Soluções</a></li><li><a href="/#vamos-conversar">Contato</a></li></ul></div>
+        <div class="footer-column footer-contact"><h3>Contato</h3><ul><li><span class="icon-footer icon-map"></span><span>Palhoça, SC</span></li><li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Edge TI.</p><a href="/central-privacidade">Política de Privacidade</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -14,8 +14,7 @@
     <meta name="description" content="Suporte técnico especializado em TI para empresas. Outsourcing, manutenção de computadores e helpdesk ágil. Reduza o tempo de inatividade da sua empresa.">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/solucoes.css">
-    
+    <link rel="stylesheet" href="assets/css/paginas-solucoes.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -35,35 +34,82 @@
 <body>
 
    <header id="header">
+    <div class="header-main">
         <div class="container header-flex">
             <a href="/" class="logo">
                 <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
             </a>
+            
+            <!-- MENU DESKTOP -->
             <nav class="nav-desktop">
                 <ul class="nav-list">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/#servicos">Soluções</a></li>
+                    
+                    <!-- Item com Mega Menu -->
+                    <li class="has-mega-menu">
+                        <a href="/#servicos">Soluções ▾</a>
+                        
+                        <!-- Painel do Mega Menu -->
+                        <div class="mega-menu">
+                            <div class="mega-menu-grid">
+                                <a href="informatica" class="mega-menu-card">
+                                    <h4>Informática</h4>
+                                    <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
+                                </a>
+                                <a href="redes" class="mega-menu-card">
+                                    <h4>Redes e Servidores</h4>
+                                    <p>A base sólida para a conectividade do seu negócio.</p>
+                                </a>
+                                <a href="seguranca" class="mega-menu-card">
+                                    <h4>Segurança da Informação</h4>
+                                    <p>Protegendo seu ativo mais valioso: seus dados.</p>
+                                </a>
+                                <a href="cloud" class="mega-menu-card">
+                                    <h4>Cloud (Nuvem)</h4>
+                                    <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
+                                </a>
+                                <a href="suporte-tecnico" class="mega-menu-card highlight-card">
+                                    <h4>Suporte Técnico para Empresas</h4>
+                                    <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    
                     <li><a href="blog" class="active">Blog</a></li>
                     <li><a href="/#vamos-conversar">Contato</a></li>
                     <li><a href="central-privacidade">Central de Privacidade</a></li>
                 </ul>
             </nav>
+            
             <button id="btn-mobile" aria-label="Abrir Menu">
                 <i class="ph ph-list"></i>
             </button>
         </div>
-        <div id="menu-mobile" class="menu-mobile-container">
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/#servicos">Soluções</a></li>
-                    <li><a href="blog">Blog</a></li>
-                    <li><a href="/#vamos-conversar">Contato</a></li>
-                    <li><a href="central-privacidade">Central de Privacidade</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    </div>
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="menu-mobile-container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="mobile-has-submenu">
+                    <a href="/#servicos">Soluções</a>
+                    <!-- Submenu Mobile -->
+                    <ul class="mobile-submenu">
+                        <li><a href="informatica">- Informática</a></li>
+                        <li><a href="redes">- Redes e Servidores</a></li>
+                        <li><a href="seguranca">- Segurança da Informação</a></li>
+                        <li><a href="cloud">- Cloud (Nuvem)</a></li>
+                        <li><a href="suporte-tecnico">- Suporte Técnico</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="/#vamos-conversar">Contato</a></li>
+                <li><a href="central-privacidade">Central de Privacidade</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <main>
         <section class="solution-hero">
@@ -124,76 +170,7 @@
                 <a href="https://wa.me/554891763985" class="btn-primary">Falar com Consultor</a>
             </div>
         </section>
-
-       <section class="it-stats-section">
-    <div class="container-it">
-        <div class="it-chart-box">
-            <canvas id="itChart"></canvas>
-        </div>
-
-        <div class="it-text">
-            <h2>Suporte que <span class="it-highlight">resolve</span></h2>
-            <p>Mais do que consertar computadores, nós otimizamos o seu dia a dia. Atendemos empresas e profissionais em toda a Grande Florianópolis com soluções de hardware e software de elite.</p>
-            
-            <div class="it-performance-box">
-                <div class="perf-item">
-                    <span class="perf-label">Velocidade de Inicialização</span>
-                    <div class="perf-bar-bg"><div class="perf-bar-fill" style="width: 95%;"></div></div>
-                    <span class="perf-value">+95%</span>
-                </div>
-                <div class="perf-item">
-                    <span class="perf-label">Estabilidade do Sistema</span>
-                    <div class="perf-bar-bg"><div class="perf-bar-fill" style="width: 88%;"></div></div>
-                    <span class="perf-value">+88%</span>
-                </div>
-            </div>
-            <p class="it-location-tag">Especialistas em <strong>Bairros da Palhoça e região.</strong></p>
-        </div>
-    </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctxIT = document.getElementById('itChart').getContext('2d');
-    const itChart = new Chart(ctxIT, {
-        type: 'bar', // Gráfico de barras para comparação de eficiência
-        data: {
-            labels: ['Backup', 'Otimização de SSD', 'Limpeza Técnica', 'Update de Software', 'Suporte Remoto'],
-            datasets: [{
-                label: 'Eficiência por Serviço (%)',
-                data: [100, 95, 85, 90, 98], 
-                backgroundColor: [
-                    '#3498db', // Azul
-                    '#2ecc71', // Verde
-                    '#e67e22', // Laranja
-                    '#9b59b6', // Roxo
-                    '#1abc9c'  // Turquesa
-                ],
-                borderRadius: 8
-            }]
-        },
-        options: {
-            indexAxis: 'y', // Transforma em barras horizontais
-            responsive: true,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    max: 100,
-                    grid: { display: false }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: { font: { weight: 'bold' } }
-                }
-            }
-        }
-    });
-</script>
     </main>
-
     <footer id="contato" class="site-footer">
         <div class="container">
             <div class="footer-content">

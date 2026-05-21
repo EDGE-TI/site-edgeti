@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalação e Gestão de Servidores | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ======================================================
+       REGRA GLOBAL DE SEGURANÇA (Anti-vazamento)
+       ====================================================== */
+    *, *::before, *::after { box-sizing: border-box !important; }
+    
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    /* --- BREADCRUMBS --- */
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    /* --- TÍTULO (DIV) --- */
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.4); color: #00a4ff; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    /* --- GRID PRINCIPAL --- */
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    /* --- CHECKLIST --- */
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00ff66; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #00ff66; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO: DATA CENTER --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    
+    .server-tower {
+      width: 120px; height: 240px; background: #16181b; border: 3px solid #3a3f4d; border-radius: 12px;
+      position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .server-blade { width: 90%; height: 20px; background: #21262e; margin: 15px auto; border-radius: 4px; position: relative; }
+    .server-blade::after {
+      content: ''; position: absolute; right: 10px; top: 6px; width: 8px; height: 8px;
+      background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; animation: pulseServer 1.5s infinite;
+    }
+    
+    @keyframes pulseServer { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 300px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+      <div class="container header-flex">
+        <a href="/" class="logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" /></a>
+        <nav class="nav-desktop">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li class="has-mega-menu"><a href="/#servicos">Soluções ▾</a>
+              <div class="mega-menu">
+                <div class="mega-menu-grid">
+                  <a href="/informatica" class="mega-menu-card"><h4>Informática</h4><p>Suporte ágil e eficiente.</p></a>
+                  <a href="/redes" class="mega-menu-card highlight-card"><h4>Redes e Servidores</h4><p>Base sólida para seu negócio.</p></a>
+                  <a href="/seguranca" class="mega-menu-card"><h4>Segurança</h4><p>Protegendo seus dados.</p></a>
+                  <a href="/cloud" class="mega-menu-card"><h4>Cloud</h4><p>Escalabilidade total.</p></a>
+                  <a href="/suporte-tecnico" class="mega-menu-card"><h4>Suporte Técnico</h4><p>Time dedicado.</p></a>
+                </div>
+              </div>
+            </li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/#vamos-conversar">Contato</a></li>
+            <li><a href="/central-privacidade">Central de Privacidade</a></li>
+          </ul>
+        </nav>
+        <button id="btn-mobile" aria-label="Abrir Menu"><i class="ph ph-list"></i></button>
+      </div>
+    </div>
+    <div id="menu-mobile" class="menu-mobile-container">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="mobile-has-submenu"><a href="/#servicos">Soluções</a>
+            <ul class="mobile-submenu">
+              <li><a href="/informatica">- Informática</a></li>
+              <li><a href="/redes">- Redes e Servidores</a></li>
+              <li><a href="/seguranca">- Segurança</a></li>
+              <li><a href="/cloud">- Cloud</a></li>
+              <li><a href="/suporte-tecnico">- Suporte Técnico</a></li>
+            </ul>
+          </li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#vamos-conversar">Contato</a></li>
+          <li><a href="/central-privacidade">Central de Privacidade</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb"><a href="/">Início</a> <span>></span> <a href="/#servicos">Redes e Servidores</a> <span>></span> <strong style="color: #ffffff;">Gestão de Servidores</strong></div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Infraestrutura Crítica</span>
+    <h1>Instalação e Gestão de Servidores</h1>
+    <p>O coração da sua empresa exige precisão, monitoramento 24/7 e redundância para nunca parar.</p>
+  </div>
+
+  <main class="content-container">
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Servidores de Alta Disponibilidade</h2>
+        <p>O servidor é onde reside o conhecimento e o fluxo financeiro da sua empresa. Uma má configuração aqui não gera apenas lentidão, gera perda de dados e paralisação total da operação.</p>
+        <p>Nós instalamos, configuramos e mantemos servidores físicos e virtuais com foco em redundância e backup. Monitoramos proativamente a saúde dos componentes para que você nunca seja surpreendido por um erro de leitura em um banco de dados ou um servidor de arquivos inacessível.</p>
+
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Configuração de Servidores Windows e Linux (File Server, AD, SQL)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Virtualização de ambientes (Maximização de Hardware)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Monitoramento Proativo de saúde (CPU, RAM, Disco)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Políticas de Backup e Recuperação contra Desastres</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="server-tower">
+          <div class="server-blade"></div>
+          <div class="server-blade"></div>
+          <div class="server-blade"></div>
+          <div class="server-blade"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2 style="color: #00a4ff;">Por que sua empresa precisa disso?</h2>
+            <p>Servidores negligenciados se tornam "ralos" de dinheiro. Quando o sistema de gestão demora para processar um pedido ou o acesso aos arquivos compartilhados fica lento, o tempo perdido pela equipe soma dias de trabalho desperdiçados ao longo de um mês.</p>
+            <p>Com a nossa gestão, transformamos o servidor de um "problema para se preocupar" em uma ferramenta silenciosa e eficiente, garantindo que sua operação flua sem engasgos.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-infinity" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Zero Downtime</h4><p>Serviços disponíveis 24/7 sem interrupções críticas.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-database" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Dados Protegidos</h4><p>Backup e integridade garantidos pelo nosso monitoramento.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Garanta o coração da sua TI</h2>
+        <p>Precisa trocar seu servidor atual ou quer monitorar a saúde da sua rede? Fale com nossa equipe técnica.</p>
+        <div class="cta-group-modern"><a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20gestão%20de%20servidores." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Chamar no WhatsApp</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato" class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column footer-about"><h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3><p>Sua parceira em soluções de tecnologia.</p></div>
+        <div class="footer-column footer-links"><h3>Links Rápidos</h3><ul><li><a href="/">Início</a></li><li><a href="/#servicos">Soluções</a></li><li><a href="/#vamos-conversar">Contato</a></li></ul></div>
+        <div class="footer-column footer-contact"><h3>Contato</h3><ul><li><span class="icon-footer icon-map"></span><span>Palhoça, SC</span></li><li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Edge TI.</p><a href="/central-privacidade">Política de Privacidade</a></div>
+    </div>
+  </footer>
+</body>
+</html>

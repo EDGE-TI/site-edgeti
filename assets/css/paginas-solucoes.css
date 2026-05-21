@@ -1,0 +1,237 @@
+/* ======================================================
+   VARIÁVEIS DE TEMA CLARO (Aplicadas apenas no Main)
+   ====================================================== */
+:root {
+    --light-bg: #f8fafc;
+    --white: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #475569;
+    --border-light: #e2e8f0;
+    /* Caso não tenha definido globalmente, ajuste a cor primária aqui */
+    /* --primary-color: #007bff; */ 
+}
+
+/* Garante que o corpo tenha a fonte correta e fundo padrão */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Protege o Header e Footer para continuarem com o tema escuro da Edge TI */
+#header, .site-footer, .menu-mobile-container {
+    background-color: #010202 !important;
+    color: #ffffff;
+}
+
+/* ======================================================
+   1. HERO SECTION (Topo da página)
+   ====================================================== */
+.solution-hero {
+    background: linear-gradient(135deg, var(--white) 0%, #eef2f6 100%);
+    padding: 6rem 1.5rem 5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.solution-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ======================================================
+   2. CONTEÚDO PRINCIPAL (Grid Imagem + Texto)
+   ====================================================== */
+.solution-content {
+    padding: 6rem 0;
+    background-color: var(--white);
+}
+
+.solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.solution-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.solution-text p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.solution-text ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.solution-text ul li i {
+    font-size: 1.5rem;
+}
+
+.solution-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.solution-image img:hover {
+    transform: translateY(-10px);
+}
+
+/* ======================================================
+   3. SEÇÃO DE BENEFÍCIOS (Cards)
+   ====================================================== */
+.benefits-section {
+    padding: 6rem 0;
+    background-color: var(--light-bg);
+}
+
+.benefits-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.benefit-card {
+    background-color: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+    border-color: var(--primary-color);
+}
+
+.benefit-card i {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.benefit-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.benefit-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* ======================================================
+   4. SEÇÃO CTA (Call to Action)
+   ====================================================== */
+.cta-section {
+    padding: 6rem 0;
+    background-color: var(--white);
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.cta-section p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #010202; /* Use #ffffff se sua cor primária for escura */
+    padding: 1.1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.125rem;
+    transition: filter 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: scale(1.03);
+}
+
+/* ======================================================
+   5. RESPONSIVIDADE (Mobile)
+   ====================================================== */
+@media (max-width: 992px) {
+    .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .solution-image {
+        order: -1; /* Faz a imagem aparecer acima do texto no mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .solution-hero {
+        padding: 4rem 1rem 3rem;
+    }
+
+    .solution-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .solution-text h2, .benefits-section h2, .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .benefit-card {
+        padding: 2rem 1.5rem;
+    }
+}

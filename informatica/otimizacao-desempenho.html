@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otimização de Desempenho de Computadores | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ======================================================
+       REGRA GLOBAL DE SEGURANÇA (Anti-vazamento)
+       ====================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+    }
+
+    body {
+      background-color: #0d0e0e;
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* --- BREADCRUMBS --- */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 2rem auto 0 auto;
+      padding: 0 2rem;
+      font-size: 0.9rem;
+      color: #8a949d;
+    }
+    .breadcrumb a {
+      color: #00a4ff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    /* --- CABEÇALHO DA PÁGINA --- */
+    .page-header-spacing {
+      padding: 3rem 2rem 2rem 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .badge-category {
+      background: rgba(15, 98, 254, 0.15);
+      border: 1px solid rgba(15, 98, 254, 0.4);
+      color: #00a4ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .page-header-spacing h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .page-header-spacing p {
+      font-size: 1.2rem;
+      color: #c1c7cd;
+      line-height: 1.6;
+    }
+
+    /* --- GRID PRINCIPAL --- */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      background: #121314;
+      padding: 4rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 4rem;
+    }
+    .text-block h2 {
+      font-size: 2rem;
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    .text-block p {
+      font-size: 1.05rem;
+      color: #a8b0b8;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- CHECKLIST --- */
+    .service-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0 0;
+    }
+    .service-checklist li {
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      padding: 1.2rem;
+      background: #1a1c1e;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      border-left: 4px solid #00ff66;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .service-checklist li i {
+      color: #00ff66;
+      font-size: 1.5rem;
+    }
+
+    /* --- ANIMAÇÃO EXCLUSIVA: OTIMIZAÇÃO (EQUALIZADOR) --- */
+    .visual-side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 350px;
+    }
+
+    .perf-dashboard {
+      width: 260px;
+      height: 240px;
+      background: #16181b;
+      border: 3px solid #3a3f4d;
+      border-radius: 14px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      position: relative;
+      animation: floatDash 4s ease-in-out infinite;
+    }
+
+    /* Topo da janela gráfica */
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #21262e;
+      padding-bottom: 10px;
+    }
+    .dash-dot { width: 10px; height: 10px; border-radius: 50%; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+    .dash-title { font-size: 0.8rem; color: #a8b0b8; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+
+    /* Barras de Desempenho */
+    .perf-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 120px;
+      gap: 12px;
+    }
+    
+    .bar {
+      flex: 1;
+      background: #21262e;
+      border-radius: 6px 6px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Preenchimento das barras animado */
+    .bar::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 20%;
+      border-radius: 6px 6px 0 0;
+      animation: barBoost 2.5s ease-in-out infinite alternate;
+    }
+
+    .bar.b1::after { background: #00a4ff; animation-delay: 0s; height: 40%; }
+    .bar.b2::after { background: #0f62fe; animation-delay: 0.2s; height: 60%; }
+    .bar.b3::after { background: #00a4ff; animation-delay: 0.4s; height: 80%; }
+    .bar.b4::after { background: #00ff66; animation-delay: 0.6s; height: 100%; box-shadow: 0 -5px 15px rgba(0, 255, 102, 0.4); }
+
+    /* Partículas orbitando */
+    .orbit-dot {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: #00a4ff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #00a4ff;
+      top: -20px; right: -20px;
+      animation: orbitDash 6s linear infinite;
+    }
+
+    @keyframes floatDash { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes barBoost { 0% { transform: scaleY(0.4); transform-origin: bottom; } 100% { transform: scaleY(1); transform-origin: bottom; } }
+    @keyframes orbitDash { 0% { transform: rotate(0deg) translateX(150px) rotate(0deg); } 100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); } }
+
+    /* --- VISUAL DE PERFORMANCE (DIREITA) --- */
+    .stats-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .stat-card {
+      background: #16181b;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 4px solid;
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    .stat-card.prod-card {
+      border-left-color: #00ff66;
+      animation: floatStat 5s infinite ease-in-out;
+    }
+    .stat-card.prev-card {
+      border-left-color: #00a4ff;
+      animation: floatStat 5s infinite ease-in-out reverse;
+      animation-delay: 1.5s;
+    }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 300px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+      <div class="container header-flex">
+        <a href="/" class="logo">
+          <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+        </a>
+
+        <!-- MENU DESKTOP -->
+        <nav class="nav-desktop">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li class="has-mega-menu">
+              <a href="/#servicos">Soluções ▾</a>
+              <div class="mega-menu">
+                <div class="mega-menu-grid">
+                  <a href="/informatica" class="mega-menu-card highlight-card">
+                    <h4>Informática</h4>
+                    <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
+                  </a>
+                  <a href="/redes" class="mega-menu-card">
+                    <h4>Redes e Servidores</h4>
+                    <p>A base sólida para a conectividade do seu negócio.</p>
+                  </a>
+                  <a href="/seguranca" class="mega-menu-card">
+                    <h4>Segurança da Informação</h4>
+                    <p>Protegendo seu ativo mais valioso: seus dados.</p>
+                  </a>
+                  <a href="/cloud" class="mega-menu-card">
+                    <h4>Cloud (Nuvem)</h4>
+                    <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
+                  </a>
+                  <a href="/suporte-tecnico" class="mega-menu-card">
+                    <h4>Suporte Técnico para Empresas</h4>
+                    <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="/blog" class="active">Blog</a></li>
+            <li><a href="/#vamos-conversar">Contato</a></li>
+            <li><a href="/central-privacidade">Central de Privacidade</a></li>
+          </ul>
+        </nav>
+
+        <button id="btn-mobile" aria-label="Abrir Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="menu-mobile-container">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="mobile-has-submenu">
+            <a href="/#servicos">Soluções</a>
+            <ul class="mobile-submenu">
+              <li><a href="/informatica">- Informática</a></li>
+              <li><a href="/redes">- Redes e Servidores</a></li>
+              <li><a href="/seguranca">- Segurança da Informação</a></li>
+              <li><a href="/cloud">- Cloud (Nuvem)</a></li>
+              <li><a href="/suporte-tecnico">- Suporte Técnico</a></li>
+            </ul>
+          </li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#vamos-conversar">Contato</a></li>
+          <li><a href="/central-privacidade">Central de Privacidade</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BREADCRUMBS -->
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span>
+    <a href="/#servicos">Soluções em Informática</a> <span>></span>
+    <strong style="color: #ffffff;">Otimização de Desempenho</strong>
+  </div>
+  <main class="content-container">
+
+    <!-- GRID DE EXPLICAÇÃO E ANIMAÇÃO -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Máxima velocidade para sua equipe</h2>
+        <p>O computador demora uma eternidade para ligar? Os programas fecham sozinhos ou congelam quando você mais precisa? Antes de tomar a decisão de comprar máquinas novas, a solução mais inteligente e econômica é a Otimização de Desempenho.</p>
+        <p>A Edge TI realiza um "tuning" profundo no sistema operacional: desativamos processos inúteis, limpamos registros corrompidos e ajustamos o Windows para focar 100% da sua capacidade nas ferramentas que sua empresa realmente usa.</p>
+
+        <ul class="service-checklist">
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Otimização profunda de inicialização (Boot do Windows mais rápido)
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Limpeza avançada de registros, arquivos temporários e cache acumulado
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Desativação de serviços e processos invisíveis que roubam memória RAM
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Ajustes de energia e sistema para extrair a potência máxima do processador
+          </li>
+        </ul>
+      </div>
+
+      <!-- ANIMAÇÃO: PAINEL DE PERFORMANCE -->
+      <div class="visual-side">
+        <div class="orbit-dot"></div>
+        <div class="perf-dashboard">
+          <div class="dash-header">
+            <span class="dash-title">CPU / RAM Tuning</span>
+            <div class="dash-dot"></div>
+          </div>
+          
+          <div class="perf-bars">
+            <div class="bar b1"></div>
+            <div class="bar b2"></div>
+            <div class="bar b3"></div>
+            <div class="bar b4"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE VANTAGENS DO NEGÓCIO -->
+    <section class="service-detail-grid">
+        
+        <div class="text-block">
+            <h2 style="color: #00a4ff;">Por que sua empresa precisa disso?</h2>
+            <p>Computadores lentos matam a produtividade. Esperar 15 segundos a cada clique para abrir uma planilha, ou perder tempo reiniciando a máquina durante um atendimento, gera frustração na equipe e prejuízo financeiro acumulado no final do mês.</p>
+            <p>Com a otimização de performance, nós resgatamos equipamentos antigos e fazemos os novos voarem. Você garante que a tecnologia trabalhe a favor do seu faturamento, e não como um gargalo operacional.</p>
+        </div>
+
+        <div class="stats-visual">
+            
+            <!-- Card 1: Velocidade -->
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-rocket-launch" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info">
+                    <h4>+ Velocidade Total</h4>
+                    <p>Máquinas respondendo instantaneamente aos cliques da equipe.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Vida Útil -->
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-desktop" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info">
+                    <h4>+ Vida Útil</h4>
+                    <p>Adie a compra de equipamentos novos otimizando o que você já tem.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  </main>
+
+  <!-- CTA GLOBAL -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Faça os computadores da sua empresa voarem</h2>
+        <p>Pare de perder dinheiro com equipe parada. Chame no WhatsApp e descubra como podemos extrair a capacidade máxima das suas máquinas.</p>
+
+        <div class="cta-group-modern">
+          <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20otimização%20de%20desempenho%20dos%20computadores."
+            target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient">
+            <span class="icon-wa"></span> Chamar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance, segurança e suporte especializado para impulsionar seus resultados.</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/edge.ti/" target="_blank" aria-label="Instagram" class="social-link">
+                            <span class="icon-footer icon-insta"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/#inicio">Início</a></li>
+                        <li><a href="/#servicos">Soluções</a></li>
+                        <li><a href="/#sobre">Sobre Nós</a></li>
+                        <li><a href="/#vamos-conversar">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><span class="icon-footer icon-map"></span><span>Palhoça, SC, Brasil</span></li>
+                        <li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li>
+                        <li><span class="icon-footer icon-mail"></span><span>contato@edgeti.com.br</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Edge TI. Todos os direitos reservados.</p>
+                <a href="/central-privacidade">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garantia de Operação Sem Paradas | Edge TI</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(0, 255, 102, 0.15); border: 1px solid rgba(0, 255, 102, 0.4); color: #00ff66; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00ff66; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #00ff66; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO: INFINITO (DISPONIBILIDADE) --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .infinity-loop { font-size: 8rem; color: #00ff66; animation: glowPulse 3s infinite ease-in-out; }
+    
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.6; text-shadow: 0 0 10px #00ff66; }
+      50% { opacity: 1; text-shadow: 0 0 30px #00ff66; }
+    }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+        <div class="container header-flex">
+            <a href="/" class="logo">
+                <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+            </a>
+            
+            <!-- MENU DESKTOP -->
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="/">Home</a></li>
+                    
+                    <!-- Item com Mega Menu -->
+                    <li class="has-mega-menu">
+                        <a href="/#servicos">Soluções ▾</a>
+                        
+                        <!-- Painel do Mega Menu -->
+                        <div class="mega-menu">
+                            <div class="mega-menu-grid">
+                                <a href="informatica" class="mega-menu-card">
+                                    <h4>Informática</h4>
+                                    <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
+                                </a>
+                                <a href="redes" class="mega-menu-card">
+                                    <h4>Redes e Servidores</h4>
+                                    <p>A base sólida para a conectividade do seu negócio.</p>
+                                </a>
+                                <a href="seguranca" class="mega-menu-card">
+                                    <h4>Segurança da Informação</h4>
+                                    <p>Protegendo seu ativo mais valioso: seus dados.</p>
+                                </a>
+                                <a href="cloud" class="mega-menu-card">
+                                    <h4>Cloud (Nuvem)</h4>
+                                    <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
+                                </a>
+                                <a href="suporte-tecnico" class="mega-menu-card highlight-card">
+                                    <h4>Suporte Técnico para Empresas</h4>
+                                    <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li><a href="blog" class="active">Blog</a></li>
+                    <li><a href="/#vamos-conversar">Contato</a></li>
+                    <li><a href="central-privacidade">Central de Privacidade</a></li>
+                </ul>
+            </nav>
+            
+            <button id="btn-mobile" aria-label="Abrir Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </div>
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="menu-mobile-container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="mobile-has-submenu">
+                    <a href="/#servicos">Soluções</a>
+                    <!-- Submenu Mobile -->
+                    <ul class="mobile-submenu">
+                        <li><a href="informatica">- Informática</a></li>
+                        <li><a href="redes">- Redes e Servidores</a></li>
+                        <li><a href="seguranca">- Segurança da Informação</a></li>
+                        <li><a href="cloud">- Cloud (Nuvem)</a></li>
+                        <li><a href="suporte-tecnico">- Suporte Técnico</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="/#vamos-conversar">Contato</a></li>
+                <li><a href="central-privacidade">Central de Privacidade</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+  <div class="breadcrumb"><a href="/">Início</a> <span>></span> <a href="/#servicos">Suporte Técnico</a> <span>></span> <strong style="color: #ffffff;">Operação Sem Paradas</strong></div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Alta Disponibilidade</span>
+    <h1>Garantia de Operação Sem Paradas</h1>
+    <p>Tecnologia desenhada para não falhar. Proteja seu faturamento eliminando o tempo de inatividade (Downtime) do seu negócio.</p>
+  </div>
+
+  <main class="content-container">
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Seu negócio nunca dorme</h2>
+        <p>O tempo de inatividade custa caro. Cada minuto com um servidor fora do ar, uma rede lenta ou um sistema travado representa perda de vendas, desgaste com clientes e produtividade desperdiçada. Nossa estratégia de alta disponibilidade foca exatamente no oposto: continuidade total.</p>
+        <p>Implementamos monitoramento proativo, redundância de sistemas e planos de contingência para que, caso uma falha ocorra, sua empresa nem perceba que ela existiu.</p>
+        
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Monitoramento 24/7 de todos os ativos críticos</li>
+          <li><i class="ph-fill ph-check-circle"></i> Redundância de links e servidores (Failover automático)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Resposta rápida a incidentes com prioridade máxima</li>
+          <li><i class="ph-fill ph-check-circle"></i> Auditoria constante para eliminação de pontos únicos de falha</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <i class="ph-fill ph-infinity infinity-loop"></i>
+      </div>
+    </section>
+
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Resiliência como padrão</h2>
+            <p>Não tratamos a paragem como um "imprevisto", tratamos como uma falha na engenharia que deve ser eliminada. Nosso objetivo é garantir que seu ambiente de trabalho seja robusto o suficiente para suportar picos de carga e imprevistos técnicos.</p>
+            <p>Ter uma operação sem paradas não é luxo, é estratégia de sobrevivência no mercado atual. Deixe a complexidade técnica conosco e mantenha sua empresa sempre online.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-pulse" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Operação Continua</h4><p>Sistemas resilientes, prontos para qualquer desafio.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-shield-check" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Prevenção Proativa</h4><p>Identificação e eliminação de falhas antes que ocorram.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <section id="vamos-conversar" class="section cta-section-modern">
+        <div class="container cta-container-box">
+            <!-- Faixa interna decorativa de fundo opcional para profundidade -->
+            <div class="cta-glow-backdrop"></div>
+            
+            <div class="cta-content-wrapper">
+                <h2>Pronto para o Próximo Nível?</h2>
+                <p>Siga o nosso dia a dia e projetos no Instagram ou chame a nossa equipe diretamente no WhatsApp para alinhar um orçamento sob medida para o seu negócio.</p>
+                
+                <div class="cta-group-modern">
+                    <a href="https://wa.me/554891763985?text=Olá!%20Encontrei%20o%20site%20da%20EDGETI%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient">
+                        <span class="icon-wa"></span> Chamar no WhatsApp
+                    </a>
+
+                    <a href="https://www.instagram.com/edge.ti/" target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-ig-outline">
+                        <span class="icon-ig"></span> Seguir no Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance, segurança e suporte especializado para impulsionar seus resultados.</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/edge.ti/" target="_blank" aria-label="Instagram" class="social-link">
+                            <span class="icon-footer icon-insta"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/#inicio">Início</a></li>
+                        <li><a href="/#servicos">Soluções</a></li>
+                        <li><a href="/#sobre">Sobre Nós</a></li>
+                        <li><a href="/#vamos-conversar">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>
+                            <span class="icon-footer icon-map"></span>
+                            <span>Palhoça, SC, Brasil</span>
+                        </li>
+                        <li>
+                            <span class="icon-footer icon-phone"></span>
+                            <span>(48) 9176-3985</span>
+                        </li>
+                        <li>
+                            <span class="icon-footer icon-mail"></span>
+                            <span>contato@edgeti.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Edge TI. Todos os direitos reservados.</p>
+                <a href="centralPrivacidade">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabeamento Estruturado Corporativo | Edge TI</title>
+  
+  <!-- Caminhos Absolutos para funcionar dentro de subpastas -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ======================================================
+       REGRA GLOBAL DE SEGURANÇA (Anti-vazamento)
+       ====================================================== */
+    *, *::before, *::after { box-sizing: border-box !important; }
+    
+    body {
+      background-color: #0d0e0e;
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* --- BREADCRUMBS --- */
+    .breadcrumb {
+      max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem;
+      font-size: 0.9rem; color: #8a949d;
+    }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    /* --- CABEÇALHO DA PÁGINA --- */
+    .page-header-spacing {
+      padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto;
+    }
+    .badge-category {
+      background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.4);
+      color: #00a4ff; padding: 0.5rem 1.2rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      display: inline-block; margin-bottom: 1.5rem;
+    }
+    .page-header-spacing h1 {
+      font-size: 3rem; font-weight: 800; color: #ffffff;
+      letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    /* --- GRID PRINCIPAL --- */
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      background: #121314; padding: 4rem; border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 4rem;
+    }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    /* --- CHECKLIST --- */
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li {
+      font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e;
+      margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00ff66;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .service-checklist li i { color: #00ff66; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO EXCLUSIVA: RACK E CABEAMENTO ESTRUTURADO --- */
+    .visual-side {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; height: 350px;
+    }
+
+    /* O Rack de Servidores */
+    .structured-rack {
+      width: 260px; height: 320px;
+      border: 6px solid #3a3f4d; border-radius: 12px; background: #16181b;
+      position: relative; display: flex; flex-direction: column;
+      padding: 25px 15px; gap: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    
+    /* Calha Organizadora Lateral (Trunk) */
+    .cable-trunk {
+      position: absolute; right: 20px; top: 20px; bottom: 20px;
+      width: 16px; background: #21262e; border-radius: 4px; z-index: 1;
+      border: 1px solid #3a3f4d;
+    }
+
+    /* Switches / Servidores */
+    .rack-blade {
+      width: 75%; height: 40px; background: #21262e; border-radius: 6px;
+      display: flex; align-items: center; padding-left: 10px; gap: 8px;
+      position: relative; z-index: 2; border-left: 4px solid #00a4ff;
+    }
+    .blade-led {
+      width: 8px; height: 8px; background: #00ff66; border-radius: 50%;
+      box-shadow: 0 0 10px #00ff66; animation: blinkFast 0.8s infinite alternate;
+    }
+    .rack-blade:nth-child(2) .blade-led { background: #00a4ff; box-shadow: 0 0 10px #00a4ff; animation-delay: 0.3s; }
+    .rack-blade:nth-child(3) .blade-led { background: #ffbd2e; box-shadow: 0 0 10px #ffbd2e; animation-delay: 0.6s; }
+
+    /* Cabos Perfeitamente Estruturados (Saem do switch e vão para a calha) */
+    .cable-run {
+      position: absolute; height: 4px; z-index: 1;
+    }
+    .cr-1 { top: 20px; left: 75%; right: 28px; background: #0f62fe; }
+    .cr-2 { top: 20px; left: 75%; right: 28px; background: #00ff66; }
+    .cr-3 { top: 20px; left: 75%; right: 28px; background: #00a4ff; }
+
+    /* Dados viajando pelos cabos */
+    .data-packet {
+      width: 12px; height: 12px; border-radius: 50%; background: #ffffff;
+      position: absolute; top: -4px; left: 0; box-shadow: 0 0 15px #ffffff;
+    }
+    .cr-1 .data-packet { animation: routeData 2s linear infinite; }
+    .cr-2 .data-packet { animation: routeData 2.5s linear infinite 0.5s; }
+    .cr-3 .data-packet { animation: routeData 1.8s linear infinite 1s; }
+
+    @keyframes blinkFast { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+    @keyframes routeData {
+      0% { left: 0; opacity: 1; transform: scale(1); }
+      70% { left: 100%; opacity: 1; transform: scale(1); }
+      80% { left: 100%; opacity: 0; transform: scale(0); }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    /* --- VISUAL DE PERFORMANCE (DIREITA) --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card {
+      background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid;
+      border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;
+      width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 350px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+      <div class="container header-flex">
+        <a href="/" class="logo">
+          <img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" />
+        </a>
+
+        <!-- MENU DESKTOP -->
+        <nav class="nav-desktop">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li class="has-mega-menu">
+              <a href="/#servicos">Soluções ▾</a>
+              <div class="mega-menu">
+                <div class="mega-menu-grid">
+                  <a href="/informatica" class="mega-menu-card">
+                    <h4>Informática</h4>
+                    <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
+                  </a>
+                  <a href="/redes" class="mega-menu-card highlight-card">
+                    <h4>Redes e Servidores</h4>
+                    <p>A base sólida para a conectividade do seu negócio.</p>
+                  </a>
+                  <a href="/seguranca" class="mega-menu-card">
+                    <h4>Segurança da Informação</h4>
+                    <p>Protegendo seu ativo mais valioso: seus dados.</p>
+                  </a>
+                  <a href="/cloud" class="mega-menu-card">
+                    <h4>Cloud (Nuvem)</h4>
+                    <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
+                  </a>
+                  <a href="/suporte-tecnico" class="mega-menu-card">
+                    <h4>Suporte Técnico para Empresas</h4>
+                    <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li><a href="/blog" class="active">Blog</a></li>
+            <li><a href="/#vamos-conversar">Contato</a></li>
+            <li><a href="/central-privacidade">Central de Privacidade</a></li>
+          </ul>
+        </nav>
+
+        <button id="btn-mobile" aria-label="Abrir Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="menu-mobile-container">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="mobile-has-submenu">
+            <a href="/#servicos">Soluções</a>
+            <ul class="mobile-submenu">
+              <li><a href="/informatica">- Informática</a></li>
+              <li><a href="/redes">- Redes e Servidores</a></li>
+              <li><a href="/seguranca">- Segurança da Informação</a></li>
+              <li><a href="/cloud">- Cloud (Nuvem)</a></li>
+              <li><a href="/suporte-tecnico">- Suporte Técnico</a></li>
+            </ul>
+          </li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#vamos-conversar">Contato</a></li>
+          <li><a href="/central-privacidade">Central de Privacidade</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BREADCRUMBS -->
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span>
+    <a href="/#servicos">Redes e Servidores</a> <span>></span>
+    <strong style="color: #ffffff;">Cabeamento Estruturado</strong>
+  </div>
+
+  <main class="content-container">
+
+    <!-- GRID DE EXPLICAÇÃO E ANIMAÇÃO -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>O fim da bagunça tecnológica</h2>
+        <p>A maioria das redes instáveis e sistemas lentos começam nos cabos. "Gambiarras", fios embolados debaixo das mesas e conectores mal crimpados não são apenas feios, eles causam perda de pacotes e quedas diárias de conexão.</p>
+        <p>Nós projetamos e executamos a infraestrutura física de TI da sua empresa seguindo normas rigorosas de padronização (EIA/TIA). O objetivo é garantir que cada computador, telefone IP e servidor receba a capacidade máxima de banda, sem interferências.</p>
+
+        <ul class="service-checklist">
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Projeto e passagem de cabeamento de dados e voz (Cat5e, Cat6 e Cat6a)
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Montagem, organização e espelhamento profissional de Racks de TI
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Identificação e certificação de pontos de rede para manutenções ágeis
+          </li>
+          <li>
+            <i class="ph-fill ph-check-circle"></i>
+            Reestruturação de redes antigas (Eliminação da "teia de aranha" de fios)
+          </li>
+        </ul>
+      </div>
+
+      <!-- ANIMAÇÃO: RACK ORGANIZADO -->
+      <div class="visual-side">
+        <div class="structured-rack">
+          <div class="cable-trunk"></div>
+          
+          <!-- Blade 1 -->
+          <div class="rack-blade">
+            <div class="blade-led"></div>
+            <div class="cable-run cr-1"><div class="data-packet"></div></div>
+          </div>
+          <!-- Blade 2 -->
+          <div class="rack-blade">
+            <div class="blade-led"></div>
+            <div class="blade-led"></div>
+            <div class="cable-run cr-2"><div class="data-packet"></div></div>
+          </div>
+          <!-- Blade 3 -->
+          <div class="rack-blade">
+            <div class="blade-led"></div>
+            <div class="cable-run cr-3"><div class="data-packet"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE VANTAGENS DO NEGÓCIO -->
+    <section class="service-detail-grid">
+        
+        <div class="text-block">
+            <h2 style="color: #00a4ff;">Por que sua empresa precisa disso?</h2>
+            <p>Um rack desorganizado é uma bomba-relógio. Se um cabo essencial se rompe no meio de uma bagunça, o técnico pode levar horas só para encontrar a raiz do problema, deixando o seu negócio totalmente paralisado durante esse tempo.</p>
+            <p>Com um cabeamento estruturado e mapeado, a sua empresa atinge velocidades Gigabit locais, elimina quedas acidentais de internet e permite que qualquer manutenção ou expansão da equipe seja feita em questão de minutos, não de dias.</p>
+        </div>
+
+        <div class="stats-visual">
+            
+            <!-- Card 1: Velocidade -->
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-wifi-high" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info">
+                    <h4>Máxima Velocidade</h4>
+                    <p>Transferência de dados local sem gargalos, atrasos ou oscilações.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Estabilidade -->
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-plugs-connected" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info">
+                    <h4>Zero "Gambiarras"</h4>
+                    <p>Fim dos fios soltos, mau contatos e quedas acidentais de rede.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  </main>
+
+  <!-- CTA GLOBAL -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Estruture a rede do seu negócio</h2>
+        <p>Vai mudar de escritório ou precisa organizar a bagunça dos cabos atuais? Chame no WhatsApp e agende uma vistoria técnica.</p>
+
+        <div class="cta-group-modern">
+          <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20projeto%20de%20cabeamento%20estruturado."
+            target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient">
+            <span class="icon-wa"></span> Chamar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contato" class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3>
+                    <p>Sua parceira em soluções de tecnologia, focada em performance, segurança e suporte especializado para impulsionar seus resultados.</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/edge.ti/" target="_blank" aria-label="Instagram" class="social-link">
+                            <span class="icon-footer icon-insta"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/#inicio">Início</a></li>
+                        <li><a href="/#servicos">Soluções</a></li>
+                        <li><a href="/#sobre">Sobre Nós</a></li>
+                        <li><a href="/#vamos-conversar">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><span class="icon-footer icon-map"></span><span>Palhoça, SC, Brasil</span></li>
+                        <li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li>
+                        <li><span class="icon-footer icon-mail"></span><span>contato@edgeti.com.br</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Edge TI. Todos os direitos reservados.</p>
+                <a href="/central-privacidade">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

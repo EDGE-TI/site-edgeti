@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backup em Nuvem (Cloud Backup) | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(0, 164, 255, 0.15); border: 1px solid rgba(0, 164, 255, 0.4); color: #00a4ff; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00a4ff; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #00a4ff; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO: BACKUP CONTINUO --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .backup-container { position: relative; width: 150px; height: 150px; }
+    
+    .file-icon { width: 50px; height: 60px; background: #ffffff; border-radius: 4px; position: absolute; left: 0; top: 45px; z-index: 2; animation: sendFile 3s linear infinite; }
+    .cloud-vault { width: 100px; height: 80px; border: 3px solid #00a4ff; border-radius: 40px; position: absolute; right: 0; top: 35px; z-index: 2; box-shadow: 0 0 20px rgba(0, 164, 255, 0.3); }
+
+    @keyframes sendFile {
+      0% { left: 0; opacity: 0; }
+      20% { opacity: 1; }
+      80% { left: 70px; opacity: 1; }
+      100% { left: 70px; opacity: 0; }
+    }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.sync-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.security-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="header-main">
+      <div class="container header-flex">
+        <a href="/" class="logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="Edgeti Logo" /></a>
+        <nav class="nav-desktop">
+          <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li class="has-mega-menu"><a href="/#servicos">Soluções ▾</a>
+              <div class="mega-menu">
+                <div class="mega-menu-grid">
+                  <a href="/informatica" class="mega-menu-card"><h4>Informática</h4></a>
+                  <a href="/redes" class="mega-menu-card"><h4>Redes</h4></a>
+                  <a href="/seguranca" class="mega-menu-card"><h4>Segurança</h4></a>
+                  <a href="/cloud" class="mega-menu-card highlight-card"><h4>Cloud</h4></a>
+                  <a href="/suporte-tecnico" class="mega-menu-card"><h4>Suporte</h4></a>
+                </div>
+              </div>
+            </li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/#vamos-conversar">Contato</a></li>
+            <li><a href="/central-privacidade">Privacidade</a></li>
+          </ul>
+        </nav>
+        <button id="btn-mobile"><i class="ph ph-list"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb"><a href="/">Início</a> <span>></span> <a href="/#servicos">Cloud</a> <span>></span> <strong style="color: #ffffff;">Backup em Nuvem</strong></div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Proteção de Dados</span>
+    <h1>Backup em Nuvem</h1>
+    <p>Sincronização automática, criptografada e segura. Seus arquivos protegidos contra qualquer imprevisto físico ou digital.</p>
+  </div>
+
+  <main class="content-container">
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Seus dados blindados na nuvem</h2>
+        <p>Um backup bem feito é aquele que você não precisa lembrar de fazer. Nosso serviço de Backup em Nuvem funciona em segundo plano, capturando alterações nos seus arquivos e enviando-os para um repositório isolado e altamente seguro.</p>
+        <p>Esqueça HDs externos, pendrives ou fitas que estragam. Nós implementamos a estratégia de proteção que garante que, mesmo em caso de furto, incêndio ou ataque de Ransomware na sua sede, sua empresa terá uma cópia integral e limpa de tudo o que foi construído.</p>
+
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Sincronização automática (Set and forget)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Criptografia de ponta a ponta (Seus dados, só seus)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Proteção anti-ransomware (Versões históricas dos arquivos)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Monitoramento diário: sabemos se o backup falhou antes de você</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="backup-container">
+            <div class="file-icon"></div>
+            <div class="cloud-vault"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2 style="color: #00a4ff;">Por que sua empresa precisa disso?</h2>
+            <p>O backup não é para o dia a dia, ele é para o dia mais crítico da vida da sua empresa. Ter a confiança de que existe uma "máquina do tempo" para recuperar seus arquivos é o que diferencia empresas resilientes de empresas que fecham as portas após uma crise.</p>
+            <p>Com a Edge TI, o backup é gerido. Isso significa que, se por algum motivo uma atualização falhar ou uma conexão cair, nossa equipe técnica é alertada automaticamente para corrigir o problema, sem que você precise sequer verificar.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card sync-card">
+                <i class="ph-fill ph-arrows-clockwise" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Sincronização Contínua</h4><p>Dados atualizados em tempo real, sem esforço manual.</p></div>
+            </div>
+            <div class="stat-card security-card">
+                <i class="ph-fill ph-lock-key" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Segurança Máxima</h4><p>Criptografia de padrão bancário para seus dados.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Garanta a segurança dos seus dados</h2>
+        <p>Não espere perder um arquivo importante para descobrir que o backup não funcionou. Chame nossa equipe agora.</p>
+        <div class="cta-group-modern"><a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20backup%20em%20nuvem." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Chamar no WhatsApp</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato" class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column footer-about"><h3 class="footer-logo"><img src="/assets/images/LOGO FUNDO TRANSPARENTE.png" alt="logo Edge Ti"></h3><p>Sua parceira em soluções de tecnologia.</p></div>
+        <div class="footer-column footer-links"><h3>Links Rápidos</h3><ul><li><a href="/">Início</a></li><li><a href="/#servicos">Soluções</a></li><li><a href="/#vamos-conversar">Contato</a></li></ul></div>
+        <div class="footer-column footer-contact"><h3>Contato</h3><ul><li><span class="icon-footer icon-map"></span><span>Palhoça, SC</span></li><li><span class="icon-footer icon-phone"></span><span>(48) 9176-3985</span></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Edge TI.</p><a href="/central-privacidade">Política de Privacidade</a></div>
+    </div>
+  </footer>
+</body>
+</html>
