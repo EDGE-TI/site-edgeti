@@ -55,13 +55,13 @@
     text-decoration: none !important;
 }
 
-/* --- Retângulos Arredondados para Destacar Palavras (Tags) --- */
+/* --- Retângulos Arredondados - Ajustado para Grid --- */
 .full-section-link .feature-list {
     list-style: none !important;
     padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
+    margin: 1.5rem 0 0 0 !important;
+    display: grid !important; 
+    grid-template-columns: 1fr 1fr; /* Força 2 colunas */
     gap: 0.8rem !important;
 }
 
@@ -69,34 +69,36 @@
 .full-section-link .feature-list li {
     font-size: 0.9rem !important;
     font-weight: 600 !important;
-    color: #ffffff !important; /* Letras brancas dentro das tags */
-    background: rgba(15, 98, 254, 0.2) !important; /* Azul translúcido de fundo */
+    color: #ffffff !important;
+    background: rgba(15, 98, 254, 0.2) !important;
     border: 1px solid rgba(15, 98, 254, 0.4) !important;
     padding: 0.6rem 1.2rem !important;
-    border-radius: 50px !important; /* Formato pílula */
-    display: inline-flex !important;
+    border-radius: 50px !important;
+    display: flex !important; /* Alterado de inline-flex para flex para preencher a célula do grid */
     align-items: center !important;
+    justify-content: center; /* Centraliza o texto dentro da pílula */
     transition: all 0.3s ease !important;
     text-decoration: none !important;
 }
 
-/* Remove marcadores residuais */
+/* Remover marcadores */
 .full-section-link .feature-list li::before {
     content: none !important;
 }
 
-/* Destaque ao passar o mouse nas tags */
+/* Efeito Hover */
 .full-section-link .feature-list li:hover {
     background: rgba(15, 98, 254, 0.4) !important;
     border-color: #00a4ff !important;
 }
 
-/* Ajustes finos nas Imagens */
-.full-section-link .detail-image img {
-    border-radius: 20px !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+/* Responsividade: Volta a ser uma coluna única em telas pequenas */
+@media (max-width: 768px) {
+    .full-section-link .feature-list {
+        grid-template-columns: 1fr !important;
+    }
 }
+
 /* ======================================================
    SISTEMA DE ANIMAÇÕES EM ESCALA GIGANTE
    ====================================================== */
