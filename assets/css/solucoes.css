@@ -2,99 +2,133 @@
    FORÇAR ESTILO MODERN DARK NAS SEÇÕES DE SOLUÇÕES
    ====================================================== */
 
-/* Alvos diretos usando os IDs das suas seções - Adicionado o #detalhe-suporte */
+/* Limita a largura dos blocos no PC e centraliza o conteúdo na tela */
+.solutions-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem; /* Margem de segurança nas laterais em telas médias */
+}
+
+
 #detalhe-informatica, 
 #detalhe-redes, 
 #detalhe-seguranca, 
 #detalhe-cloud,
 #detalhe-suporte {
-    padding: 6rem 4rem !important;
-    background-color: #121314 !important; /* Mantém o padrão dark premium confortável */
+    padding: 3.5rem 4rem !important; /* Reduzido de 5rem para 3.5rem no topo e na base */
+    background-color: #121314 !important; 
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 28px !important; 
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    margin-bottom: 4rem !important;
+    margin-bottom: 3rem !important; /* Reduzido o espaço entre um bloco e outro */
 }
 
-/* Efeito ao passar o mouse nos blocos - Adicionado o #detalhe-suporte */
-.full-section-link:hover #detalhe-informatica,
-.full-section-link:hover #detalhe-redes,
-.full-section-link:hover #detalhe-seguranca,
-.full-section-link:hover #detalhe-cloud,
-.full-section-link:hover #detalhe-suporte {
+/* Transição suave de fundo e elevação do bloco ao passar o mouse */
+#detalhe-informatica:hover,
+#detalhe-redes:hover,
+#detalhe-seguranca:hover,
+#detalhe-cloud:hover,
+#detalhe-suporte:hover {
     transform: translateY(-8px) !important;
     background-color: #16181b !important;
     box-shadow: 0 30px 60px rgba(15, 98, 254, 0.2) !important;
     border-color: rgba(15, 98, 254, 0.5) !important;
 }
 
+/* O restante do seu CSS (Texto, Grid, Animações e Mobile) permanece igual */
 /* --- CORREÇÃO DE CONTRASTE DOS TEXTOS --- */
 
-/* Força os títulos principais para Branco Puro */
-.full-section-link .detail-text h2 {
-    font-size: 2.4rem !important;
-    color: #ffffff !important; 
-    font-weight: 700 !important;
+/* Estilização do link do título principal */
+.detail-text h2 .title-link {
+    color: #ffffff !important;
     text-decoration: none !important;
+    transition: color 0.3s ease !important;
+}
+.detail-text h2 .title-link:hover {
+    color: #00a4ff !important; /* Destaca em azul ao passar o mouse no título */
 }
 
-/* Força os subtítulos para um Azul Claro/Celeste bem visível */
-.full-section-link .detail-text h3 {
+.detail-text h2 {
+    font-size: 2.4rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.detail-text h3 {
     font-size: 1.3rem !important;
     color: #00a4ff !important; 
     margin-bottom: 1.8rem !important;
     font-weight: 500 !important;
-    text-decoration: none !important;
 }
 
-/* Força os parágrafos longos para um cinza claro nítido, mas suave para leitura */
-.full-section-link .detail-text p {
+.detail-text p {
     font-size: 1.05rem !important;
     color: #e2e8f0 !important; 
     line-height: 1.8 !important;
-    text-decoration: none !important;
 }
 
-/* --- Retângulos Arredondados - Ajustado para Grid --- */
-.full-section-link .feature-list {
+/* --- Retângulos Arredondados - Estrutura do Grid --- */
+.feature-list {
     list-style: none !important;
     padding: 0 !important;
-    margin: 1.5rem 0 0 0 !important;
+    margin: 2rem 0 0 0 !important;
     display: grid !important; 
-    grid-template-columns: 1fr 1fr; /* Força 2 colunas */
+    grid-template-columns: 1fr 1fr; 
     gap: 0.8rem !important;
 }
 
-/* Estilização dos retângulos (Badges) */
-.full-section-link .feature-list li {
-    font-size: 0.9rem !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    background: rgba(15, 98, 254, 0.2) !important;
-    border: 1px solid rgba(15, 98, 254, 0.4) !important;
-    padding: 0.6rem 1.2rem !important;
-    border-radius: 50px !important;
-    display: flex !important; /* Alterado de inline-flex para flex para preencher a célula do grid */
-    align-items: center !important;
-    justify-content: center; /* Centraliza o texto dentro da pílula */
-    transition: all 0.3s ease !important;
-    text-decoration: none !important;
+.feature-list li {
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    display: block !important;
+    margin: 0 !important;
 }
 
-/* Remover marcadores */
-.full-section-link .feature-list li::before {
+/* Pílulas clicáveis totalmente isoladas */
+.feature-list li a {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important; 
+    background: rgba(15, 98, 254, 0.2) !important; 
+    border: 1px solid rgba(15, 98, 254, 0.4) !important;
+    padding: 0.7rem 1.2rem !important;
+    border-radius: 50px !important; 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; 
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.feature-list li::before,
+.feature-list li a::before {
     content: none !important;
 }
 
-/* Efeito Hover */
-.full-section-link .feature-list li:hover {
-    background: rgba(15, 98, 254, 0.4) !important;
+.feature-list li a:hover {
+    background: rgba(15, 98, 254, 0.45) !important;
     border-color: #00a4ff !important;
+    color: #ffffff !important;
+    transform: scale(1.02);
 }
 
-/* Responsividade: Volta a ser uma coluna única em telas pequenas */
+/* Mantém o efeito na imagem ao interagir com o bloco pai */
+#detalhe-informatica:hover .detail-image,
+#detalhe-redes:hover .detail-image,
+#detalhe-seguranca:hover .detail-image,
+#detalhe-cloud:hover .detail-image,
+#detalhe-suporte:hover .detail-image {
+    transform: scale(1.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @media (max-width: 768px) {
-    .full-section-link .feature-list {
+    .feature-list {
         grid-template-columns: 1fr !important;
     }
 }
@@ -261,6 +295,7 @@
     transform: scale(1.04);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 /* ======================================================
    BLINDAGEM MOBILE PARA AS SEÇÕES DE SOLUÇÕES
    ====================================================== */
@@ -274,7 +309,6 @@
     }
 
     /* 2. Remove as caixas de animações gigantes no celular */
-    /* Isso mata o vazamento das ondas de 550px e foca na leitura rápida */
     .detail-image, 
     .pulse-ring, 
     .radar-pulse, 
