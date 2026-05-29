@@ -37,7 +37,7 @@ class MainHeader extends HTMLElement {
                                     <h4>Cloud (Nuvem)</h4>
                                     <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
                                 </a>
-                                <a href="suporte-tecnico" class="mega-menu-card highlight-card">
+                                <a href="suporte-tecnico-geral" class="mega-menu-card highlight-card">
                                     <h4>Suporte Técnico para Empresas</h4>
                                     <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
                                 </a>
@@ -69,7 +69,7 @@ class MainHeader extends HTMLElement {
                         <li><a href="redes-geral">- Redes e Servidores</a></li>
                         <li><a href="seguranca-geral">- Segurança da Informação</a></li>
                         <li><a href="cloud-geral">- Cloud (Nuvem)</a></li>
-                        <li><a href="suporte-tecnico">- Suporte Técnico</a></li>
+                        <li><a href="suporte-tecnico-geral">- Suporte Técnico</a></li>
                     </ul>
                 </li>
                 <li><a href="blog">Blog</a></li>
