@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte de TI e Manutenção de Computadores em São José | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Scripts dos Web Components (Header e Footer) -->
+  <script type="module" src="/assets/js/components/main-header.js" defer></script>
+  <script type="module" src="/assets/js/components/main-footer.js" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(0, 255, 102, 0.15); border: 1px solid rgba(0, 255, 102, 0.4); color: #00ff66; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00ff66; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #00ff66; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO LOCAL: PIN SÃO JOSÉ --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .map-pin { font-size: 6rem; color: #00ff66; animation: bounce 2s infinite; }
+    .pulse-ring { width: 100px; height: 100px; border: 3px solid #00ff66; border-radius: 50%; position: absolute; animation: pulse 2s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Inicialização do Web Component do Header -->
+  <main-header></main-header>
+
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span> 
+    <span style="color: #8a949d;">Cidades</span> <span>></span> 
+    <strong style="color: #ffffff;">São José</strong>
+  </div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Suporte Corporativo Local</span>
+    <h1>Suporte de TI e Informática em São José</h1>
+    <p>Terceirização de TI, manutenção preventiva de computadores e gestão de redes com atendimento ágil para empresas em São José.</p>
+  </div>
+
+  <main class="content-container">
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Infraestrutura estável para impulsionar sua empresa em São José</h2>
+        <p>A instabilidade técnica é um ralo de dinheiro invisível para os negócios. Computadores travando, lentidões de sistema e problemas crônicos de rede minam o foco operacional da sua equipe. Contar com uma robusta <strong>empresa de TI em São José</strong> resolve esses problemas na raiz.</p>
+        <p>A Edge TI entrega uma gestão de tecnologia de ponta a ponta, oferecendo suporte remoto instantâneo e deslocamento presencial veloz em distritos logísticos e bairros corporativos como Kobrasol, Campinas, Barreiros e Distrito Industrial.</p>
+        
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Técnico de informática para suporte local ágil e focado</li>
+          <li><i class="ph-fill ph-check-circle"></i> Otimização estrutural e manutenção em desktops e notebooks</li>
+          <li><i class="ph-fill ph-check-circle"></i> Cabeamento estruturado, configuração de roteadores e Wi-Fi</li>
+          <li><i class="ph-fill ph-check-circle"></i> Defesa cibernética corporativa: backups, firewall e antivírus</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="pulse-ring"></div>
+        <i class="ph-fill ph-map-pin map-pin"></i>
+      </div>
+    </section>
+
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Previsibilidade operacional de ponta a ponta</h2>
+            <p>De escritórios de advocacia e contabilidade no Kobrasol a grandes centros de distribuição no Distrito Industrial de São José, nós atuamos com monitoramento preventivo 24/7. Isso significa blindar os servidores e computadores da sua empresa antes que uma pane cause perdas financeiras ou lentidões operacionais.</p>
+            <p>Esqueça o estresse de pagar por chamados avulsos caros. Garanta a longevidade dos seus hardwares e garanta um ecossistema digital estável com o nosso suporte em camadas.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-buildings" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Suporte Gerenciado</h4><p>Atuação proativa remota e atendimento local focado.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-clock" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Tempo de Resposta</h4><p>Logística privilegiada para suporte local imediato em São José.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Elimine as falhas tecnológicas da sua empresa</h2>
+        <p>Quer transformar a TI do seu negócio em São José em uma engrenagem de performance sem gastos imprevistos? Solicite um diagnóstico completo com nosso time.</p>
+        <div class="cta-group-modern">
+            <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20suporte%20de%20TI%20para%20minha%20empresa%20em%20São%20José." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Agendar Diagnóstico Local</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inicialização do Web Component do Footer -->
+  <main-footer></main-footer>
+</body>
+</html>
