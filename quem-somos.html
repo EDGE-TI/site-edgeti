@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem Somos | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Scripts dos Web Components (Header e Footer) -->
+  <script type="module" src="/assets/js/components/main-header.js" defer></script>
+  <script type="module" src="/assets/js/components/main-footer.js" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.4); color: #00a4ff; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    
+    /* Grid Principal de Apresentação */
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    /* --- GRID TRIAD: MISSÃO, VISÃO E VALORES --- */
+    .triad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
+    .triad-card { background: #121314; border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 20px; padding: 2.5rem 2rem; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .triad-card:hover { transform: translateY(-5px); background: #16181b; border-color: rgba(15, 98, 254, 0.4); box-shadow: 0 15px 30px rgba(15, 98, 254, 0.1); }
+    
+    .card-icon-wrapper { width: 50px; height: 50px; background: rgba(15, 98, 254, 0.1); border: 1px solid rgba(15, 98, 254, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .card-icon-wrapper i { font-size: 1.8rem; color: #00a4ff; }
+    .triad-card h3 { font-size: 1.4rem; color: #ffffff; font-weight: 700; margin: 0 0 1rem 0; }
+    .triad-card p { font-size: 0.98rem; color: #a8b0b8; line-height: 1.7; margin: 0; }
+
+    /* --- ANIMAÇÃO CENTRAL: STRATEGIC COMPASS --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .compass-outer { width: 140px; height: 140px; border: 4px dashed rgba(0, 164, 255, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spinCompass 20s linear infinite; }
+    .compass-center { position: absolute; font-size: 4.5rem; color: #00ff66; animation: floatNeedle 3s infinite ease-in-out; text-shadow: 0 0 20px rgba(0, 255, 102, 0.4); }
+    @keyframes spinCompass { 100% { transform: rotate(360deg); } }
+    @keyframes floatNeedle { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-10px) scale(1.05); } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid #00ff66; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.blue-card { border-left-color: #00a4ff; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+
+    @media (max-width: 992px) {
+      .service-detail-grid, .triad-grid { grid-template-columns: 1fr; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Web Component do Header -->
+  <main-header></main-header>
+
+  <div class="breadcrumb"><a href="/">Início</a> <span>></span> <strong style="color: #ffffff;">Quem Somos</strong></div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Sobre a Empresa</span>
+    <h1>Sua Estrutura de TI em Mãos Especializadas</h1>
+    <p>A Edge TI atua como o departamento de tecnologia estratégico do seu negócio, unindo excelência técnica e foco em alta disponibilidade.</p>
+  </div>
+
+  <main class="content-container">
+    
+    <!-- Seção de Introdução Institucional -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Muito além do suporte tradicional</h2>
+        <p>A tecnologia deve trabalhar a favor do faturamento e da escalabilidade das empresas, nunca como uma fonte de dores de cabeça ou lentidões. Entendemos que cada minuto de um sistema paralisado ou de um computador lento representa perda de produtividade e oportunidades no mercado.</p>
+        <p>Por isso, estruturamos uma operação focada na governança e monitoramento proativo de ativos. Construímos uma TI silenciosa, invisível e extremamente eficiente para que a gerência e os colaboradores tenham total foco no crescimento corporativo.</p>
+      </div>
+      <div class="visual-side">
+        <div class="compass-outer"></div>
+        <i class="ph-fill ph-trend-up compass-center"></i>
+      </div>
+    </section>
+
+    <!-- Bloco Central de Missão, Visão e Valores -->
+    <section class="triad-grid">
+        
+        <!-- Missão -->
+        <div class="triad-card">
+            <div class="card-icon-wrapper"><i class="ph-fill ph-target"></i></div>
+            <h3>Missão</h3>
+            <p>Prover soluções de infraestrutura de TI seguras e escaláveis, garantindo a continuidade dos negócios através de suporte especializado, gestão de redes e serviços em nuvem que permitem aos nossos clientes focar exclusivamente em seu crescimento.</p>
+        </div>
+
+        <!-- Visão -->
+        <div class="triad-card">
+            <div class="card-icon-wrapper"><i class="ph-fill ph-eye"></i></div>
+            <h3>Visão</h3>
+            <p>Ser a principal parceira estratégica de tecnologia para empresas na Grande Florianópolis, consolidando-se como referência em confiabilidade técnica e inovação em gestão de ativos de TI.</p>
+        </div>
+
+        <!-- Valores -->
+        <div class="triad-card">
+            <div class="card-icon-wrapper"><i class="ph-fill ph-shield-checkered"></i></div>
+            <h3>Valores</h3>
+            <p>A Edge TI pauta sua atuação na segurança dos dados, na disponibilidade contínua dos sistemas e na excelência técnica. Nosso compromisso é ser um parceiro estratégico, conduzindo cada projeto com ética, transparência e foco total na produtividade do seu negócio.</p>
+        </div>
+
+    </section>
+
+    <!-- Seção de Fechamento -->
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Por que escolher a Edge TI?</h2>
+            <p>Nosso modelo de suporte gerenciado elimina a necessidade e os custos pesados de manter uma equipe de TI interna fixa, sem abrir mão de um atendimento ágil de ponta a ponta. Seja de forma remota imediata ou presencial local na Grande Florianópolis, nós garantimos soluções estruturadas na raiz.</p>
+            <p>Aliamos engenharia de segurança, design de redes resilientes e governança de dados para blindar o seu faturamento e preparar a sua infraestrutura para o futuro.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card">
+                <i class="ph-fill ph-handshake" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Parceria Estratégica</h4><p>Compromisso ético focado no sucesso da sua operação.</p></div>
+            </div>
+            <div class="stat-card blue-card">
+                <i class="ph-fill ph-certificate" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Excelência Técnica</h4><p>Profissionais capacitados para as melhores práticas de mercado.</p></div>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <!-- CTA -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Leve governança e estabilidade para a sua TI</h2>
+        <p>Quer entender como as soluções estruturadas da Edge TI podem otimizar os processos e blindar os dados da sua empresa? Agende uma conversa.</p>
+        <div class="cta-group-modern">
+            <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20conversar%20com%20um%20especialista%20da%20Edge%20TI." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Falar com um Especialista</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Component do Footer -->
+  <main-footer></main-footer>
+</body>
+</html>

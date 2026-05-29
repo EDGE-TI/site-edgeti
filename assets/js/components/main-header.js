@@ -13,6 +13,7 @@ class MainHeader extends HTMLElement {
             <nav class="nav-desktop">
                 <ul class="nav-list">
                     <li><a href="/">Home</a></li>
+                    <li><a href="/quem-somos.html">Quem Somos</a></li>
                     
                     <!-- Item com Mega Menu -->
                     <li class="has-mega-menu">
@@ -56,18 +57,20 @@ class MainHeader extends HTMLElement {
             </button>
         </div>
     </div>
+    
     <!-- MENU MOBILE -->
     <div id="menu-mobile" class="menu-mobile-container">
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
+                <li><a href="/quem-somos.html">Quem Somos</a></li>
                 <li class="mobile-has-submenu">
                     <a href="/#servicos">Soluções</a>
                     <!-- Submenu Mobile -->
                     <ul class="mobile-submenu">
                         <li><a href="informatica-geral">- Informática</a></li>
                         <li><a href="redes-geral">- Redes e Servidores</a></li>
-                        <li><a href="seguranca-geral">- Segurança da Informação</a></li>
+                        <li><a href="seguranca-geral">- Seguranca da Informação</a></li>
                         <li><a href="cloud-geral">- Cloud (Nuvem)</a></li>
                         <li><a href="suporte-tecnico-geral">- Suporte Técnico</a></li>
                     </ul>
