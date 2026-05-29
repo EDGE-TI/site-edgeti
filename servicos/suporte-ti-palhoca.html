@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte de TI para Empresas em Palhoça | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Scripts dos Web Components (Header e Footer) -->
+  <script type="module" src="/assets/js/components/main-header.js" defer></script>
+  <script type="module" src="/assets/js/components/main-footer.js" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(0, 255, 102, 0.15); border: 1px solid rgba(0, 255, 102, 0.4); color: #00ff66; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    
+    /* Grid Principal da Página */
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #00ff66; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #00ff66; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO CENTRAL: SERVER MONITORING --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .tech-monitor-serv { width: 260px; height: 170px; border: 6px solid #3a3f4d; border-radius: 14px; position: relative; background: #16181b; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+    .tech-monitor-serv::after { content: ''; position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); width: 70px; height: 25px; background: #3a3f4d; border-radius: 4px; }
+    .radar-pulse-serv { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border: 3px solid #00ff66; border-radius: 50%; animation: radarServ 3s infinite linear; box-shadow: 0 0 15px rgba(0, 255, 102, 0.2); }
+    @keyframes radarServ { 0% { width: 10px; height: 10px; opacity: 1; } 100% { width: 220px; height: 220px; opacity: 0; } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Web Component do Header -->
+  <main-header></main-header>
+
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span> 
+    <span style="color: #8a949d;">Serviços</span> <span>></span> 
+    <strong style="color: #ffffff;">Suporte TI Palhoça</strong>
+  </div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Outsourcing Corporativo</span>
+    <h1>Suporte de TI para Empresas em Palhoça</h1>
+    <p>Terceirização completa de TI e monitoramento proativo para eliminar travamentos, lentidões e falhas estruturais no seu negócio local.</p>
+  </div>
+
+  <main class="content-container">
+    
+    <!-- Bloco 1: Proposta de Valor Local -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Atendimento estratégico e ágil onde sua empresa estiver</h2>
+        <p>Computadores fora de operação, oscilações constantes na rede Wi-Fi e falhas de e-mail reduzem silenciosamente a produtividade e o faturamento diário da sua empresa. Delegar essa estrutura para um parceiro especializado é o caminho mais seguro para garantir estabilidade contínua.</p>
+        <p>A Edge TI atua como o departamento de tecnologia consolidado do seu negócio. Combinamos um suporte remoto instantâneo com deslocamento presencial veloz focado nas áreas de negócios do município, incluindo o Centro de Palhoça e o ecossistema empresarial da Pedra Branca.</p>
+        
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Suporte remoto ágil via acesso direto e assistência local</li>
+          <li><i class="ph-fill ph-check-circle"></i> Manutenção em massa e otimização física de computadores</li>
+          <li><i class="ph-fill ph-check-circle"></i> Gestão lógica de redes e estruturação física de racks</li>
+          <li><i class="ph-fill ph-check-circle"></i> Proteção cibernética: soluções de firewall e backup na nuvem</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="tech-monitor-serv">
+            <div class="radar-pulse-serv"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 2: Benefícios do Modelo Gerenciado -->
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Governança tecnológica e estabilidade financeira</h2>
+            <p>O suporte tradicional atua apenas de forma reativa: esperando o problema travar a sua empresa para depois tentar resolvê-lo. Na Edge TI, operamos com gerenciamento preventivo contínuo, monitorando a integridade das suas estações de trabalho e redes em tempo real para neutralizar falhas antes que elas gerem interrupções na sua equipe.</p>
+            <p>Substitua o custo variável de chamados emergenciais avulsos por um plano mensal previsível e garanta o alívio de tempo total para que sua gerência foque unicamente no faturamento do negócio.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-rocket-launch" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Alta Disponibilidade</h4><p>Sistemas e computadores otimizados para operar sem paradas.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-shield-check" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Segurança de Dados</h4><p>Mitigação ativa de vulnerabilidades e rotinas de backup rígidas.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Garanta uma infraestrutura de TI robusta na sua empresa</h2>
+        <p>Pronto para eliminar dores de cabeça com informática e otimizar os computadores do seu negócio em Palhoça? Solicite um diagnóstico inicial com nossa equipe.</p>
+        <div class="cta-group-modern">
+            <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20um%20diagnóstico%20de%20suporte%20de%20TI%20para%20minha%20empresa%20em%20Palhoça." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Agendar Análise Estrutural</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Component do Footer -->
+  <main-footer></main-footer>
+</body>
+</html>

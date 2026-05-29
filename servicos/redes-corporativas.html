@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infraestrutura de Redes Corporativas e Servidores | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Scripts dos Web Components (Header e Footer) -->
+  <script type="module" src="/assets/js/components/main-header.js" defer></script>
+  <script type="module" src="/assets/js/components/main-footer.js" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.4); color: #0070f3; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    
+    /* Grid Principal da Página */
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #0070f3; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #0070f3; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO CENTRAL: SERVER BLADES --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; }
+    .server-rack-serv { width: 240px; display: flex; flex-direction: column; gap: 12px; }
+    .server-blade-serv { height: 45px; background: #21262e; border-radius: 6px; border-left: 6px solid #0070f3; display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; gap: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); }
+    .led-serv { width: 10px; height: 10px; border-radius: 50%; background: #00ff66; box-shadow: 0 0 12px #00ff66; }
+    .server-blade-serv:nth-child(2) .led-serv { background: #00a4ff; box-shadow: 0 0 12px #00a4ff; }
+    .server-blade-serv:nth-child(3) .led-serv { animation: ledBlinkServ 0.5s infinite alternate; }
+    @keyframes ledBlinkServ { 0% { opacity: 0.2; } 100% { opacity: 1; box-shadow: 0 0 15px #00ff66; } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.prev-card { border-left-color: #00a4ff; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Web Component do Header -->
+  <main-header></main-header>
+
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span> 
+    <span style="color: #8a949d;">Serviços</span> <span>></span> 
+    <strong style="color: #ffffff;">Redes Corporativas</strong>
+  </div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Engenharia de Redes</span>
+    <h1>Redes Corporativas e Servidores de Alta Performance</h1>
+    <p>Estruturação de redes estáveis, cabeamento estruturado limpo e gestão de servidores dedicados para manter o fluxo de dados da sua empresa seguro e veloz.</p>
+  </div>
+
+  <main class="content-container">
+    
+    <!-- Bloco 1: Proposta de Infraestrutura -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Conectividade sem quedas e sistemas sempre disponíveis</h2>
+        <p>A rede lógica de uma empresa funciona como o sistema circulatório do negócio. Quedas frequentes no sinal do Wi-Fi, lentidão ao acessar sistemas integrados (ERPs) e falhas de comunicação local indicam que a infraestrutura atingiu o limite ou sofre com gargalos ocultos.</p>
+        <p>A Edge TI projeta, reorganiza e gerencia redes lógicas complexas e caminhos físicos estruturados. Entregamos soluções escaláveis que suportam o crescimento do tráfego local, o trânsito de arquivos pesados e a entrada de novos colaboradores sem perda de velocidade operacional.</p>
+        
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Cabeamento estruturado profissional com identificação lógica</li>
+          <li><i class="ph-fill ph-check-circle"></i> Divisão de tráfego inteligente usando redes virtuais (VLANs)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Wi-Fi corporativo estável com tecnologia de Roaming Inteligente</li>
+          <li><i class="ph-fill ph-check-circle"></i> Instalação, gerenciamento e auditoria de servidores locais e híbridos</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="server-rack-serv">
+            <div class="server-blade-serv"><span class="led-serv"></span><span class="led-serv"></span></div>
+            <div class="server-blade-serv"><span class="led-serv"></span><span class="led-serv"></span></div>
+            <div class="server-blade-serv"><span class="led-serv"></span><span class="led-serv"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 2: Benefícios da Engenharia de Rede -->
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Arquitetura redundante e rack de servidores limpo</h2>
+            <p>Manter um rack desorganizado ou depender de roteadores domésticos é expor a operação a riscos diários de paralisações generalizadas. Projetamos toda a estrutura de conectividade da sua empresa usando equipamentos corporativos dedicados, criando redes de alta densidade prontas para o fluxo contínuo de dados.</p>
+            <p>Com o mapeamento feito pela nossa equipe, reduzimos o tempo de resolução de eventuais incidentes e mitigamos vulnerabilidades de portas abertas na sua borda, gerando estabilidade técnica de alto nível.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-lightning" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Velocidade Máxima</h4><p>Dados transmitidos de forma otimizada, reduzindo a latência local.</p></div>
+            </div>
+            <div class="stat-card prev-card">
+                <i class="ph-fill ph-git-fork" style="color: #00a4ff; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Redundância Lógica</h4><p>Configuração preventiva de links para evitar paradas se a internet cair.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Garanta uma infraestrutura de rede robusta e escalável</h2>
+        <p>Precisa reestruturar o cabeamento dos seus racks, configurar switches inteligentes ou otimizar o servidor central da sua empresa? Agende uma análise com nosso engenheiro de redes.</p>
+        <div class="cta-group-modern">
+            <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20uma%20avaliação%20para%20a%20infraestrutura%20de%20rede%20da%20minha%20empresa." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Consultar Especialista em Redes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Component do Footer -->
+  <main-footer></main-footer>
+</body>
+</html>

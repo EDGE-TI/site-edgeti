@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segurança da Informação e Proteção de Dados | Edge TI</title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/cta.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Scripts dos Web Components (Header e Footer) -->
+  <script type="module" src="/assets/js/components/main-header.js" defer></script>
+  <script type="module" src="/assets/js/components/main-footer.js" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body { background-color: #0d0e0e; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .breadcrumb { max-width: 1200px; margin: 2rem auto 0 auto; padding: 0 2rem; font-size: 0.9rem; color: #8a949d; }
+    .breadcrumb a { color: #00a4ff; text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: #00ff66; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    .page-header-spacing { padding: 3rem 2rem 2rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-category { background: rgba(255, 69, 58, 0.15); border: 1px solid rgba(255, 69, 58, 0.4); color: #ff453a; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; }
+    .page-header-spacing h1 { font-size: 3rem; font-weight: 800; color: #ffffff; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.2; }
+    .page-header-spacing p { font-size: 1.2rem; color: #c1c7cd; line-height: 1.6; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    
+    /* Grid Principal da Página */
+    .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: #121314; padding: 4rem; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 4rem; }
+    .text-block h2 { font-size: 2rem; color: #ffffff; font-weight: 700; margin-bottom: 1.2rem; }
+    .text-block p { font-size: 1.05rem; color: #a8b0b8; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .service-checklist { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .service-checklist li { font-size: 1.05rem; color: #e2e8f0; padding: 1.2rem; background: #1a1c1e; margin-bottom: 1rem; border-radius: 12px; border-left: 4px solid #ff453a; display: flex; align-items: center; gap: 1rem; }
+    .service-checklist li i { color: #ff453a; font-size: 1.5rem; }
+
+    /* --- ANIMAÇÃO CENTRAL: SHIELD DEFENSE --- */
+    .visual-side { display: flex; align-items: center; justify-content: center; position: relative; height: 350px; overflow: hidden; }
+    .shield-core-serv { width: 90px; height: 105px; background: linear-gradient(135deg, #0f62fe, #00a4ff); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); z-index: 2; animation: shieldFloatServ 3.5s infinite ease-in-out; filter: drop-shadow(0 15px 30px rgba(15, 98, 254, 0.4)); }
+    .secure-orbit-serv { position: absolute; width: 240px; height: 240px; border: 2px dashed rgba(0, 164, 255, 0.2); border-radius: 50%; animation: rotateOrbitServ 12s infinite linear; }
+    .delay-orbit-serv { width: 300px; height: 300px; border-color: rgba(15, 98, 254, 0.1); animation: rotateOrbitServ 18s infinite linear reverse; }
+    @keyframes shieldFloatServ { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes rotateOrbitServ { 100% { transform: rotate(360deg); } }
+
+    /* --- VISUAL PERFORMANCE --- */
+    .stats-visual { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%; }
+    .stat-card { background: #16181b; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; max-width: 360px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+    .stat-card.prod-card { border-left-color: #00ff66; animation: floatStat 5s infinite ease-in-out; }
+    .stat-card.red-card { border-left-color: #ff453a; animation: floatStat 5s infinite ease-in-out reverse; animation-delay: 1.5s; }
+    .stat-info h4 { margin: 0 0 0.3rem 0; color: #ffffff; font-size: 1.15rem; font-weight: 600; }
+    .stat-info p { margin: 0; color: #a8b0b8; font-size: 0.95rem; line-height: 1.4; }
+    @keyframes floatStat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    @media (max-width: 992px) {
+      .service-detail-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .visual-side { order: -1; height: 250px; }
+      .page-header-spacing h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Web Component do Header -->
+  <main-header></main-header>
+
+  <div class="breadcrumb">
+    <a href="/">Início</a> <span>></span> 
+    <span style="color: #8a949d;">Serviços</span> <span>></span> 
+    <strong style="color: #ffffff;">Segurança da Informação</strong>
+  </div>
+
+  <div class="page-header-spacing">
+    <span class="badge-category">Cybersecurity</span>
+    <h1>Segurança da Informação e Proteção contra Ameaças</h1>
+    <p>Construímos defesas digitais em múltiplas camadas para blindar a infraestrutura e os arquivos confidenciais do seu negócio contra vírus, ransomwares e acessos maliciosos.</p>
+  </div>
+
+  <main class="content-container">
+    
+    <!-- Bloco 1: Proposta de Segurança -->
+    <section class="service-detail-grid">
+      <div class="text-block">
+        <h2>Mitigue os riscos digitais antes que eles travem o seu negócio</h2>
+        <p>Ataques cibernéticos e sequestros de bancos de dados não acontecem apenas com multinacionais. Pequenas e médias empresas são os alvos mais frequentes de hackers, por possuírem brechas abertas na rede e sistemas desatualizados. As consequências de um vazamento podem incluir pesadas multas da LGPD e a paralisação completa do seu faturamento.</p>
+        <p>A Edge TI implementa barreiras rígidas de proteção de borda e segurança de endpoints corporativos. Desenhamos defesas inteligentes capazes de identificar e isolar vírus ou tentativas de intrusão antes que eles alcancem a sua rede local ou seus servidores.</p>
+        
+        <ul class="service-checklist">
+          <li><i class="ph-fill ph-check-circle"></i> Firewall de Borda com gestão de tráfego centralizada (UTM)</li>
+          <li><i class="ph-fill ph-check-circle"></i> Antivírus avançado corporativo com proteção anti-ransomware</li>
+          <li><i class="ph-fill ph-check-circle"></i> Varreduras inteligentes para identificação e correção de brechas</li>
+          <li><i class="ph-fill ph-check-circle"></i> Estruturação de backup em nuvem isolado e criptografado</li>
+        </ul>
+      </div>
+
+      <div class="visual-side">
+        <div class="shield-core-serv"></div>
+        <div class="secure-orbit-serv"></div>
+        <div class="secure-orbit-serv delay-orbit-serv"></div>
+      </div>
+    </section>
+
+    <!-- Bloco 2: Benefícios da Blindagem Proativa -->
+    <section class="service-detail-grid">
+        <div class="text-block">
+            <h2>Cultura de resiliência e continuidade de negócios</h2>
+            <p>A segurança digital profissional exige processos bem definidos de redundância, controle estrito de permissões de colaboradores e criptografia ativa. Garanta a longevidade da sua empresa protegendo as contas corporativas, os terminais de trabalho e o Wi-Fi interno.</p>
+            <p>Configuramos defesas automatizadas e políticas imutáveis de Disaster Recovery para que, mesmo diante de um incidente técnico grave, a sua operação consiga restaurar os dados de forma instantânea e continuar vendendo sem interrupções.</p>
+        </div>
+        <div class="stats-visual">
+            <div class="stat-card prod-card">
+                <i class="ph-fill ph-lock-key" style="color: #00ff66; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Dados Protegidos</h4><p>Criptografia e integridade de nível corporativo para o seu negócio.</p></div>
+            </div>
+            <div class="stat-card red-card">
+                <i class="ph-fill ph-shield-alert" style="color: #ff453a; font-size: 2.5rem;"></i>
+                <div class="stat-info"><h4>Defesa Ativa</h4><p>Bloqueio e mitigação imediata de ameaças direto na borda da rede.</p></div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section id="vamos-conversar" class="section cta-section-modern">
+    <div class="container cta-container-box">
+      <div class="cta-glow-backdrop"></div>
+      <div class="cta-content-wrapper">
+        <h2>Blinde a sua empresa contra vazamentos e invasões digitais</h2>
+        <p>A infraestrutura atual do seu negócio está realmente preparada para enfrentar as ameaças cibernéticas modernas? Fale com nossa equipe e agende uma auditoria preventiva de vulnerabilidades.</p>
+        <div class="cta-group-modern">
+            <a href="https://wa.me/554891763985?text=Olá!%20Gostaria%20de%20uma%20auditoria%20preventiva%20de%20segurança%20da%20informação%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer" class="btn-modern-tech btn-wa-gradient"><span class="icon-wa"></span> Realizar Auditoria Preventiva</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Component do Footer -->
+  <main-footer></main-footer>
+</body>
+</html>
