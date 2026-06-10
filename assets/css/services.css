@@ -181,3 +181,148 @@
 .icon-users {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 224zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62.1 73.4 109.4h93.7c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-384 0c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h93.7c4.5-47.3 33.1-87.3 73.4-109.4-11.6-11.5-27.5-18.6-45.1-18.6zm192 32c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm128 128c0-53-43-96-96-96h-64c-53 0-96 43-96 96v48c0 17.7 14.3 32 32 32h192c17.7 0 32-14.3 32-32v-48z'/%3E%3C/svg%3E");
 }
+/* ==========================================================================
+   SEÇÃO DE CARDS DE SUBPÁGINAS - SUPORTE TÉCNICO GERAL (TEMA ESCURO)
+   ========================================================================== */
+.suporte-subpaginas-section {
+    padding: 80px 0;
+    background-color: #0b0f19; /* Fundo escuro profundo premium */
+    position: relative;
+    border-radius: 30px;
+}
+
+/* Cabeçalho centralizado da seção */
+.section-header-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.section-header-center h2 {
+    font-size: 2.4rem;
+    color: #ffffff; /* Texto puro em branco */
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.section-header-center p {
+    font-size: 1.1rem;
+    color: #94a3b8; /* Cinza azulado claro de excelente leitura */
+    line-height: 1.6;
+}
+
+/* Grid de cards */
+.suporte-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* Estilo individual do Card Escuro (Atua como um painel flutuante) */
+.suporte-sub-card {
+    background: #111827; /* Cinza grafite muito elegante */
+    border: 1px solid #1f2937; /* Borda sutil escura */
+    padding: 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito ao passar o mouse (Hover no Tema Escuro) */
+.suporte-sub-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8; /* Borda acende em Cyan tecnológico */
+    background: #1f2937; /* Clareia levemente o fundo no hover */
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15); /* Glow sutil */
+}
+
+/* Caixa do ícone técnico */
+.card-icon-box {
+    background: #1f2937;
+    border: 1px solid #374151;
+    color: #38bdf8; /* Ícone aceso em Cyan por padrão */
+    font-size: 1.6rem;
+    padding: 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Quando passa o mouse no card, o ícone ganha destaque total */
+.suporte-sub-card:hover .card-icon-box {
+    background: #38bdf8;
+    color: #0b0f19; /* Ícone fica escuro com fundo Cyan brilhante */
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+/* Título interno do card */
+.suporte-sub-card h3 {
+    font-size: 1.25rem;
+    color: #f3f4f6; /* Branco leitoso confortável */
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.suporte-sub-card:hover h3 {
+    color: #ffffff; /* Fica totalmente branco no hover */
+}
+
+/* Texto descritivo interno */
+.suporte-sub-card p {
+    font-size: 0.95rem;
+    color: #9ca3af; /* Cinza médio fosco para criar hierarquia visual */
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+/* Texto de ação (Saber mais ->) */
+.card-link-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #38bdf8; /* Link na cor Cyan do tema */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Faz a setinha mover e brilhar no hover */
+.suporte-sub-card:hover .card-link-text {
+    color: #60a5fa; /* Muda para um azul levemente diferente */
+    gap: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE DA SEÇÃO (TEMA ESCURO)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .suporte-subpaginas-section {
+        padding: 50px 0;
+    }
+    
+    .section-header-center h2 {
+        font-size: 1.8rem;
+    }
+    
+    .suporte-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .suporte-sub-card {
+        padding: 24px;
+    }
+}
