@@ -52,21 +52,28 @@
     max-width: 320px;
 }
 
-/* Caixa do Formulário */
-.form-wrapper-box {
-    background: rgba(30, 41, 59, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+/* Altera o cálculo de tamanho para incluir paddings e borders dentro do 100% */
+    .form-wrapper-box, 
+    .form-wrapper-box *,
+    .contact-container-box {
+        box-sizing: border-box;
+    }
 
-.web3forms-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+    /* Força a caixa do formulário a respeitar o limite do celular */
+    .form-wrapper-box {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px; /* Reduz ligeiramente o espaçamento interno para dar mais margem */
+    }
+
+    /* Garante que os campos não passem da borda da caixa de jeito nenhum */
+    .web3forms-form input, 
+    .web3forms-form select, 
+    .web3forms-form textarea {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 
 .form-group {
     display: flex;
@@ -87,6 +94,7 @@
 }
 
 .form-group label {
+    margin-top: 15px;
     font-size: 0.85rem;
     font-weight: 600;
     color: #e2e8f0;
@@ -118,6 +126,7 @@
     background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     color: white;
     border: none;
+    margin-top: 10px;
     padding: 14px;
     border-radius: 6px;
     font-weight: 600;
