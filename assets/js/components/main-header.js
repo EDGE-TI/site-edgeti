@@ -46,9 +46,9 @@ class MainHeader extends HTMLElement {
                           </div>
                       </li>
                       
-                      <li><a href="blog" class="active">Blog</a></li>
+                      <li><a href="/blog" class="active">Blog</a></li>
                       <li><a href="/#vamos-conversar">Contato</a></li>
-                      <li><a href="central-privacidade">Central de Privacidade</a></li>
+                      <li><a href="/central-privacidade">Central de Privacidade</a></li>
                   </ul>
               </nav>
               
@@ -77,7 +77,7 @@ class MainHeader extends HTMLElement {
                   </li>
                   <li><a href="/blog">Blog</a></li>
                   <li><a href="/#vamos-conversar">Contato</a></li>
-                  <li><a href="central-privacidade">Central de Privacidade</a></li>
+                  <li><a href="/central-privacidade">Central de Privacidade</a></li>
               </ul>
           </nav>
       </div>
