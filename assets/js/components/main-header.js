@@ -22,15 +22,15 @@ class MainHeader extends HTMLElement {
                           <!-- Painel do Mega Menu -->
                           <div class="mega-menu">
                               <div class="mega-menu-grid">
-                                  <a href="informatica-geral" class="mega-menu-card">
+                                  <a href="/informatica-geral" class="mega-menu-card">
                                       <h4>Informática</h4>
                                       <p>Suporte ágil e eficiente para o dia a dia da sua empresa.</p>
                                   </a>
-                                  <a href="redes-geral" class="mega-menu-card">
+                                  <a href="/redes-geral" class="mega-menu-card">
                                       <h4>Redes e Servidores</h4>
                                       <p>A base sólida para a conectividade do seu negócio.</p>
                                   </a>
-                                  <a href="seguranca-geral" class="mega-menu-card">
+                                  <a href="/seguranca-geral" class="mega-menu-card">
                                       <h4>Segurança da Informação</h4>
                                       <p>Protegendo seu ativo mais valioso: seus dados.</p>
                                   </a>
@@ -38,7 +38,7 @@ class MainHeader extends HTMLElement {
                                       <h4>Cloud (Nuvem)</h4>
                                       <p>Flexibilidade e escalabilidade para o futuro do negócio.</p>
                                   </a>
-                                  <a href="suporte-tecnico-geral" class="mega-menu-card highlight-card">
+                                  <a href="/suporte-tecnico-geral" class="mega-menu-card highlight-card">
                                       <h4>Suporte Técnico para Empresas</h4>
                                       <p>Suporte de ponta a ponta, sem o custo de uma equipe interna.</p>
                                   </a>
@@ -68,14 +68,14 @@ class MainHeader extends HTMLElement {
                       <a href="/#servicos">Soluções</a>
                       <!-- Submenu Mobile -->
                       <ul class="mobile-submenu">
-                          <li><a href="informatica-geral">- Informática</a></li>
-                          <li><a href="redes-geral">- Redes e Servidores</a></li>
-                          <li><a href="seguranca-geral">- Seguranca da Informação</a></li>
-                          <li><a href="cloud-geral">- Cloud (Nuvem)</a></li>
-                          <li><a href="suporte-tecnico-geral">- Suporte Técnico</a></li>
+                          <li><a href="/informatica-geral">- Informática</a></li>
+                          <li><a href="/redes-geral">- Redes e Servidores</a></li>
+                          <li><a href="/seguranca-geral">- Seguranca da Informação</a></li>
+                          <li><a href="/cloud-geral">- Cloud (Nuvem)</a></li>
+                          <li><a href="/suporte-tecnico-geral">- Suporte Técnico</a></li>
                       </ul>
                   </li>
-                  <li><a href="blog">Blog</a></li>
+                  <li><a href="/blog">Blog</a></li>
                   <li><a href="/#vamos-conversar">Contato</a></li>
                   <li><a href="central-privacidade">Central de Privacidade</a></li>
               </ul>
