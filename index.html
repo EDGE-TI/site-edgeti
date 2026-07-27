@@ -81,6 +81,139 @@
         "areaServed": ["Palhoça", "São José", "Florianópolis", "Biguaçu"]
       }
     </script>
+    <style>/* Seção Redirecionamento Computadores */
+.banner-computadores-index {
+    padding: 80px 20px;
+    background-color: #07090e; /* Fundo escuro igual à página de computadores */
+    color: #f3f4f6;
+    border-top: 1px solid #1f293d;
+    border-bottom: 1px solid #1f293d;
+}
+
+.container-banner-comp {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.banner-comp-text {
+    flex: 1.2;
+    min-width: 320px;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 102, 255, 0.15);
+    color: #0066ff;
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.banner-comp-text h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.banner-comp-text .highlight-blue {
+    color: #0066ff;
+}
+
+.banner-comp-text p {
+    color: #9ca3af;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.banner-comp-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 35px;
+}
+
+.banner-comp-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #e5e7eb;
+    margin-bottom: 12px;
+}
+
+.banner-comp-list li i {
+    color: #10b981; /* Verde de confirmação */
+    font-size: 1.2rem;
+}
+
+.btn-banner-comp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0066ff;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-banner-comp:hover {
+    background-color: #0052cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+}
+
+.banner-comp-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.img-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1f293d;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.img-wrapper:hover img {
+    transform: scale(1.03);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container-banner-comp {
+        flex-direction: column;
+        text-align: left;
+    }
+    
+    .banner-comp-text h2 {
+        font-size: 1.8rem;
+    }
+}</style>
   </head>
 
   <body>
@@ -500,7 +633,34 @@
         </div>
       </section>
     </div>
+    <!-- Seção Banner Venda de Computadores -->
+<section class="banner-computadores-index">
+    <div class="container-banner-comp">
+        
+        <div class="banner-comp-text">
+            <span class="badge-tag"><i class="ph ph-desktop"></i> Venda Corporativa</span>
+            <h2>Computadores para Empresas na <span class="highlight-blue">Grande Florianópolis</span></h2>
+            <p>Precisa renovar a frota ou equipar novas estações de trabalho? Entregamos computadores corporativos prontos para uso, com instalação local, migração de dados e suporte incluso.</p>
+            
+            <ul class="banner-comp-list">
+                <li><i class="ph ph-check-circle"></i> Equipamentos com garantia e marcas confiáveis</li>
+                <li><i class="ph ph-check-circle"></i> Migração segura dos dados e arquivos da sua empresa</li>
+                <li><i class="ph ph-check-circle"></i> Atendimento em Palhoça, São José, Floripa e região</li>
+            </ul>
 
+            <a href="computadores-para-empresas.html" class="btn-banner-comp">
+                Ver Mais <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="banner-comp-image">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?q=80&w=800&auto=format&fit=crop" alt="Computadores Corporativos Edge TI">
+            </div>
+        </div>
+
+    </div>
+</section>
     <section id="vamos-conversar" class="section contact-section-modern">
       <div class="container contact-container-box">
         <div class="contact-glow-backdrop"></div>
