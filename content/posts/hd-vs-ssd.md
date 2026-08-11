@@ -1,4 +1,4 @@
-markdown_content = """---
+---
 layout: post-layout.njk
 title: "SSD vs HD: Por que vale a pena trocar a peça antiga e ganhar velocidade extrema no seu computador"
 category: "Hardware e Performance"
