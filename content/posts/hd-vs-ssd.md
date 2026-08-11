@@ -4,7 +4,7 @@ title: "SSD vs HD: Por que vale a pena trocar a peça antiga e ganhar velocidade
 category: "Hardware e Performance"
 date: 2026-08-11
 tags: posts
-image: "/assets/images/posts/ssd-vs-hd-performance.webp"
+image: "/assets/images/posts/ssd-vs-hd.webp"
 ---
 
 Você já ligou o computador da sua empresa, foi passar um café, conversou com um colega e, ao voltar para a mesa, a máquina ainda estava carregando o Windows? Ou talvez, ao abrir uma planilha um pouco mais pesada ou um sistema de gestão, o sistema simplesmente congelou e exibiu a famosa mensagem *"O programa não está respondendo"*?
