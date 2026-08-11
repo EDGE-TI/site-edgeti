@@ -126,10 +126,3 @@ Embora a troca do SSD pareça simples, a migração corporativa exige cuidados t
 Quer eliminar a lentidão dos computadores da sua empresa em **Palhoça, São José ou Florianópolis** sem precisar gastar uma fortuna em máquinas novas?
 
 Fale hoje mesmo com a equipe da **Edge TI**. Realizamos a avaliação técnica da sua infraestrutura, indicamos o SSD ideal para cada necessidade e executamos a substituição com migração completa de dados para que sua equipe trabalhe sem interrupções!
-"""
-
-file_path = "ssd-vs-hd.md"
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(markdown_content)
-
-print(f"File created successfully: {file_path}")
