@@ -4,7 +4,7 @@
     --hover-color: #0353e9;
     --dark-bg: #010202;
     --light-bg: #f4f4f4;
-    --text-main: #393939;
+    --text-main: #e7e7e7;
     --text-white: #ffffff;
     --font-stack: 'Inter', sans-serif;
     --max-width: 1200px;
@@ -20,7 +20,9 @@ body {
     background-color: var(--dark-bg);
     overscroll-behavior-y: none;
 }
-
+#sobre{
+    color:#010202
+}
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 

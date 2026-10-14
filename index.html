@@ -211,6 +211,129 @@
 .img-wrapper:hover img {
     transform: scale(1.03);
 }
+/* Seção Redirecionamento Manutenção de Notebooks */
+.banner-notebooks-index {
+    padding: 85px 20px;
+    background-color: #07090e; /* Fundo escuro Dark Tech */
+    color: #f3f4f6;
+    border-top: 1px solid #1f293d;
+    border-bottom: 1px solid #1f293d;
+}
+
+.container-banner-not {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.banner-not-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.img-wrapper-not {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1f293d;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+}
+
+.img-wrapper-not img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.img-wrapper-not:hover img {
+    transform: scale(1.03);
+}
+
+.banner-not-text {
+    flex: 1.2;
+    min-width: 320px;
+}
+
+.badge-tag-not {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 102, 255, 0.12);
+    color: #0066ff;
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.banner-not-text h2 {
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.banner-not-text .highlight-blue {
+    color: #0066ff;
+}
+
+.banner-not-text p {
+    color: #9ca3af;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.banner-not-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 35px;
+}
+
+.banner-not-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1rem;
+    color: #e5e7eb;
+    margin-bottom: 12px;
+}
+
+.banner-not-list li i {
+    color: #10b981; /* Verde de confirmação */
+    font-size: 1.25rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.btn-banner-not {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0066ff;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-banner-not:hover {
+    background-color: #0052cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.45);
+}
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -221,6 +344,15 @@
     
     .banner-comp-text h2 {
         font-size: 1.8rem;
+    }
+    .container-banner-not {
+        flex-direction: column-reverse; /* Imagem fica no topo/meio de forma harmônica */
+        text-align: left;
+        gap: 35px;
+    }
+
+    .banner-not-text h2 {
+        font-size: 1.85rem;
     }
 }</style>
   </head>
@@ -642,6 +774,35 @@
         </div>
       </section>
     </div>
+
+    <!-- Seção Banner Manutenção de Notebooks -->
+<section class="banner-notebooks-index">
+    <div class="container-banner-not">
+        
+        <div class="banner-not-image">
+            <div class="img-wrapper-not">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop" alt="Manutenção e Upgrade de Notebooks Edge TI">
+            </div>
+        </div>
+
+        <div class="banner-not-text">
+            <span class="badge-tag-not"><i class="ph ph-laptop"></i> Assistência &amp; Upgrades</span>
+            <h2>Seu Notebook Lento ou Danificado? <span class="highlight-blue">Renove sem Comprar Outro</span></h2>
+            <p>Seu equipamento esquenta, trava ao abrir programas ou precisa de peças novas? Realizamos upgrades para SSD, expansão de memória RAM e troca de telas, baterias e teclados com garantia e agilidade em Palhoça e região.</p>
+            
+            <ul class="banner-not-list">
+                <li><i class="ph ph-check-circle"></i> <strong>Muito mais desempenho:</strong> Upgrades de SSD e memória sem perder seus arquivos</li>
+                <li><i class="ph ph-check-circle"></i> <strong>Troca de componentes:</strong> Telas, teclados, baterias e limpeza térmica preventiva</li>
+                <li><i class="ph ph-check-circle"></i> <strong>Diagnóstico transparente:</strong> Orçamento fechado e atendimento ágil na Grande Floripa</li>
+            </ul>
+
+            <a href="conserto-notebooks.html" class="btn-banner-not">
+                Conhecer Serviços e Orçar <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
     <!-- Seção Banner Venda de Computadores -->
 <section class="banner-computadores-index">
     <div class="container-banner-comp">

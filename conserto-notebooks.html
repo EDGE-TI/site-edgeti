@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção e Upgrade de Notebooks em Palhoça e Região | Edge TI</title>
+    
+    <!-- Biblioteca Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script
+      type="module"
+      src="/assets/js/components/main-header.js"
+      defer
+    ></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #07090e;
+            --bg-card: #0d1117;
+            --border-color: #1f293d;
+            --accent-blue: #0066ff;
+            --accent-blue-hover: #0052cc;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --text-light: #949699;
+            --text-muted: #b5b6b9;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            
+            line-height: 1.6;
+            color: #ffff;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+       
+
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            display: block;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .btn-header-wpp {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-header-wpp:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 70px 0 90px;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.12), transparent 40%),
+                        linear-gradient(180deg, rgba(7,9,14,0.6) 0%, rgba(7,9,14,1) 100%),
+                        url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .badge-urgencia {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight-blue {
+            color: var(--accent-blue);
+            display: block;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-bullets {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+
+        .hero-bullets li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .hero-bullets li i {
+            color: var(--accent-green);
+            font-size: 1.3rem;
+        }
+
+        /* Card CTA Hero */
+        .hero-cta-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .hero-cta-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-cta-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .btn-cta-main {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-cta-main:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .cta-guarantee-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Título Geral dos Serviços */
+        .services-intro {
+            padding: 70px 0 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .services-intro h2 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .services-intro p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Seções Individuais de Serviço (Uma Abaixo da Outra) */
+        .service-row-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .service-row-section:nth-child(even) {
+            background-color: #05070b;
+        }
+
+        .service-row-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .service-row-section:nth-child(even) .service-row-container {
+            flex-direction: row-reverse;
+        }
+
+        .service-col-content {
+            flex: 1.2;
+            min-width: 320px;
+        }
+
+        .service-col-visual {
+            flex: 0.8;
+            min-width: 280px;
+        }
+
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            background: rgba(0, 102, 255, 0.12);
+            border: 1px solid rgba(0, 102, 255, 0.25);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .service-col-content h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .service-col-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 22px;
+            line-height: 1.7;
+        }
+
+        .service-benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .service-benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .service-benefits-list li i {
+            color: var(--accent-green);
+            font-size: 1.3rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Cartão de Destaque Visual em Cada Seção */
+        .service-highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+        }
+
+        .service-highlight-box i.big-icon {
+            font-size: 4rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .service-highlight-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .service-highlight-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* Seção Diferenciais */
+        .features-section {
+            padding: 80px 0;
+            background-color: #05070a;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon-box {
+            background: rgba(0, 102, 255, 0.15);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            width: 55px;
+            height: 55px;
+            min-width: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Banner Final CTA */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(0, 102, 255, 0.08) 100%);
+        }
+
+        .cta-container-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-container-box h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-container-box p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 850px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .service-row-container,
+            .service-row-section:nth-child(even) .service-row-container {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .service-col-content h3 {
+                font-size: 1.6rem;
+            }
+
+            .service-col-visual {
+                width: 100%;
+            }
+
+            .cta-container-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+
+   <main-header></main-header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            
+            <div class="hero-left">
+                <span class="badge-urgencia">
+                    <i class="ph ph-lightning"></i> Atendimento Rápido na Região
+                </span>
+                <h1>
+                    Manutenção de Notebooks
+                    <span class="highlight-blue">Com Velocidade, Peças Novas e Garantia</span>
+                </h1>
+                <p>Seu equipamento está lento, esquentando ou com teclado e tela danificados? Realizamos upgrades e trocas de peças com agilidade e transparência em Palhoça e Grande Florianópolis.</p>
+                
+                <ul class="hero-bullets">
+                    <li><i class="ph ph-check-circle"></i> Diagnóstico claro e orçamento prévio sem surpresas</li>
+                    <li><i class="ph ph-check-circle"></i> Upgrades modulares de SSD, memória RAM, telas e baterias</li>
+                    <li><i class="ph ph-check-circle"></i> Atendimento em Palhoça, São José e região metropolitana</li>
+                </ul>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-cta-card">
+                    <i class="ph ph-laptop" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                    <h3>Precisa de suporte agora?</h3>
+                    <p>Fale direto com nossos técnicos no WhatsApp e informe o modelo do seu notebook.</p>
+                    <a href="https://wa.me/554891763985?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20meu%20notebook." target="_blank" class="btn-cta-main" style="width: 100%;">
+                        <i class="ph ph-whatsapp-logo"></i> Chamar no WhatsApp
+                    </a>
+                    <span class="cta-guarantee-note">
+                        <i class="ph ph-shield-check"></i> Peças com garantia e procedência garantida
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Intro dos Serviços -->
+    <section class="services-intro">
+        <div class="container">
+            <h2>Nossas Soluções Especializadas</h2>
+            <p>Conheça em detalhes cada serviço prestado pela Edge TI para devolver a máxima eficiência ao seu notebook de trabalho ou uso pessoal.</p>
+        </div>
+    </section>
+
+    <!-- Serviço 1: Upgrade para SSD -->
+    <section class="service-row-section" id="ssd">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-gauge"></i> Máxima Velocidade</span>
+                <h3>Upgrade para SSD NVMe e SATA</h3>
+                <p>A substituição do antigo disco rígido mecânico por uma unidade de estado sólido (SSD) é a transformação de maior impacto para qualquer notebook. Seu sistema operacional passa a iniciar em menos de 15 segundos e os programas abrem instantaneamente.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Até 10x mais veloz:</strong> Fim da espera para inicializar o Windows e abrir planilhas pesadas.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Clonagem com segurança:</strong> Mantemos seus programas, arquivos e configurações exatamente como estavam.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Menor consumo e mais durabilidade:</strong> SSDs consomem menos bateria e não quebram com pequenas vibrações.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20gostaria%20de%20fazer%20um%20upgrade%20para%20SSD%20no%20meu%20notebook." target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Orçar Upgrade de SSD
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-gauge big-icon"></i>
+                    <h4>Desempenho Imediato</h4>
+                    <p>Ideal para máquinas lentas com 3 a 6 anos de uso, evitando o custo de comprar um computador novo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviço 2: Expansão de Memória RAM -->
+    <section class="service-row-section" id="ram">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-cpu"></i> Multitarefa Sem Travamentos</span>
+                <h3>Expansão de Memória RAM</h3>
+                <p>Navegadores modernos e softwares corporativos exigem grande capacidade de memória temporária. Se o seu notebook congela quando você abre várias abas ou alterna entre o ERP e reuniões online, a expansão de RAM é a resposta técnica necessária.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Trabalho fluido com múltiplas janelas:</strong> Alterne entre aplicativos sem travamentos.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Memórias compatíveis (DDR3, DDR4 e DDR5):</strong> Identificamos a frequência e especificação exata do seu processador.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Dual-Channel ativo:</strong> Otimização da largura de banda para melhor performance de vídeo e sistema.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20gostaria%20de%20aumentar%20a%20memória%20RAM%20do%20meu%20notebook." target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Orçar Expansão de RAM
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-cpu big-icon"></i>
+                    <h4>Mais Capacidade</h4>
+                    <p>Chega de mensagens de falta de memória e lentidão ao trabalhar com planilhas e sistemas pesados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviço 3: Limpeza Térmica Preventiva -->
+    <section class="service-row-section" id="termica">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-thermometer-hot"></i> Prevenção e Durabilidade</span>
+                <h3>Limpeza Térmica e Troca de Pasta</h3>
+                <p>A poeira acumulada na saída do dissipador e o ressecamento da pasta térmica original reduzem a capacidade de refrigeração do notebook. Como resultado, o processador diminui sua velocidade para evitar queimar (Thermal Throttling) e a ventoinha opera no limite fazendo muito barulho.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Redução imediata de temperatura:</strong> Fim do calor excessivo na carcaça e no teclado.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Pastas de alto desempenho:</strong> Aplicação de compostos térmicos de alta condutividade.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Proteção contra o clima litorâneo:</strong> Remoção de resíduos e poeira que catalisam o desgaste de circuitos na Grande Florianópolis.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20meu%20notebook%20está%20esquentando%20muito.%20Quero%20agendar%20uma%20limpeza%20térmica." target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Agendar Limpeza Térmica
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-thermometer-hot big-icon"></i>
+                    <h4>Silêncio e Eficiência</h4>
+                    <p>Evite danos permanentes ao processador e mantenha o equipamento operando em temperatura ideal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviço 4: Troca de Telas -->
+    <section class="service-row-section" id="telas">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-monitor"></i> Visibilidade Perfeita</span>
+                <h3>Substituição de Telas e Displays</h3>
+                <p>Telas trincadas por impacto, displays com listras verticais, manchas escuras ou que simplesmente pararam de exibir imagem são trocadas com precisão técnica, mantendo o padrão de fábrica do seu aparelho.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Painéis LED, IPS e Full HD:</strong> Telas novas, sem manchas e com fidelidade de cores.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Compatibilidade exata:</strong> Respeitamos pinagem de conector (30 ou 40 pinos), taxa de atualização e brilho.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Instalação segura:</strong> Testes completos de iluminação e ausência de dead pixels antes da liberação.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20preciso%20trocar%20a%20tela%20do%20meu%20notebook.%20Poderia%20me%20passar%20um%20orçamento?" target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Consultar Troca de Tela
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-monitor big-icon"></i>
+                    <h4>Imagem 100% Nítida</h4>
+                    <p>Volte a trabalhar com clareza visual sem precisar de um monitor externo de apoio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviço 5: Substituição de Teclados -->
+    <section class="service-row-section" id="teclado">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-keyboard"></i> Digitação Precisa</span>
+                <h3>Troca de Teclados e Teclas Travadas</h3>
+                <p>Teclas que pararam de responder, que repetem caracteres sozinhas ou que falharam após pequenos acidentes com líquidos impedem qualquer trabalho produtivo. Fazemos a substituição completa por teclados originais ou compatíveis de primeira linha.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Padrão ABNT2 (com Ç):</strong> Teclados de padrão brasileiro com digitação correta de acentos.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Modelos com ou sem iluminação (Backlight):</strong> Manutenção do padrão visual nativo do seu equipamento.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Instalação e alinhamento corretos:</strong> Teclado perfeitamente integrado e nivelado à base.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20as%20teclas%20do%20meu%20notebook%20estão%20falhando.%20Quanto%20custa%20a%20troca?" target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Orçar Troca de Teclado
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-keyboard big-icon"></i>
+                    <h4>Digitação Sem Falhas</h4>
+                    <p>Recupere a agilidade para digitar e-mails, relatórios e tarefas do dia a dia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviço 6: Baterias e Fontes -->
+    <section class="service-row-section" id="bateria">
+        <div class="container service-row-container">
+            <div class="service-col-content">
+                <span class="service-tag"><i class="ph ph-battery-charging"></i> Autonomia e Mobilidade</span>
+                <h3>Baterias Novas e Fontes de Alimentação</h3>
+                <p>Notebook que só funciona conectado na tomada perde sua principal razão de existir: a mobilidade. Substituímos baterias viciadas ou estufadas por modelos novos com circuitos de proteção integrados e fornecemos carregadores com as voltagens adequadas.</p>
+                
+                <ul class="service-benefits-list">
+                    <li><i class="ph ph-check-circle"></i> <strong>Autonomia restaurada:</strong> Horas de trabalho longe da tomada em reuniões e viagens.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Segurança contra estufamento:</strong> Elimine o risco de baterias inchadas pressionarem o touchpad e o teclado.</li>
+                    <li><i class="ph ph-check-circle"></i> <strong>Fontes e carregadores confiáveis:</strong> Tensão e amperagem rigorosamente calibradas para a segurança da placa-mãe.</li>
+                </ul>
+
+                <a href="https://wa.me/554891763985?text=Olá,%20meu%20notebook%20não%20segura%20carga.%20Gostaria%20de%20verificar%20uma%20bateria%20nova." target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Orçar Bateria Nova
+                </a>
+            </div>
+
+            <div class="service-col-visual">
+                <div class="service-highlight-box">
+                    <i class="ph ph-battery-charging big-icon"></i>
+                    <h4>Mobilidade De Volta</h4>
+                    <p>Pare de depender de tomadas em todas as reuniões e trabalhe de onde quiser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Por que fazer a manutenção com a Edge TI?</h2>
+                <p>Transparência total e diagnóstico direto sobre o que realmente compensa consertar no seu equipamento.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="ph ph-hard-drives"></i>
+                    </div>
+                    <div>
+                        <h3>Seus Arquivos em Segurança</h3>
+                        <p>Fazemos a proteção e o backup prévio dos seus documentos, certificados e planilhas antes de qualquer procedimento de sistema.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="ph ph-shield-check"></i>
+                    </div>
+                    <div>
+                        <h3>Peças Testadas e com Garantia</h3>
+                        <p>Trabalhamos exclusivamente com componentes novos e homologados para assegurar longa vida útil ao notebook.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="ph ph-map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Atendimento na Grande Florianópolis</h3>
+                        <p>Foco de atendimento ágil para Palhoça (Pagani, Pedra Branca, Centro, Aririú), São José e Florianópolis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-container-box">
+                <h2>Seu notebook rápido e confiável novamente</h2>
+                <p>Consulte a viabilidade técnica e receba um orçamento sem compromisso para o seu modelo.</p>
+                <a href="https://wa.me/554891763985?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20manutenção%20do%20meu%20notebook." target="_blank" class="btn-cta-main">
+                    <i class="ph ph-whatsapp-logo"></i> Falar com um Técnico no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Edge TI - Soluções em Tecnologia. Todos os direitos reservados. Palhoça e Grande Florianópolis / SC.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
